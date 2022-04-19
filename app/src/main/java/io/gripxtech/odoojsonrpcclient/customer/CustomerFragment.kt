@@ -81,7 +81,11 @@ class CustomerFragment : Fragment() {
         activity.nsv.visibility = View.GONE
 
         when (customerType) {
-            CustomerType.Supplier -> {
+            CustomerType.Customer -> {
+                activity.nv.menu.findItem(R.id.nav_customer).isChecked = true
+                activity.setTitle(R.string.action_customer)
+            }
+           /* CustomerType.Supplier -> {
                 activity.nv.menu.findItem(R.id.nav_supplier).isChecked = true
                 activity.setTitle(R.string.action_supplier)
             }
@@ -92,7 +96,7 @@ class CustomerFragment : Fragment() {
             else -> {
                 activity.nv.menu.findItem(R.id.nav_customer).isChecked = true
                 activity.setTitle(R.string.action_customer)
-            }
+            }*/
         }
         activity.setSupportActionBar(tb)
         val actionBar = activity.supportActionBar

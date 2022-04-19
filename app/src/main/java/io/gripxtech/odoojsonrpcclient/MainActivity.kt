@@ -11,6 +11,7 @@ import io.gripxtech.odoojsonrpcclient.core.utils.BaseActivity
 import io.gripxtech.odoojsonrpcclient.core.utils.NavHeaderViewHolder
 import io.gripxtech.odoojsonrpcclient.core.utils.android.ktx.postEx
 import io.gripxtech.odoojsonrpcclient.customer.CustomerFragment
+import io.gripxtech.odoojsonrpcclient.grado_2.FragmentRegistro
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
@@ -21,8 +22,9 @@ class MainActivity : BaseActivity() {
         }
 
         private const val ACTION_CUSTOMER = 1
-        private const val ACTION_SUPPLIER = 2
-        private const val ACTION_COMPANY = 3
+//        private const val ACTION_SUPPLIER = 2
+//        private const val ACTION_COMPANY = 3
+        private const val ACTION_REGISTRO = 4
     }
 
     lateinit var app: App private set
@@ -35,12 +37,16 @@ class MainActivity : BaseActivity() {
         CustomerFragment.newInstance(CustomerFragment.Companion.CustomerType.Customer)
     }
 
-    private val supplierFragment: CustomerFragment by lazy {
-        CustomerFragment.newInstance(CustomerFragment.Companion.CustomerType.Supplier)
-    }
+//    private val supplierFragment: CustomerFragment by lazy {
+//        CustomerFragment.newInstance(CustomerFragment.Companion.CustomerType.Supplier)
+//    }
+//
+//    private val companyFragment: CustomerFragment by lazy {
+//        CustomerFragment.newInstance(CustomerFragment.Companion.CustomerType.Company)
+//    }
 
-    private val companyFragment: CustomerFragment by lazy {
-        CustomerFragment.newInstance(CustomerFragment.Companion.CustomerType.Company)
+    private val registroFragment: FragmentRegistro by lazy{
+        FragmentRegistro()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -88,7 +94,7 @@ class MainActivity : BaseActivity() {
                     }
                     true
                 }
-                R.id.nav_supplier -> {
+               /* R.id.nav_supplier -> {
                     if (currentDrawerItemID != ACTION_SUPPLIER) {
                         loadFragment(ACTION_SUPPLIER)
                     }
@@ -97,6 +103,12 @@ class MainActivity : BaseActivity() {
                 R.id.nav_company -> {
                     if (currentDrawerItemID != ACTION_COMPANY) {
                         loadFragment(ACTION_COMPANY)
+                    }
+                    true
+                }*/
+                R.id.nav_registro -> {
+                    if (currentDrawerItemID != ACTION_REGISTRO) {
+                        loadFragment(ACTION_REGISTRO)
                     }
                     true
                 }
@@ -130,7 +142,7 @@ class MainActivity : BaseActivity() {
                     .replace(R.id.clMain, customerFragment, getString(R.string.action_customer))
                     .commit()
             }
-            ACTION_SUPPLIER -> {
+           /* ACTION_SUPPLIER -> {
                 supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.clMain, supplierFragment, getString(R.string.action_supplier))
@@ -140,6 +152,12 @@ class MainActivity : BaseActivity() {
                 supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.clMain, companyFragment, getString(R.string.action_company))
+                    .commit()
+            }*/
+            ACTION_REGISTRO -> {
+                supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.clMain, registroFragment, getString(R.string.action_registro))
                     .commit()
             }
         }

@@ -89,4 +89,6 @@
     <string name="no_channel">No se ha encontrado ningún canal en el sistema.</string>
     <!-- Network Connection Strings END -->
 
+    <string name="action_registro">Registro</string>
+
 </resources>

@@ -87,4 +87,6 @@
     <string name="no_channel">لا توجد قناة في النظام</string>
     <!-- Network Connection Strings END -->
 
+    <string name="action_registro">Registro</string>
+
 </resources>

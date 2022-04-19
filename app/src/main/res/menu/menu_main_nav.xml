@@ -6,14 +6,18 @@
                 android:id="@+id/nav_customer"
                 android:icon="@drawable/ic_people_black_24dp"
                 android:title="@string/action_customer"/>
+<!--        <item-->
+<!--                android:id="@+id/nav_supplier"-->
+<!--                android:icon="@drawable/ic_local_shipping_black_24dp"-->
+<!--                android:title="@string/action_supplier"/>-->
+<!--        <item-->
+<!--                android:id="@+id/nav_company"-->
+<!--                android:icon="@drawable/ic_location_city_black_24dp"-->
+<!--                android:title="@string/action_company"/>-->
         <item
-                android:id="@+id/nav_supplier"
-                android:icon="@drawable/ic_local_shipping_black_24dp"
-                android:title="@string/action_supplier"/>
-        <item
-                android:id="@+id/nav_company"
+                android:id="@+id/nav_registro"
                 android:icon="@drawable/ic_location_city_black_24dp"
-                android:title="@string/action_company"/>
+                android:title="@string/action_registro"/>
     </group>
     <group
             android:id="@+id/nav_menu_3"
