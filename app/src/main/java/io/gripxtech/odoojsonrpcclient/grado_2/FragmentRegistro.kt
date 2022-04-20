@@ -131,7 +131,7 @@ class FragmentRegistro: Fragment() {
                     if (create.isSuccessful) {
                         val user = create.result
                         Log.e("CREATE_USERS", "USERS--> ${user}")
-                        createUsers(result, email, pass)
+                        //createUsers(result, email, pass)
                     } else {
                         // Odoo specific error
                         Timber.w("create() failed with ${create.errorMessage}")

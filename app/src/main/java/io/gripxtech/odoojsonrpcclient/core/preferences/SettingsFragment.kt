@@ -40,13 +40,13 @@ class SettingsFragment : PreferenceFragmentCompat() {
         activity = getActivity() as SettingsActivity
         addPreferencesFromResource(R.xml.preferences)
 
-        build = findPreference(getString(R.string.preference_build_key))
-        language = findPreference(getString(R.string.preference_language_key)) as ListPreference
-        logfile = findPreference(getString(R.string.preference_logfile_key))
-        organization = findPreference(getString(R.string.preference_organization_key))
-        privacy = findPreference(getString(R.string.preference_privacy_policy_key))
-        contact = findPreference(getString(R.string.preference_contact_key))
-        logout = findPreference(getString(R.string.preference_logout_key))
+        build = findPreference(getString(R.string.preference_build_key))!!
+        language = findPreference(getString(R.string.preference_language_key))!!
+        logfile = findPreference(getString(R.string.preference_logfile_key))!!
+        organization = findPreference(getString(R.string.preference_organization_key))!!
+        privacy = findPreference(getString(R.string.preference_privacy_policy_key))!!
+        contact = findPreference(getString(R.string.preference_contact_key))!!
+        logout = findPreference(getString(R.string.preference_logout_key))!!
 
         build.summary = getString(R.string.preference_build_summary, BuildConfig.VERSION_NAME)
 

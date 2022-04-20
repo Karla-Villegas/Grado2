@@ -33,4 +33,6 @@
     <color name="map_stroke">#779933CC</color>
     <color name="map_fill">#44CC0000</color>
 
+    <color name="blanco">#F0F0F0</color>
+
 </resources>

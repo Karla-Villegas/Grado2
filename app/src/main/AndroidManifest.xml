@@ -38,7 +38,8 @@
                 android:name=".core.authenticator.SplashActivity"
                 android:label="@string/app_name"
                 android:screenOrientation="portrait"
-                android:theme="@style/AppTheme.NoActionBar.Immersive.Splash">
+                android:theme="@style/AppTheme.NoActionBar.Immersive.Splash"
+                android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
