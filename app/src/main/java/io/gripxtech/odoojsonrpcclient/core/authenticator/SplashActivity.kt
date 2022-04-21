@@ -228,7 +228,7 @@ class SplashActivity : BaseActivity() {
     }
 
     private fun startLoginActivity() {
-        startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
+        startActivity(Intent(this@SplashActivity, ActivityNewLogin::class.java))
         finish()
     }
 
