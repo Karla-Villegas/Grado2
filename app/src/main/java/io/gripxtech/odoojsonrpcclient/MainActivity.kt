@@ -11,7 +11,6 @@ import io.gripxtech.odoojsonrpcclient.core.utils.BaseActivity
 import io.gripxtech.odoojsonrpcclient.core.utils.NavHeaderViewHolder
 import io.gripxtech.odoojsonrpcclient.core.utils.android.ktx.postEx
 import io.gripxtech.odoojsonrpcclient.customer.CustomerFragment
-import io.gripxtech.odoojsonrpcclient.grado_2.FragmentRegistro
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
@@ -24,7 +23,7 @@ class MainActivity : BaseActivity() {
         private const val ACTION_CUSTOMER = 1
 //        private const val ACTION_SUPPLIER = 2
 //        private const val ACTION_COMPANY = 3
-        private const val ACTION_REGISTRO = 4
+//        private const val ACTION_REGISTRO = 4
     }
 
     lateinit var app: App private set
@@ -45,9 +44,9 @@ class MainActivity : BaseActivity() {
 //        CustomerFragment.newInstance(CustomerFragment.Companion.CustomerType.Company)
 //    }
 
-    private val registroFragment: FragmentRegistro by lazy{
+    /*private val registroFragment: FragmentRegistro by lazy{
         FragmentRegistro()
-    }
+    }*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -106,12 +105,12 @@ class MainActivity : BaseActivity() {
                     }
                     true
                 }*/
-                R.id.nav_registro -> {
+               /* R.id.nav_registro -> {
                     if (currentDrawerItemID != ACTION_REGISTRO) {
                         loadFragment(ACTION_REGISTRO)
                     }
                     true
-                }
+                }*/
                 R.id.nav_settings -> {
                     startActivity(Intent(this, SettingsActivity::class.java))
                     true
@@ -154,12 +153,12 @@ class MainActivity : BaseActivity() {
                     .replace(R.id.clMain, companyFragment, getString(R.string.action_company))
                     .commit()
             }*/
-            ACTION_REGISTRO -> {
+           /* ACTION_REGISTRO -> {
                 supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.clMain, registroFragment, getString(R.string.action_registro))
                     .commit()
-            }
+            }*/
         }
     }
 

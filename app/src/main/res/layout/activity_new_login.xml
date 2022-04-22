@@ -5,8 +5,8 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#0d2027"
         tools:context=".core.authenticator.ActivityNewLogin">
+    <!--android:background="#D35400"-->
 
     <ScrollView
             android:layout_width="match_parent"
@@ -17,17 +17,17 @@
                 android:layout_height="wrap_content">
 
             <ImageView
+                    android:id="@+id/logo"
                     android:layout_marginTop="@dimen/_100sdp"
-                    android:src="@color/android_blue"
+                    android:src="@drawable/logo"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:id="@+id/logo"
                     android:layout_width="@dimen/_200sdp"
                     android:layout_height="@dimen/_100sdp"/>
 
             <LinearLayout
-                    android:layout_marginTop="100dp"
+                    android:layout_marginTop="80dp"
                     app:layout_constraintTop_toBottomOf="@+id/logo"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -39,11 +39,11 @@
                     android:layout_height="wrap_content">
 
                 <TextView
-                        android:textColor="@color/blanco"
+                        android:textColor="@color/black"
                         android:text="Correo electrónico:"
                         android:layout_width="match_parent"
                         android:layout_marginBottom="5dp"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content" />
 
 
                 <EditText
@@ -59,12 +59,12 @@
                         android:textSize="16sp" />
 
                 <TextView
-                        android:textColor="@color/blanco"
+                        android:textColor="@color/black"
                         android:layout_marginTop="25dp"
                         android:text="Contraseña:"
                         android:layout_marginBottom="5dp"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content" />
 
                 <EditText
                         android:id="@+id/passwordEditext"
@@ -99,6 +99,7 @@
                 <ProgressBar
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
+
             </LinearLayout>
 
             <LinearLayout
@@ -127,16 +128,19 @@
             </LinearLayout>
 
             <TextView
+                    android:id="@+id/txt_registro"
                     app:layout_constraintTop_toBottomOf="@+id/Button"
-                    android:layout_marginTop="@dimen/_50sdp"
+                    android:layout_marginTop="32dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:textColor="@color/blanco"
-                    android:text="SINCO 2022"
+                    android:textColor="@color/black"
+                    android:text="¿No tienes cuenta? Regístrate"
                     android:layout_marginBottom="20dp"
+                    android:clickable="true"
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

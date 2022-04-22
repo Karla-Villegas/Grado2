@@ -14,10 +14,10 @@
 <!--                android:id="@+id/nav_company"-->
 <!--                android:icon="@drawable/ic_location_city_black_24dp"-->
 <!--                android:title="@string/action_company"/>-->
-        <item
+       <!-- <item
                 android:id="@+id/nav_registro"
                 android:icon="@drawable/ic_location_city_black_24dp"
-                android:title="@string/action_registro"/>
+                android:title="@string/action_registro"/>-->
     </group>
     <group
             android:id="@+id/nav_menu_3"

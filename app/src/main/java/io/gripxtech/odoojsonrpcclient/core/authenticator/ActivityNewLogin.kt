@@ -2,6 +2,7 @@ package io.gripxtech.odoojsonrpcclient.core.authenticator
 
 import android.app.Activity
 import android.app.ProgressDialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import androidx.core.util.PatternsCompat
 import androidx.lifecycle.ViewModelProvider
 import io.gripxtech.odoojsonrpcclient.*
 import io.gripxtech.odoojsonrpcclient.core.Odoo
+import io.gripxtech.odoojsonrpcclient.core.RegistroActivity
 import io.gripxtech.odoojsonrpcclient.core.entities.session.authenticate.AuthenticateResult
 import io.gripxtech.odoojsonrpcclient.core.entities.webclient.versionInfo.VersionInfo
 import io.gripxtech.odoojsonrpcclient.core.utils.android.ktx.subscribeEx
@@ -46,7 +48,16 @@ class ActivityNewLogin : AppCompatActivity(){
         binding.Button.setOnClickListener {
             validate()
         }
+        binding.txtRegistro.setOnClickListener {
+            startRegistroActivity()
+        }
 
+    }
+
+    private fun startRegistroActivity() {
+        val intent = Intent(this, RegistroActivity::class.java).apply {}
+        startActivity(intent)
+        finish()
     }
 
     private fun validate() {

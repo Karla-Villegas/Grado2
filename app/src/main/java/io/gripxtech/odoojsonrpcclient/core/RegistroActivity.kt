@@ -1,64 +1,28 @@
-package io.gripxtech.odoojsonrpcclient.grado_2
+package io.gripxtech.odoojsonrpcclient.core
 
-import android.content.res.Configuration
+import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.fragment.app.Fragment
-import io.gripxtech.odoojsonrpcclient.GlideApp
-import io.gripxtech.odoojsonrpcclient.GlideRequests
-import io.gripxtech.odoojsonrpcclient.MainActivity
+import android.widget.Toast
 import io.gripxtech.odoojsonrpcclient.R
-import io.gripxtech.odoojsonrpcclient.core.Odoo
+import io.gripxtech.odoojsonrpcclient.core.authenticator.ActivityNewLogin
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.tb
-import kotlinx.android.synthetic.main.fragment_registro.*
+import kotlinx.android.synthetic.main.activity_registro.*
+
 import timber.log.Timber
 
-class FragmentRegistro: Fragment() {
+class RegistroActivity : AppCompatActivity() {
 
-
-    lateinit var activity: MainActivity private set
-    lateinit var glideRequests: GlideRequests private set
+    /*private var _binding: ActivityRegistroBinding? = null
+    private val binding get() = _binding!!*/
     private var compositeDisposable: CompositeDisposable? = null
-    private lateinit var drawerToggle: ActionBarDrawerToggle
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        compositeDisposable?.dispose()
-        compositeDisposable = CompositeDisposable()
-
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_registro, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        activity = getActivity() as MainActivity
-        glideRequests = GlideApp.with(this)
-
-        activity.setSupportActionBar(tb)
-        val actionBar = activity.supportActionBar
-        if (actionBar != null) {
-            actionBar.setHomeButtonEnabled(true)
-            actionBar.setDisplayHomeAsUpEnabled(true)
-        }
-
-        drawerToggle = ActionBarDrawerToggle(
-            activity, activity.dl,
-            tb, R.string.navigation_drawer_open, R.string.navigation_drawer_close
-        )
-        activity.dl.addDrawerListener(drawerToggle)
-        drawerToggle.syncState()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_registro)
 
         btGuardar.setOnClickListener { guardar() }
-
     }
 
     private fun guardar() {
@@ -131,6 +95,8 @@ class FragmentRegistro: Fragment() {
                     if (create.isSuccessful) {
                         val user = create.result
                         Log.e("CREATE_USERS", "USERS--> ${user}")
+                        Toast.makeText(this@RegistroActivity, "¡Registro exitoso!", Toast.LENGTH_LONG).show()
+                        startLoginActivity()
                         //createUsers(result, email, pass)
                     } else {
                         // Odoo specific error
@@ -149,16 +115,10 @@ class FragmentRegistro: Fragment() {
         }
     }
 
-
-    override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
-        if (::drawerToggle.isInitialized) {
-            drawerToggle.onConfigurationChanged(newConfig)
-        }
+    private fun startLoginActivity() {
+        val intent = Intent(this, ActivityNewLogin::class.java).apply {}
+        startActivity(intent)
+        finish()
     }
 
-    override fun onDestroyView() {
-        compositeDisposable?.dispose()
-        super.onDestroyView()
-    }
 }
