@@ -18,16 +18,16 @@
 
             <ImageView
                     android:id="@+id/logo"
-                    android:layout_marginTop="@dimen/_100sdp"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="80dp"
                     android:src="@drawable/logo"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:layout_width="@dimen/_200sdp"
-                    android:layout_height="@dimen/_100sdp"/>
+                    app:layout_constraintStart_toStartOf="parent" />
 
             <LinearLayout
-                    android:layout_marginTop="80dp"
+                    android:layout_marginTop="16dp"
                     app:layout_constraintTop_toBottomOf="@+id/logo"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -60,7 +60,7 @@
 
                 <TextView
                         android:textColor="@color/black"
-                        android:layout_marginTop="25dp"
+                        android:layout_marginTop="20dp"
                         android:text="Contraseña:"
                         android:layout_marginBottom="5dp"
                         android:layout_width="match_parent"
@@ -91,7 +91,7 @@
 
                 <TextView
                         android:layout_marginEnd="10dp"
-                        android:textColor="@color/icons"
+                        android:textColor="@color/black"
                         android:text="Autenticando..."
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -132,14 +132,15 @@
                     app:layout_constraintTop_toBottomOf="@+id/Button"
                     android:layout_marginTop="32dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
                     android:textColor="@color/black"
                     android:text="¿No tienes cuenta? Regístrate"
                     android:layout_marginBottom="20dp"
                     android:clickable="true"
+                    android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="39dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

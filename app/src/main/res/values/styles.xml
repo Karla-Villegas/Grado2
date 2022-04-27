@@ -69,4 +69,12 @@
         <item name="android:layout_marginStart">5dp</item>
     </style>
 
+    <style name="toolbar" parent="AppTheme">
+        <item name="android:textColorSecondary">#7B7D7D</item>
+    </style>
+
+    <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/android_green_dark</item>
+    </style>
+
 </resources>

@@ -8,17 +8,32 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable-v21/ic_account.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable-v21/ic_account_group.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable-v21/rounded.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-xhdpi/background_progress.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-xxhdpi/background_button.xml" value="0.1055" />
         <entry key="app/src/main/res/drawable-xxhdpi/background_edittext.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/drawable_splash.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.11851851851851852" />
-        <entry key="app/src/main/res/layout/activity_new_login.xml" value="0.275" />
-        <entry key="app/src/main/res/layout/activity_profile.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/activity_manage_account.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_new_login.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_new_main.xml" value="0.19583333333333333" />
+        <entry key="app/src/main/res/layout/activity_new_principal.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_profile.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_registro.xml" value="0.16" />
+        <entry key="app/src/main/res/layout/activity_settings.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_cartelera_.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_mi_cuenta.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_miembros.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_ministerios.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_registro.xml" value="0.1824074074074074" />
         <entry key="app/src/main/res/layout/progress_dialog.xml" value="0.19583333333333333" />
+        <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.19583333333333333" />
         <entry key="app/src/main/res/menu/main.xml" value="0.11851851851851852" />
-        <entry key="app/src/main/res/menu/menu_main_nav.xml" value="0.11851851851851852" />
+        <entry key="app/src/main/res/menu/menu_main_nav.xml" value="0.1" />
+        <entry key="app/src/main/res/xml/preferences.xml" value="0.18020833333333333" />
       </map>
     </option>
   </component>

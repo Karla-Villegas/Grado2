@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/navigation"
+        app:startDestination="@id/nav_cartelera">
+
+    <fragment
+            android:id="@+id/nav_cartelera"
+            android:name="io.gripxtech.odoojsonrpcclient.fragments.Fragment_Cartelera"
+            android:label=""
+            tools:layout="@layout/fragment_cartelera_" />
+
+    <fragment
+            android:id="@+id/nav_miembros"
+            android:name="io.gripxtech.odoojsonrpcclient.fragments.Fragment_ListaMiembros"
+            android:label=""
+            tools:layout="@layout/fragment_miembros" />
+
+    <fragment
+            android:id="@+id/nav_ministerios"
+            android:name="io.gripxtech.odoojsonrpcclient.fragments.Fragment_Ministerios"
+            android:label=""
+            tools:layout="@layout/fragment_ministerios" />
+
+    <fragment
+            android:id="@+id/nav_perfil"
+            android:name="io.gripxtech.odoojsonrpcclient.fragments.Fragment_MiCuenta"
+            android:label=""
+            tools:layout="@layout/fragment_mi_cuenta" />
+
+
+
+</navigation>

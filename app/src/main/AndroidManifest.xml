@@ -25,8 +25,15 @@
             android:usesCleartextTraffic="true"
             tools:ignore="AllowBackup,GoogleAppIndexingWarning,UnusedAttribute">
         <activity
+                android:name=".NewActivityPrincipal"
+                android:screenOrientation="portrait"
+                android:theme="@style/AppTheme.NoActionBar"
+                android:exported="true" />
+
+        <activity
                 android:name=".core.RegistroActivity"
-                android:exported="false" />
+                android:exported="false"
+                android:theme="@style/AppTheme.NoActionBar" />
         <activity
                 android:name=".MainActivity"
                 android:label="@string/app_name"
@@ -42,7 +49,7 @@
                 android:exported="true"
                 android:label="@string/app_name"
                 android:screenOrientation="portrait"
-                android:theme="@style/AppTheme.NoActionBar"></activity>
+                android:theme="@style/AppTheme.NoActionBar" />
         <activity
                 android:name=".core.authenticator.SplashActivity"
                 android:exported="true"
