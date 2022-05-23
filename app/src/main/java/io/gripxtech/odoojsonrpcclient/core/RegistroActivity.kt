@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.Toast
 import io.gripxtech.odoojsonrpcclient.R
 import io.gripxtech.odoojsonrpcclient.core.authenticator.ActivityNewLogin
+import io.gripxtech.odoojsonrpcclient.fragments.miembros.Fragment_ListaMiembros
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_registro.*
 
@@ -116,7 +117,7 @@ class RegistroActivity : AppCompatActivity() {
     }
 
     private fun startLoginActivity() {
-        val intent = Intent(this, ActivityNewLogin::class.java).apply {}
+            val intent = Intent(this, Fragment_ListaMiembros::class.java).apply {}
         startActivity(intent)
         finish()
     }

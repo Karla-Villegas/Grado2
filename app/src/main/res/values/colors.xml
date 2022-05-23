@@ -10,6 +10,7 @@
     <color name="divider">#BDBDBD</color>
     <color name="black">#FF000000</color>
     <color name="textRed">#FFEF4738</color>
+    <color name="colorGrisCard">#d4d5d5</color>
 
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
@@ -27,7 +28,7 @@
     <color name="android_green_dark">#669900</color>
     <color name="android_orange">#FFBB33</color>
     <color name="android_orange_dark">#FF8800</color>
-    <color name="android_red">#FF4444</color>
+    <color name="android_red">#FF774D</color>
     <color name="android_red_dark">#CC0000</color>
 
     <color name="map_stroke">#779933CC</color>
@@ -35,5 +36,8 @@
 
     <color name="blanco">#F0F0F0</color>
     <color name="gris">#DBDBDB</color>
+    <color name="background_text">#24353D</color>
+    <color name="white">#FFFFFF</color>
+    <color name="colorGris">#DCDCDC</color>
 
 </resources>

@@ -8,7 +8,7 @@
             android:title="" />
     <item
             android:id="@+id/nav_miembros"
-            android:icon="@drawable/ic_email_outline"
+            android:icon="@drawable/ic_account_group"
             android:title="" />
     <item
             android:id="@+id/nav_ministerios"

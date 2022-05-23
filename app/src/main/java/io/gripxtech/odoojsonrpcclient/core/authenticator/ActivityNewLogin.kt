@@ -48,17 +48,17 @@ class ActivityNewLogin : AppCompatActivity(){
         binding.Button.setOnClickListener {
             validate()
         }
-        binding.txtRegistro.setOnClickListener {
+        /*binding.txtRegistro.setOnClickListener {
             startRegistroActivity()
-        }
+        }*/
 
     }
 
-    private fun startRegistroActivity() {
+    /*private fun startRegistroActivity() {
         val intent = Intent(this, RegistroActivity::class.java).apply {}
         startActivity(intent)
         finish()
-    }
+    }*/
 
     private fun validate() {
         passwordError = ""

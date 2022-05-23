@@ -233,7 +233,7 @@ class SplashActivity : BaseActivity() {
     }
 
     private fun startMainActivity() {
-        startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+        startActivity(Intent(this@SplashActivity, NewActivityPrincipal::class.java))
         finish()
     }
 
