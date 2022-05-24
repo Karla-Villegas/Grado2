@@ -7,19 +7,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.reflect.TypeToken
-import io.gripxtech.odoojsonrpcclient.NewActivityPrincipal
-import io.gripxtech.odoojsonrpcclient.RECORD_LIMIT
+import io.gripxtech.odoojsonrpcclient.*
 import io.gripxtech.odoojsonrpcclient.core.Odoo
-import io.gripxtech.odoojsonrpcclient.core.RegistroActivity
 import io.gripxtech.odoojsonrpcclient.databinding.FragmentMiembrosBinding
 import io.gripxtech.odoojsonrpcclient.fragments.miembros.entities.Miembros
-import io.gripxtech.odoojsonrpcclient.gson
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.fragment_customer.*
-import kotlinx.android.synthetic.main.fragment_miembros.*
 import timber.log.Timber
 
 class Fragment_ListaMiembros: Fragment() {
@@ -67,8 +64,7 @@ class Fragment_ListaMiembros: Fragment() {
 
         fetchMiembros()
         binding.button.setOnClickListener {
-            val intent = Intent (getActivity(), RegistroActivity::class.java)
-            getActivity()?.startActivity(intent)
+            findNavController().navigate(R.id.action_nav_miembros_to_registro)
         }
     }
 

@@ -88,7 +88,7 @@
                 android:layout_marginBottom="@dimen/_45sdp"
                 app:defaultNavHost="true"
                 app:layout_constraintTop_toTopOf="parent"
-                app:navGraph="@navigation/navigation"
+                app:navGraph="@navigation/navegacion2"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="-16dp" />
 

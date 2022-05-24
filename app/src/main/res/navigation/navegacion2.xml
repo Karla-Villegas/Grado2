@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/navigation"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/navegacion2"
         app:startDestination="@id/nav_cartelera">
 
     <fragment
@@ -15,7 +15,12 @@
             android:id="@+id/nav_miembros"
             android:name="io.gripxtech.odoojsonrpcclient.fragments.miembros.Fragment_ListaMiembros"
             android:label=""
-            tools:layout="@layout/fragment_miembros" />
+            tools:layout="@layout/fragment_miembros">
+
+        <action android:id="@+id/action_nav_miembros_to_registro"
+                app:destination="@+id/nav_registro"/>
+
+    </fragment>
 
     <fragment
             android:id="@+id/nav_ministerios"
@@ -29,6 +34,15 @@
             android:label=""
             tools:layout="@layout/fragment_mi_cuenta" />
 
+    <fragment
+            android:id="@+id/nav_registro"
+            android:name="io.gripxtech.odoojsonrpcclient.fragments.miembros.fragment_RegistroMiembros"
+            android:label=""
+            tools:layout="@layout/fragment_registro_miembros">
 
+        <action android:id="@+id/action_nav_registro_to_miembros"
+                app:destination="@+id/nav_miembros"/>
+
+    </fragment>
 
 </navigation>
