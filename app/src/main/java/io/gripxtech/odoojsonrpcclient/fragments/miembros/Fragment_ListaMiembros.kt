@@ -2,6 +2,7 @@ package io.gripxtech.odoojsonrpcclient.fragments.miembros
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -53,7 +54,7 @@ class Fragment_ListaMiembros: Fragment() {
         binding.rvMiembros.adapter = adapter
 
         adapter.setupScrollListener(binding.rvMiembros)
-        if (!adapter.hasRetryListener()) {
+        /*if (!adapter.hasRetryListener()) {
             adapter.retryListener {
                 fetchMiembros()
             }
@@ -62,7 +63,7 @@ class Fragment_ListaMiembros: Fragment() {
         if (adapter.rowItemCount == 0) {
             adapter.showMore()
             fetchMiembros()
-        }
+        }*/
 
         fetchMiembros()
         binding.button.setOnClickListener {
@@ -73,7 +74,7 @@ class Fragment_ListaMiembros: Fragment() {
 
     private fun fetchMiembros() {
         Odoo.searchRead(
-            model = "res.partner",
+            model = "ev.believer",
             fields = listOf("id", "name", "email"),
             offset = adapter.rowItemCount,
             limit = limit,
@@ -92,6 +93,7 @@ class Fragment_ListaMiembros: Fragment() {
                         adapter.hideMore()
                         val items: ArrayList<Miembros> = gson.fromJson(searchRead.result.records, ListTypeMiembros)
                         Timber.w("searchRead() Fetch ${items}")
+                        Log.e("PRUEBAAA--->", "${items}")
                         adapter.addRowItems(items)
                     } else {
                         // Odoo specific error

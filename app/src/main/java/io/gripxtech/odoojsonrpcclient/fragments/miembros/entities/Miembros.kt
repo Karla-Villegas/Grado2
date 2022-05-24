@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-@Entity(tableName = "tc.partner", primaryKeys = ["_id", "server_id"])
+@Entity(tableName = "ev_believer", primaryKeys = ["_id", "server_id"])
 data class Miembros(
     @ColumnInfo(name = "_id")
     var _id: Long = 0,

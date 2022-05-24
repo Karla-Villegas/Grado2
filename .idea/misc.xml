@@ -18,11 +18,23 @@
         <entry key="app/src/main/res/drawable-v21/ic_credit_card_outline.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-v21/rounded.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-xhdpi/background_progress.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable-xxhdpi/background_alertdialog.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-xxhdpi/background_button.xml" value="0.1055" />
         <entry key="app/src/main/res/drawable-xxhdpi/background_edittext.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable-xxhdpi/icon_return_24.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/bg_button_add.xml" value="0.107" />
         <entry key="app/src/main/res/drawable/drawable_splash.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_add.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_add_box_black_24dp.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_add_white_24dp.xml" value="0.115" />
+        <entry key="app/src/main/res/drawable/ic_arrow_drop_down_white_24dp.xml" value="0.115" />
+        <entry key="app/src/main/res/drawable/ic_arrow_drop_up_white_24dp.xml" value="0.115" />
+        <entry key="app/src/main/res/drawable/ic_assignment_black_24dp.xml" value="0.115" />
+        <entry key="app/src/main/res/drawable/ic_build_black_24dp.xml" value="0.115" />
+        <entry key="app/src/main/res/drawable/ic_clear_black_24dp.xml" value="0.115" />
+        <entry key="app/src/main/res/drawable/ic_close_white_24dp.xml" value="0.115" />
+        <entry key="app/src/main/res/drawable/people.xml" value="0.115" />
+        <entry key="app/src/main/res/drawable/side_nav_bar.xml" value="0.115" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.11851851851851852" />
         <entry key="app/src/main/res/layout/activity_manage_account.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_new_login.xml" value="0.22" />
@@ -37,6 +49,7 @@
         <entry key="app/src/main/res/layout/fragment_miembros.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_ministerios.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_registro.xml" value="0.1824074074074074" />
+        <entry key="app/src/main/res/layout/fragment_registro_miembros.xml" value="0.18" />
         <entry key="app/src/main/res/layout/item_view_lista_miembros.xml" value="0.33" />
         <entry key="app/src/main/res/layout/layout_bottom_sheet.xml" value="0.1" />
         <entry key="app/src/main/res/layout/progress_dialog.xml" value="0.19583333333333333" />
