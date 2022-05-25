@@ -20,14 +20,14 @@
         <entry key="app/src/main/res/layout/activity_manage_account.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_new_login.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_new_main.xml" value="0.19583333333333333" />
-        <entry key="app/src/main/res/layout/activity_new_principal.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_new_principal.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_registro.xml" value="0.16" />
         <entry key="app/src/main/res/layout/activity_settings.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_cartelera_.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_mi_cuenta.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_miembros.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_ministerios.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_cartelera_.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_mi_cuenta.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_miembros.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/fragment_ministerios.xml" value="0.67" />
         <entry key="app/src/main/res/layout/fragment_registro.xml" value="0.1824074074074074" />
         <entry key="app/src/main/res/layout/fragment_registro_miembros.xml" value="0.23177083333333334" />
         <entry key="app/src/main/res/layout/progress_dialog.xml" value="0.19583333333333333" />

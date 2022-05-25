@@ -4,13 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import io.gripxtech.odoojsonrpcclient.R
 import io.gripxtech.odoojsonrpcclient.core.Odoo
 import io.gripxtech.odoojsonrpcclient.databinding.FragmentRegistroMiembrosBinding
 import io.gripxtech.odoojsonrpcclient.toJsonObject
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.activity_registro.*
 import kotlinx.android.synthetic.main.fragment_registro_miembros.*
 import timber.log.Timber
 
@@ -54,6 +55,7 @@ class fragment_RegistroMiembros: Fragment() {
         }
 
         createBeliever(name, email, pass)
+
     }
 
     private fun createBeliever(name:String, email:String, pass:String) {
@@ -65,7 +67,8 @@ class fragment_RegistroMiembros: Fragment() {
                     if (it.isSuccessful) {
                         val respuesta = call.result.asString.toJsonObject()
                         Timber.e("callkw()--->  ${respuesta}")
-
+                        Toast.makeText(requireContext(), "Registro exitoso!!", Toast.LENGTH_SHORT).show()
+                        findNavController().navigate(R.id.action_nav_registro_to_miembros)
                     } else {
                         Timber.w("callkw() failed with ${it.errorBody()}")
 

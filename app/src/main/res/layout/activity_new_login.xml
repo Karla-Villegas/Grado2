@@ -10,17 +10,21 @@
 
     <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
 
             <ImageView
                     android:id="@+id/logo"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:layout_marginTop="80dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="100dp"
                     android:src="@drawable/logo"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -41,6 +45,7 @@
                 <TextView
                         android:textColor="@color/black"
                         android:text="Correo electrónico:"
+                        android:fontFamily="@font/quicksand_semibold"
                         android:layout_width="match_parent"
                         android:layout_marginBottom="5dp"
                         android:layout_height="wrap_content" />
@@ -49,9 +54,10 @@
                 <EditText
                         android:id="@+id/emailEditext"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center"
                         android:hint="Ingrese su correo electronico..."
+                        android:fontFamily="@font/quicksand_semibold"
                         android:background="@drawable/background_edittext"
                         android:inputType="textEmailAddress"
                         android:paddingLeft="15dp"
@@ -62,6 +68,7 @@
                         android:textColor="@color/black"
                         android:layout_marginTop="20dp"
                         android:text="Contraseña:"
+                        android:fontFamily="@font/quicksand_semibold"
                         android:layout_marginBottom="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
@@ -69,9 +76,10 @@
                 <EditText
                         android:id="@+id/passwordEditext"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center"
                         android:hint="Ingrese su contraseña..."
+                        android:fontFamily="@font/quicksand_semibold"
                         android:background="@drawable/background_edittext"
                         android:inputType="textPassword"
                         android:paddingLeft="15dp"
@@ -94,11 +102,11 @@
                         android:textColor="@color/black"
                         android:text="Autenticando..."
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content" />
 
                 <ProgressBar
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content" />
 
             </LinearLayout>
 
@@ -114,7 +122,10 @@
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginBottom="32dp">
+
                 <TextView
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
@@ -122,25 +133,11 @@
                         android:layout_marginEnd="20dp"
                         android:textStyle="bold"
                         android:text="Iniciar Sesión"
+                        android:fontFamily="@font/quicksand_semibold"
                         android:textColor="@color/icons"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content" />
             </LinearLayout>
-
-            <!--<TextView
-                    android:id="@+id/txt_registro"
-                    app:layout_constraintTop_toBottomOf="@+id/Button"
-                    android:layout_marginTop="32dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:textColor="@color/black"
-                    android:text="¿No tienes cuenta? Regístrate"
-                    android:layout_marginBottom="20dp"
-                    android:clickable="true"
-                    android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="39dp" />-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

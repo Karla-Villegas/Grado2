@@ -8,14 +8,28 @@
         tools:context=".fragments.Fragment_Cartelera">
 
     <TextView
+            android:id="@+id/titleCartelera"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/quicksand_semibold"
             android:text="Cartelera"
-            android:textColor="@color/black"
-            android:textSize="30sp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:textColor="@color/background_text"
+            android:textSize="@dimen/_11sdp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="32dp" />
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp" />
+
+    <View
+            android:id="@+id/linea3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="2dp"
+            android:background="@color/colorGrisCard"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleCartelera"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

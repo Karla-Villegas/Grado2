@@ -8,14 +8,154 @@
         tools:context=".fragments.Fragment_MiCuenta">
 
     <TextView
+            android:id="@+id/titleMiCuenta"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Mi Cuenta"
-            android:textColor="@color/black"
-            android:textSize="30sp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:fontFamily="@font/quicksand_semibold"
+            android:text="Mi cuenta"
+            android:textColor="@color/background_text"
+            android:textSize="@dimen/_11sdp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="32dp" />
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp" />
+
+    <View
+            android:id="@+id/linea3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="2dp"
+            android:background="@color/colorGrisCard"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleMiCuenta"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp" />
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linea3"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/linearLayout11"
+            app:layout_constraintHorizontal_bias="1.0"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Datos básicos"
+                android:fontFamily="@font/quicksand_semibold"
+                android:textColor="@color/background_text"
+                android:textSize="@dimen/_12sdp" />
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorGrisCard"
+                android:layout_marginTop="@dimen/_8sdp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/layoutDocumentoIdentidad"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout11"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/quicksand_bold"
+                android:text="Documento de Identidad:"
+                android:textColor="@color/background_text"
+                android:textSize="@dimen/_10sdp" />
+
+        <TextView
+                android:id="@+id/idDocumentoIdentidad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/quicksand_semibold"
+                android:textColor="@color/background_text"
+                android:textSize="@dimen/_10sdp"
+                tools:text="26.345.450" />
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/layoutNombre"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layoutDocumentoIdentidad"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/quicksand_bold"
+                android:text="Nombre y apellido:"
+                android:textColor="@color/background_text"
+                android:textSize="@dimen/_10sdp" />
+
+        <TextView
+                android:id="@+id/idNombre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/quicksand_semibold"
+                android:textColor="@color/background_text"
+                android:textSize="@dimen/_10sdp"
+                tools:text="Karla Villegas" />
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/layoutNumeroTelefono"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layoutNombre"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/quicksand_bold"
+                android:text="Teléfono:"
+                android:textColor="@color/background_text"
+                android:textSize="@dimen/_10sdp" />
+
+        <TextView
+                android:id="@+id/idTelefono"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/quicksand_semibold"
+                android:textColor="@color/background_text"
+                android:textSize="@dimen/_10sdp"
+                tools:text="04144763022" />
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
