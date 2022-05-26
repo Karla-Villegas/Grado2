@@ -69,6 +69,7 @@ class Fragment_ListaMiembros: Fragment() {
     }
 
     private fun fetchMiembros() {
+        binding.shimmerLayout.startShimmer()
         Odoo.searchRead(
             model = "ev.believer",
             fields = listOf("id", "name", "email"),
@@ -84,6 +85,7 @@ class Fragment_ListaMiembros: Fragment() {
                     val searchRead = response.body()!!
                     if (searchRead.isSuccessful) {
                      /*   val result = searchRead.result*/
+                        showRecyclerView()
                         adapter.hideEmpty()
                         adapter.hideError()
                         adapter.hideMore()
@@ -106,5 +108,13 @@ class Fragment_ListaMiembros: Fragment() {
 
             onComplete { }
         }
+    }
+
+    private fun showRecyclerView() {
+        binding.shimmerLayout.apply {
+            stopShimmer()
+            visibility = View.GONE
+        }
+        binding.rvMiembros.visibility = View.VISIBLE
     }
 }

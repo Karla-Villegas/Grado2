@@ -49,7 +49,7 @@ class AdapterMiembros(
                 val item = items[position] as Miembros
 
                 holder.itemView.nameMiembro.text = item.name
-                holder.itemView.emailMiembro.text = item.email.trimFalse()
+               /* holder.itemView.emailMiembro.text = item.serverId.toString()*/
 
 
             }

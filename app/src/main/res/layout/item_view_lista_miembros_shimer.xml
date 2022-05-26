@@ -21,13 +21,13 @@
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/gris"
+                android:background="@color/white"
                 android:padding="8dp">
 
             <ImageView
                     android:layout_width="40dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/people"
+                    android:background="@color/shimmerColor"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -36,16 +36,17 @@
 
             <TextView
                     android:id="@+id/nameMiembro"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textSize="14dp"
-                    android:text="Nombre Miembro"
+                    android:background="@color/shimmerColor"
                     android:textColor="@color/black"
                     android:layout_marginStart="16dp"
                     app:layout_constraintStart_toEndOf="@+id/imageView4"
                     app:layout_constraintTop_toTopOf="parent"
                     android:layout_marginTop="5dp"
-                    />
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

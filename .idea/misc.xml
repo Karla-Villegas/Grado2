@@ -26,10 +26,12 @@
         <entry key="app/src/main/res/layout/activity_settings.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_cartelera_.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_mi_cuenta.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/fragment_miembros.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/fragment_miembros.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_ministerios.xml" value="0.67" />
         <entry key="app/src/main/res/layout/fragment_registro.xml" value="0.1824074074074074" />
         <entry key="app/src/main/res/layout/fragment_registro_miembros.xml" value="0.23177083333333334" />
+        <entry key="app/src/main/res/layout/item_view_lista_miembros.xml" value="0.26614583333333336" />
+        <entry key="app/src/main/res/layout/item_view_lista_miembros_shimer.xml" value="0.28177083333333336" />
         <entry key="app/src/main/res/layout/progress_dialog.xml" value="0.19583333333333333" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.19583333333333333" />
         <entry key="app/src/main/res/menu/main.xml" value="0.11851851851851852" />

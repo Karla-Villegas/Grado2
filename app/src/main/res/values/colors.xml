@@ -39,5 +39,6 @@
     <color name="background_text">#24353D</color>
     <color name="white">#FFFFFF</color>
     <color name="colorGris">#DCDCDC</color>
+    <color name="shimmerColor">#C2C2C2</color>
 
 </resources>
