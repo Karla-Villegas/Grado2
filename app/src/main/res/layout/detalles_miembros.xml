@@ -1,8 +1,349 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_3sdp"
+            android:background="@drawable/background_alertdialog"
+            android:orientation="vertical">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:background="@drawable/background_alertdialog"
+                android:orientation="vertical">
+
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                <ImageView
+                        android:id="@+id/idIconReturn"
+                        android:layout_width="@dimen/_25sdp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:src="@drawable/icon_return_24" />
+            </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:orientation="vertical"
+                android:padding="@dimen/_5sdp"
+                android:layout_marginTop="20dp">
+
+            <LinearLayout
+                    android:id="@+id/DET_contentNommbre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/_6sdp">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nombre:"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/quicksand_semibold"
+                        android:gravity="center_vertical"
+                        android:textSize="@dimen/_10sdp"
+                        android:textStyle="bold" />
+
+                <TextView
+                        android:id="@+id/DET_nombreMiembro"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/_3sdp"
+                        android:textSize="@dimen/_10sdp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/DET_contentCedula"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/_6sdp">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Documento de identidad:"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/quicksand_semibold"
+                        android:gravity="center_vertical"
+                        android:textSize="@dimen/_10sdp"
+                        android:textStyle="bold" />
+
+                <TextView
+                        android:id="@+id/DET_cedulaMiembro"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/_3sdp"
+                        android:textSize="@dimen/_10sdp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/DET_contentTelefono"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/_6sdp">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Teléfono:"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/quicksand_semibold"
+                        android:gravity="center_vertical"
+                        android:textSize="@dimen/_10sdp"
+                        android:textStyle="bold" />
+
+                <TextView
+                        android:id="@+id/DET_telefonoMiembro"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/_3sdp"
+                        android:textSize="@dimen/_10sdp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/DET_contentTelefonoCasa"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/_6sdp">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Teléfono local:"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/quicksand_semibold"
+                        android:gravity="center_vertical"
+                        android:textSize="@dimen/_10sdp"
+                        android:textStyle="bold" />
+
+                <TextView
+                        android:id="@+id/DET_telefonoLocalMiembro"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/_3sdp"
+                        android:textSize="@dimen/_10sdp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/DET_contentEstado"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/_6sdp">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Estado:"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/quicksand_semibold"
+                        android:gravity="center_vertical"
+                        android:textSize="@dimen/_10sdp"
+                        android:textStyle="bold" />
+
+                <TextView
+                        android:id="@+id/DET_estadoMiembro"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/_3sdp"
+                        android:textSize="@dimen/_10sdp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/DET_contentMunicipio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/_6sdp">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Municipio:"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/quicksand_semibold"
+                        android:gravity="center_vertical"
+                        android:textSize="@dimen/_10sdp"
+                        android:textStyle="bold" />
+
+                <TextView
+                        android:id="@+id/DET_municipioMiembro"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/_3sdp"
+                        android:textSize="@dimen/_10sdp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/DET_contentParroquia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/_6sdp">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Parroquia:"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/quicksand_semibold"
+                        android:gravity="center_vertical"
+                        android:textSize="@dimen/_10sdp"
+                        android:textStyle="bold" />
+
+                <TextView
+                        android:id="@+id/DET_parroquiaMiembro"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/_3sdp"
+                        android:textSize="@dimen/_10sdp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/DET_contentSector"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/_6sdp">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sector:"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/quicksand_semibold"
+                        android:gravity="center_vertical"
+                        android:textSize="@dimen/_10sdp"
+                        android:textStyle="bold" />
+
+                <TextView
+                        android:id="@+id/DET_sectorMiembro"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/_3sdp"
+                        android:textSize="@dimen/_10sdp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/DET_contentCalle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/_6sdp">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Calle/Avenida:"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/quicksand_semibold"
+                        android:gravity="center_vertical"
+                        android:textSize="@dimen/_10sdp"
+                        android:textStyle="bold" />
+
+                <TextView
+                        android:id="@+id/DET_calleMiembro"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/_3sdp"
+                        android:textSize="@dimen/_10sdp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/DET_contentEdificio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/_6sdp">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Edificio/Casa:"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/quicksand_semibold"
+                        android:gravity="center_vertical"
+                        android:textSize="@dimen/_10sdp"
+                        android:textStyle="bold" />
+
+                <TextView
+                        android:id="@+id/DET_edificioMiembro"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/_3sdp"
+                        android:textSize="@dimen/_10sdp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/DET_contentNumeroEdificio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/_6sdp">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="N° Edificio/Casa:"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/quicksand_semibold"
+                        android:gravity="center_vertical"
+                        android:textSize="@dimen/_10sdp"
+                        android:textStyle="bold" />
+
+                <TextView
+                        android:id="@+id/DET_NumeroEdificioMiembro"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/_3sdp"
+                        android:textSize="@dimen/_10sdp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
 
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

@@ -177,7 +177,54 @@ class Retrofit2Helper(
                 }
             }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeEx {
 
-                fun popFirstParams() {
+                try {
+                    fun popFirstParams() {
+                        if (logOperationParams.isNotEmpty()) {
+                            logOperationParams.removeAt(0).let {
+                                writeFile(it.first, it.second, true)
+                            }
+                        } else {
+                            logOperationRunning = false
+                        }
+                    }
+
+                    onSubscribe { }
+
+                    onError {
+                        it.printStackTrace()
+                        popFirstParams()
+                    }
+
+                    onComplete {
+                        popFirstParams()
+                    }
+
+                }catch (e:NullPointerException){
+                    fun popFirstParams() {
+                        if (logOperationParams.isNotEmpty()) {
+                            logOperationParams.removeAt(0).let {
+                                writeFile(it.first, it.second, true)
+                            }
+                        } else {
+                            logOperationRunning = false
+                        }
+                    }
+
+                    onSubscribe { }
+
+                    onError {
+                        it.printStackTrace()
+                        popFirstParams()
+                    }
+
+                    onComplete {
+                        popFirstParams()
+                    }
+
+                }
+
+
+               /* fun popFirstParams() {
                     if (logOperationParams.isNotEmpty()) {
                         logOperationParams.removeAt(0).let {
                             writeFile(it.first, it.second, true)
@@ -196,7 +243,7 @@ class Retrofit2Helper(
 
                 onComplete {
                     popFirstParams()
-                }
+                }*/
             }
         } else {
             logOperationParams.add(Pair(fileContents, mode))

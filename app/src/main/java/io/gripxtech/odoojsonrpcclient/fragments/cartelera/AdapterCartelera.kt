@@ -1,42 +1,38 @@
-package io.gripxtech.odoojsonrpcclient.fragments.miembros
+package io.gripxtech.odoojsonrpcclient.fragments.cartelera
 
-import android.util.Base64
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import io.gripxtech.odoojsonrpcclient.R
 import io.gripxtech.odoojsonrpcclient.core.utils.recycler.RecyclerBaseAdapter
-import io.gripxtech.odoojsonrpcclient.fragments.miembros.entities.Miembros
-import io.gripxtech.odoojsonrpcclient.trimFalse
-import kotlinx.android.synthetic.main.fragment_miembros.*
-import kotlinx.android.synthetic.main.item_view_lista_miembros.view.*
+import io.gripxtech.odoojsonrpcclient.fragments.cartelera.entities.Cartelera
+import io.gripxtech.odoojsonrpcclient.fragments.miembros.ViewHolderMiembros
+import kotlinx.android.synthetic.main.fragment_cartelera_.*
 
-class AdapterMiembros(
-    private val fragment: Fragment_ListaMiembros,
+class AdapterCartelera(
+    private val fragment: Fragment_Cartelera,
     items: ArrayList<Any>
-) : RecyclerBaseAdapter(items, fragment.rv_miembros) {
-
-    var starClick = true
+): RecyclerBaseAdapter(items, fragment.rvNoticias) {
 
     companion object {
-        const val TAG: String = "MiembrosAdapter"
+        const val TAG: String = "CarteleraAdapter"
         private const val VIEW_TYPE_ITEM = 0
     }
 
-    private val rowItems: ArrayList<Miembros> = ArrayList(
-        items.filterIsInstance<Miembros>()
+    private val rowItems: ArrayList<Cartelera> = ArrayList(
+        items.filterIsInstance<Cartelera>()
     )
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         when (viewType) {
-            VIEW_TYPE_ITEM -> {
+            AdapterCartelera.VIEW_TYPE_ITEM -> {
                 val view = inflater.inflate(
-                    R.layout.item_view_lista_miembros,
+                    R.layout.item_view_cartelera,
                     parent,
                     false
                 )
-                return ViewHolderMiembros(view)
+                return ViewHolderCartelera(view)
             }
         }
         return super.onCreateViewHolder(parent, viewType)
@@ -46,12 +42,10 @@ class AdapterMiembros(
         super.onBindViewHolder(baseHolder, basePosition)
         val position = baseHolder.adapterPosition
         when (getItemViewType(basePosition)) {
-            VIEW_TYPE_ITEM -> {
+            AdapterCartelera.VIEW_TYPE_ITEM -> {
                 val holder = baseHolder as ViewHolderMiembros
-                val item = items[position] as Miembros
+                val item = items[position] as Cartelera
 
-                holder.itemView.nameMiembro.text = item.name
-               /* holder.itemView.emailMiembro.text = item.serverId.toString()*/
 
 
             }
@@ -62,8 +56,8 @@ class AdapterMiembros(
 
     override fun getItemViewType(position: Int): Int {
         val o = items[position]
-        if (o is Miembros) {
-            return VIEW_TYPE_ITEM
+        if (o is Cartelera) {
+            return AdapterCartelera.VIEW_TYPE_ITEM
         }
         return super.getItemViewType(position)
     }
@@ -73,12 +67,12 @@ class AdapterMiembros(
         rowItems.clear()
         rowItems.addAll(
             ArrayList(
-                items.filterIsInstance<Miembros>()
+                items.filterIsInstance<Cartelera>()
             )
         )
     }
 
-    fun addRowItems(rowItems: ArrayList<Miembros>) {
+    fun addRowItems(rowItems: ArrayList<Cartelera>) {
         this.rowItems.addAll(rowItems)
         addAll(rowItems.toMutableList<Any>() as ArrayList<Any>)
     }
@@ -86,9 +80,5 @@ class AdapterMiembros(
     override fun clear() {
         rowItems.clear()
         super.clear()
-    }
-
-    fun setCanStart(can: Boolean) {
-        starClick = can
     }
 }

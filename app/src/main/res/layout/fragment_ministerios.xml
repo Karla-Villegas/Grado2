@@ -5,7 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragments.Fragment_Ministerios">
+        tools:context=".fragments.ministerios.Fragment_Ministerios">
 
     <TextView
             android:id="@+id/titleMinisterios"
@@ -31,5 +31,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp" />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

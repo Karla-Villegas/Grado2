@@ -16,12 +16,14 @@ import io.gripxtech.odoojsonrpcclient.core.Odoo
 import io.gripxtech.odoojsonrpcclient.core.entities.session.authenticate.AuthenticateResult
 import io.gripxtech.odoojsonrpcclient.core.entities.webclient.versionInfo.VersionInfo
 import io.gripxtech.odoojsonrpcclient.core.utils.android.ktx.subscribeEx
+import io.gripxtech.odoojsonrpcclient.core.utils.createProgress
 import io.gripxtech.odoojsonrpcclient.databinding.ActivityNewLoginBinding
 import io.gripxtech.odoojsonrpcclient.databinding.ProgressDialogBinding
 import io.gripxtech.odoojsonrpcclient.viewModel.viewModel
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import timber.log.Timber
 
 class ActivityNewLogin : AppCompatActivity(){
 
@@ -46,56 +48,32 @@ class ActivityNewLogin : AppCompatActivity(){
         binding.Button.setOnClickListener {
             validate()
         }
-        /*binding.txtRegistro.setOnClickListener {
-            startRegistroActivity()
-        }*/
-
     }
-
-    /*private fun startRegistroActivity() {
-        val intent = Intent(this, RegistroActivity::class.java).apply {}
-        startActivity(intent)
-        finish()
-    }*/
 
     private fun validate() {
         passwordError = ""
         emailError = ""
-        val valor = arrayOf(emailValidate(),passwordValidate())
-        if (false in valor){
-            progressBar = ProgressDialog(this)
-            progressBar.setCanceledOnTouchOutside(false)
-            progressBar.setCancelable(false)
-            progressBar.show()
-            progressBar.setContentView(R.layout.progress_dialog)
-            progressBar.findViewById<TextView>(R.id.passwordDialog).text = passwordError
-            progressBar.findViewById<TextView>(R.id.emailDialog).text = emailError
-            progressBar.window!!.setBackgroundDrawableResource(android.R.color.transparent)
-            progressBar.findViewById<Button>(R.id.ButtonDialog).setOnClickListener {
-                progressBar.dismiss()
-            }
-            return
+        if (!emailValidate()){
+            createProgress(this,emailError,passwordError)
         }else{
-            binding.auth.visibility = View.VISIBLE
+            binding.textLogin.text = "Autenticando..."
+            binding.progressLogin.visibility = View.VISIBLE
             vmVersionInfo()
         }
     }
 
-    private fun passwordValidate(): Boolean {
-        return if(binding.passwordEditext.text.toString().isEmpty()) {
+    private fun emailValidate(): Boolean {
+        return if (binding.emailEditext.text.toString().isEmpty()&& binding.passwordEditext.text.toString().isEmpty()) {
+            emailError = "Campo correo está vacío"
             passwordError = "Campo contraseña está vacío"
             false
-        }else {
-            true
-        }
-    }
-
-    private fun emailValidate(): Boolean {
-        return if (binding.emailEditext.text.toString().isEmpty()) {
-            emailError = "Campo correo está vacío"
+        }else if (binding.emailEditext.text.toString().isNotEmpty()&& binding.passwordEditext.text.toString().isEmpty()) {
+            emailError = ""
+            passwordError = "Campo contraseña está vacío"
             false
-        }else if(binding.emailEditext.text.toString().isNotEmpty() && !PatternsCompat.EMAIL_ADDRESS.matcher(binding.emailEditext.text.toString()).matches()) {
-            emailError = "Escribe un correo valido"
+        } else if (binding.emailEditext.text.toString().isEmpty()&& binding.passwordEditext.text.toString().isNotEmpty()) {
+            emailError = "Campo correo está vacío"
+            passwordError = ""
             false
         }
         else  {
@@ -106,44 +84,27 @@ class ActivityNewLogin : AppCompatActivity(){
     private fun vmVersionInfo() {
         viewModel.vmVersionInfo(
             onSuccess = { versionInfo ->
-                Log.e("TAG", "vmVersionInfo: $versionInfo" )
+                Timber.e( "vmVersionInfo: $versionInfo" )
                 vmDblist(versionInfo)
             }, onFailure = {
-                binding.auth.visibility = View.GONE
-                progressBar = ProgressDialog(this)
-                progressBar.setCanceledOnTouchOutside(false)
-                progressBar.setCancelable(false)
-                progressBar.show()
-                progressBar.setContentView(R.layout.progress_dialog)
-                progressBar.findViewById<TextView>(R.id.passwordDialog).text = ""
-                progressBar.findViewById<TextView>(R.id.emailDialog).text = "Falló la consulta en version"
-                progressBar.window!!.setBackgroundDrawableResource(android.R.color.transparent)
-                progressBar.findViewById<Button>(R.id.ButtonDialog).setOnClickListener {
-                    progressBar.dismiss()
-                }
-                Log.e("TAG", "vmVersionInfo: Falló la consulta", )
+                binding.progressLogin.visibility = View.GONE
+                binding.textLogin.text = "Iniciar Sesión"
+                createProgress(this,"Falló la consulta en version","")
+                Timber.e("vmVersionInfo: Falló la consulta", )
+                Timber.e("vmVersionInfo: Falló la consulta", )
             })
     }
     private fun vmDblist(versionInfo: VersionInfo) {
         viewModel.vmDblist(
             versionInfo = versionInfo,
             onSuccess = {
-                Log.e("TAG", "vmDblist: $it" )
+                Timber.e("vmDblist: $it" )
                 vmAuthenticate(it)
             }, onFailure = {
-                binding.auth.visibility = View.GONE
-                progressBar = ProgressDialog(this)
-                progressBar.setCanceledOnTouchOutside(false)
-                progressBar.setCancelable(false)
-                progressBar.show()
-                progressBar.setContentView(R.layout.progress_dialog)
-                progressBar.findViewById<TextView>(R.id.passwordDialog).text = ""
-                progressBar.findViewById<TextView>(R.id.emailDialog).text = "Falló la consulta en Autenticar version"
-                progressBar.window!!.setBackgroundDrawableResource(android.R.color.transparent)
-                progressBar.findViewById<Button>(R.id.ButtonDialog).setOnClickListener {
-                    progressBar.dismiss()
-                }
-                Log.e("TAG", "vmDblist: Falló la consulta", )
+                binding.progressLogin.visibility = View.GONE
+                binding.textLogin.text = "Iniciar Sesión"
+                createProgress(this,"Falló la consulta en Autenticar version","")
+                Timber.e("vmDblist: Falló la consulta", )
             })
     }
 
@@ -157,34 +118,16 @@ class ActivityNewLogin : AppCompatActivity(){
                 createAccount(authenticateResult)
             },
             onFailure =  {
-                binding.auth.visibility = View.GONE
-                progressBar = ProgressDialog(this)
-                progressBar.setCanceledOnTouchOutside(false)
-                progressBar.setCancelable(false)
-                progressBar.show()
-                progressBar.setContentView(R.layout.progress_dialog)
-                progressBar.findViewById<TextView>(R.id.passwordDialog).text = ""
-                progressBar.findViewById<TextView>(R.id.emailDialog).text = "Falló la consulta autenticación de login"
-                progressBar.window!!.setBackgroundDrawableResource(android.R.color.transparent)
-                progressBar.findViewById<Button>(R.id.ButtonDialog).setOnClickListener {
-                    progressBar.dismiss()
-                }
+                binding.progressLogin.visibility = View.GONE
+                binding.textLogin.text = "Iniciar Sesión"
+                createProgress(this,"Falló la consulta autenticación de login","")
                 Log.e("TAG", "vmAuthenticate: Falló la consulta" )
             },
             onFailureOdoo = {
-                binding.auth.visibility = View.GONE
-                progressBar = ProgressDialog(this)
-                progressBar.setCanceledOnTouchOutside(false)
-                progressBar.setCancelable(false)
-                progressBar.show()
-                progressBar.setContentView(R.layout.progress_dialog)
-                progressBar.findViewById<TextView>(R.id.passwordDialog).text = ""
-                progressBar.findViewById<TextView>(R.id.emailDialog).text = "Credenciales invalidas"
-                progressBar.window!!.setBackgroundDrawableResource(android.R.color.transparent)
-                progressBar.findViewById<Button>(R.id.ButtonDialog).setOnClickListener {
-                    progressBar.dismiss()
-                }
-                Log.e("TAG", "onFailure $it:" )
+                binding.progressLogin.visibility = View.GONE
+                binding.textLogin.text = "Iniciar Sesión"
+                createProgress(this,"Credenciales invalidas","")
+                Timber.e( "vmAuthenticate onFailure $it:" )
             })
     }
 

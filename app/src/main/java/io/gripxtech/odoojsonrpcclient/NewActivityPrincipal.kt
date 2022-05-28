@@ -64,18 +64,14 @@ class NewActivityPrincipal : AppCompatActivity() {
                 R.id.nav_cartelera -> {
                     toolbar("Living Hope")
                     enableButtonMenu()
-
-
                 }
                 R.id.nav_miembros -> {
                     toolbar("Living Hope")
                     enableButtonMenu()
-
                 }
                 R.id.nav_ministerios -> {
                     toolbar("Living Hope")
                     enableButtonMenu()
-
                 }
                 R.id.nav_perfil -> {
                     toolbar("Living Hope")

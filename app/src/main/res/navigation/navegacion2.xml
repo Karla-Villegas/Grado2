@@ -7,7 +7,7 @@
 
     <fragment
             android:id="@+id/nav_cartelera"
-            android:name="io.gripxtech.odoojsonrpcclient.fragments.Fragment_Cartelera"
+            android:name="io.gripxtech.odoojsonrpcclient.fragments.cartelera.Fragment_Cartelera"
             android:label=""
             tools:layout="@layout/fragment_cartelera_" />
 
@@ -24,13 +24,13 @@
 
     <fragment
             android:id="@+id/nav_ministerios"
-            android:name="io.gripxtech.odoojsonrpcclient.fragments.Fragment_Ministerios"
+            android:name="io.gripxtech.odoojsonrpcclient.fragments.ministerios.Fragment_Ministerios"
             android:label=""
             tools:layout="@layout/fragment_ministerios" />
 
     <fragment
             android:id="@+id/nav_perfil"
-            android:name="io.gripxtech.odoojsonrpcclient.fragments.Fragment_MiCuenta"
+            android:name="io.gripxtech.odoojsonrpcclient.fragments.micuenta.Fragment_MiCuenta"
             android:label=""
             tools:layout="@layout/fragment_mi_cuenta" />
 

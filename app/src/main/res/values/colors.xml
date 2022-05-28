@@ -30,6 +30,7 @@
     <color name="android_orange_dark">#FF8800</color>
     <color name="android_red">#FF774D</color>
     <color name="android_red_dark">#CC0000</color>
+    <color name="colorHeader">#40494b </color>
 
     <color name="map_stroke">#779933CC</color>
     <color name="map_fill">#44CC0000</color>

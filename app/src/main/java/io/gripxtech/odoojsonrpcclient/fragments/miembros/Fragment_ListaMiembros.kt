@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.navigation.fragment.findNavController
@@ -17,6 +18,7 @@ import io.gripxtech.odoojsonrpcclient.core.Odoo
 import io.gripxtech.odoojsonrpcclient.databinding.FragmentMiembrosBinding
 import io.gripxtech.odoojsonrpcclient.fragments.miembros.entities.Miembros
 import io.reactivex.disposables.CompositeDisposable
+import kotlinx.android.synthetic.main.activity_new_principal.*
 import timber.log.Timber
 
 class Fragment_ListaMiembros: Fragment() {
@@ -27,6 +29,9 @@ class Fragment_ListaMiembros: Fragment() {
     private val limit = RECORD_LIMIT
     private var compositeDisposable: CompositeDisposable? = null
     private lateinit var activity: NewActivityPrincipal private set
+    private var believer_id: Long = 0
+    private lateinit var Ic: Any
+    private var items = ArrayList<Miembros>()
 
     val adapter: AdapterMiembros by lazy {
         AdapterMiembros(this, arrayListOf())
@@ -72,7 +77,7 @@ class Fragment_ListaMiembros: Fragment() {
         binding.shimmerLayout.startShimmer()
         Odoo.searchRead(
             model = "ev.believer",
-            fields = listOf("id", "name", "email"),
+            fields = listOf("id", "name"),
             offset = adapter.rowItemCount,
             limit = limit,
             sort = "name ASC") {
@@ -84,18 +89,67 @@ class Fragment_ListaMiembros: Fragment() {
                 if (response.isSuccessful) {
                     val searchRead = response.body()!!
                     if (searchRead.isSuccessful) {
-                     /*   val result = searchRead.result*/
                         showRecyclerView()
                         adapter.hideEmpty()
                         adapter.hideError()
                         adapter.hideMore()
-                        val items: ArrayList<Miembros> = gson.fromJson(searchRead.result.records, ListTypeMiembros)
-                        Timber.w("searchRead() Fetch ${items}")
+                        items = gson.fromJson(searchRead.result.records, ListTypeMiembros)
                         Log.e("PRUEBAAA--->", "${items}")
+
+                        if (binding.rvMiembros != null) {
+                            OnClick()
+                        }
                         adapter.addRowItems(items)
                     } else {
                         // Odoo specific error
                         Timber.w("searchRead() failed with ${searchRead.errorMessage}")
+                    }
+                } else {
+                    Timber.w("request failed with ${response.code()}:${response.message()}")
+                }
+            }
+
+            onError { error ->
+                error.printStackTrace()
+            }
+
+            onComplete { }
+        }
+    }
+
+    private fun OnClick(){
+        binding.rvMiembros.onItemClick{recyclerView, position, v ->
+            if(!items.isEmpty()){
+                if(adapter.starClick){
+                    adapter.starClick = false
+                    Ic = items.get(position)
+                    believer_id = (Ic as Miembros).serverId
+                    Toast.makeText(requireContext(), "ID: ${believer_id}", Toast.LENGTH_SHORT).show()
+                    /*detalleBeliever(believer_id.toInt(), v)*/
+                }
+            }
+        }
+    }
+
+    private fun detalleBeliever(believerId: Int, v: View) {
+        Log.e("DETALLE B--->", "${believerId}")
+        Odoo.load(
+            id = believerId,
+            model = "res.partner"
+        ) {
+            onSubscribe { disposable ->
+                compositeDisposable?.add(disposable)
+            }
+
+            onNext { response ->
+                if (response.isSuccessful) {
+                    val load = response.body()!!
+                    if (load.isSuccessful) {
+                        val result = load.result
+                        // ...
+                    } else {
+                        // Odoo specific error
+                        Timber.w("load() failed with ${load.errorMessage}")
                     }
                 } else {
                     Timber.w("request failed with ${response.code()}:${response.message()}")
@@ -116,5 +170,11 @@ class Fragment_ListaMiembros: Fragment() {
             visibility = View.GONE
         }
         binding.rvMiembros.visibility = View.VISIBLE
+    }
+
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
