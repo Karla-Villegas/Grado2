@@ -1,6 +1,5 @@
 package io.gripxtech.odoojsonrpcclient.fragments.miembros
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,22 +14,23 @@ import com.google.gson.reflect.TypeToken
 import io.gripxtech.odoojsonrpcclient.*
 import io.gripxtech.odoojsonrpcclient.core.Odoo
 import io.gripxtech.odoojsonrpcclient.databinding.FragmentMiembrosBinding
+import io.gripxtech.odoojsonrpcclient.fragments.cartelera.entities.Cartelera
 import io.gripxtech.odoojsonrpcclient.fragments.miembros.entities.Miembros
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.activity_new_principal.*
 import timber.log.Timber
 
 class Fragment_ListaMiembros: Fragment() {
 
     private var _binding: FragmentMiembrosBinding? = null
     private val binding get() = _binding!!
-    private val ListTypeMiembros = object : TypeToken<ArrayList<Miembros>>() {}.type
+    private val MiembrosListType = object : TypeToken<ArrayList<Miembros>>() {}.type
     private val limit = RECORD_LIMIT
     private var compositeDisposable: CompositeDisposable? = null
     private lateinit var activity: NewActivityPrincipal private set
     private var believer_id: Long = 0
     private lateinit var Ic: Any
     private var items = ArrayList<Miembros>()
+
 
     val adapter: AdapterMiembros by lazy {
         AdapterMiembros(this, arrayListOf())
@@ -75,45 +74,37 @@ class Fragment_ListaMiembros: Fragment() {
 
     private fun fetchMiembros() {
         binding.shimmerLayout.startShimmer()
-        Odoo.searchRead(
-            model = "ev.believer",
-            fields = listOf("id", "name"),
-            offset = adapter.rowItemCount,
-            limit = limit,
-            sort = "name ASC") {
-            onSubscribe { disposable ->
-                compositeDisposable?.add(disposable)
-            }
-
-            onNext { response ->
-                if (response.isSuccessful) {
-                    val searchRead = response.body()!!
-                    if (searchRead.isSuccessful) {
+        Odoo.route("/believers", "", args = "") {
+            this.onNext {
+                if (it.isSuccessful) {
+                    val call = it.body()!!
+                    if (it.isSuccessful) {
                         showRecyclerView()
                         adapter.hideEmpty()
                         adapter.hideError()
                         adapter.hideMore()
-                        items = gson.fromJson(searchRead.result.records, ListTypeMiembros)
-                        Log.e("PRUEBAAA--->", "${items}")
-
+                        val result = call.result.asString.toJsonObject()
+                        val icMiembros = result.get("records")
+                        items = gson.fromJson<ArrayList<Miembros>>(icMiembros, MiembrosListType )
+                        Timber.e("callkw()--->  ${result}")
+                        Timber.e("callkw()--->  ${items}")
                         if (binding.rvMiembros != null) {
                             OnClick()
                         }
                         adapter.addRowItems(items)
+
                     } else {
-                        // Odoo specific error
-                        Timber.w("searchRead() failed with ${searchRead.errorMessage}")
+                        Timber.w("callkw() failed with ${it.errorBody()}")
+
                     }
                 } else {
-                    Timber.w("request failed with ${response.code()}:${response.message()}")
+                    Timber.w("request failed with ${it.code()}:${it.message()}")
                 }
             }
-
-            onError { error ->
+            this.onError { error ->
                 error.printStackTrace()
             }
-
-            onComplete { }
+            this.onComplete { }
         }
     }
 

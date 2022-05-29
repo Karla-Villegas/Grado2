@@ -19,9 +19,35 @@ data class Cartelera(
     var serverId: Long = 0,
 
     @Expose
-    @SerializedName("name")
-    @ColumnInfo(name = "name")
-    var name: String,
+    @SerializedName("title")
+    @ColumnInfo(name = "title")
+    var title: String,
+
+    @Expose
+    @SerializedName("description")
+    @ColumnInfo(name = "description")
+    var description: String,
+
+    @Expose
+    @SerializedName("image")
+    @ColumnInfo(name = "image")
+    var image: String,
+
+    @Expose
+    @SerializedName("image_url")
+    @ColumnInfo(name = "image_url")
+    var image_url: String,
+
+    @Expose
+    @SerializedName("date")
+    @ColumnInfo(name = "date")
+    var date: String,
+
+    @Expose
+    @SerializedName("expiry_date")
+    @ColumnInfo(name = "expiry_date")
+    var expiry_date: String
+
 
 ): Parcelable {
     companion object {
@@ -29,7 +55,12 @@ data class Cartelera(
         val fieldsMap: Map<String, String> = mapOf(
             "_id" to "_id",
             "serverId" to "serverId",
-            "name" to "name"
+            "title" to "title",
+            "description" to "description",
+            "image" to "image",
+            "image_url" to "image_url",
+            "date" to "date",
+            "expiry_date" to "expiry_date"
 
         )
 

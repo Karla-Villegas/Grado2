@@ -8,6 +8,7 @@ import io.gripxtech.odoojsonrpcclient.core.utils.recycler.RecyclerBaseAdapter
 import io.gripxtech.odoojsonrpcclient.fragments.cartelera.entities.Cartelera
 import io.gripxtech.odoojsonrpcclient.fragments.miembros.ViewHolderMiembros
 import kotlinx.android.synthetic.main.fragment_cartelera_.*
+import kotlinx.android.synthetic.main.item_view_cartelera.view.*
 
 class AdapterCartelera(
     private val fragment: Fragment_Cartelera,
@@ -43,8 +44,13 @@ class AdapterCartelera(
         val position = baseHolder.adapterPosition
         when (getItemViewType(basePosition)) {
             AdapterCartelera.VIEW_TYPE_ITEM -> {
-                val holder = baseHolder as ViewHolderMiembros
+                val holder = baseHolder as ViewHolderCartelera
                 val item = items[position] as Cartelera
+
+                holder.itemView.title.text = item.title
+                holder.itemView.contentBody.text = item.description
+                holder.itemView.fechaI.text = item.date
+                holder.itemView.fechaC.text = item.expiry_date
 
 
 
