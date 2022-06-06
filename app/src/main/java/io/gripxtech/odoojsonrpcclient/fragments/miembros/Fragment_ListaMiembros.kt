@@ -1,11 +1,16 @@
 package io.gripxtech.odoojsonrpcclient.fragments.miembros
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
+import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,6 +22,7 @@ import io.gripxtech.odoojsonrpcclient.databinding.FragmentMiembrosBinding
 import io.gripxtech.odoojsonrpcclient.fragments.cartelera.entities.Cartelera
 import io.gripxtech.odoojsonrpcclient.fragments.miembros.entities.Miembros
 import io.reactivex.disposables.CompositeDisposable
+import kotlinx.android.synthetic.main.detalles_miembros.view.*
 import timber.log.Timber
 
 class Fragment_ListaMiembros: Fragment() {
@@ -86,8 +92,8 @@ class Fragment_ListaMiembros: Fragment() {
                         val result = call.result.asString.toJsonObject()
                         val icMiembros = result.get("records")
                         items = gson.fromJson<ArrayList<Miembros>>(icMiembros, MiembrosListType )
-                        Timber.e("callkw()--->  ${result}")
-                        Timber.e("callkw()--->  ${items}")
+                        Timber.e("RESULT believers--->  ${result}")
+                        Timber.e("ITEMS believers--->  ${items}")
                         if (binding.rvMiembros != null) {
                             OnClick()
                         }
@@ -116,7 +122,7 @@ class Fragment_ListaMiembros: Fragment() {
                     Ic = items.get(position)
                     believer_id = (Ic as Miembros).serverId
                     Toast.makeText(requireContext(), "ID: ${believer_id}", Toast.LENGTH_SHORT).show()
-                    /*detalleBeliever(believer_id.toInt(), v)*/
+                    detalleBeliever(believer_id.toInt(), v)
                 }
             }
         }
@@ -124,34 +130,48 @@ class Fragment_ListaMiembros: Fragment() {
 
     private fun detalleBeliever(believerId: Int, v: View) {
         Log.e("DETALLE B--->", "${believerId}")
-        Odoo.load(
-            id = believerId,
-            model = "res.partner"
-        ) {
-            onSubscribe { disposable ->
-                compositeDisposable?.add(disposable)
-            }
+        Odoo.route("believer/$believerId", "", args = "") {
+            this.onNext {
+                if (it.isSuccessful) {
+                    val call = it.body()!!
+                    if (it.isSuccessful) {
+                        val result = call.result.asString.toJsonObject()
+                        val icDetallesMiembros = result.get("record")
+                        Timber.e("RESUL DETALLES --->  ${result}")
+                        Timber.e("IC_DETALLES_BELIEVER --->  ${icDetallesMiembros}")
+                        val AlertDialog = AlertDialog.Builder(requireContext()).create()
+                        val view = layoutInflater.inflate(R.layout.detalles_miembros, null)
+                        /** lógica para adaptar los campos de los detalles del believer*/
 
-            onNext { response ->
-                if (response.isSuccessful) {
-                    val load = response.body()!!
-                    if (load.isSuccessful) {
-                        val result = load.result
-                        // ...
+
+                      // if(NAME != null) view.DET_nombreMiembro.text = NAME.toString() else view.DET_nombreMiembro.text = ""
+
+                        /****************************************************************/
+
+                        AlertDialog.setView(view)
+                        AlertDialog.setCancelable(true)
+                        AlertDialog.setOnDismissListener { adapter.starClick = true }
+                        val idIconReturn = view.findViewById<ImageView>(R.id.idIconReturn)
+                        idIconReturn.setOnClickListener {
+                            AlertDialog.dismiss()
+                            adapter.setCanStart(true)
+                        }
+                        AlertDialog.show()
+                        AlertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                        AlertDialog.window!!.clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM)
+
                     } else {
-                        // Odoo specific error
-                        Timber.w("load() failed with ${load.errorMessage}")
+                        Timber.w("callkw() failed with ${it.errorBody()}")
+
                     }
                 } else {
-                    Timber.w("request failed with ${response.code()}:${response.message()}")
+                    Timber.w("request failed with ${it.code()}:${it.message()}")
                 }
             }
-
-            onError { error ->
+            this.onError { error ->
                 error.printStackTrace()
             }
-
-            onComplete { }
+            this.onComplete { }
         }
     }
 
