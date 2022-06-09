@@ -30,6 +30,7 @@ class Fragment_ListaMiembros: Fragment() {
     private var _binding: FragmentMiembrosBinding? = null
     private val binding get() = _binding!!
     private val MiembrosListType = object : TypeToken<ArrayList<Miembros>>() {}.type
+    private val MiembroType = object : TypeToken<Miembros>() {}.type
     private val limit = RECORD_LIMIT
     private var compositeDisposable: CompositeDisposable? = null
     private lateinit var activity: NewActivityPrincipal private set
@@ -137,14 +138,28 @@ class Fragment_ListaMiembros: Fragment() {
                     if (it.isSuccessful) {
                         val result = call.result.asString.toJsonObject()
                         val icDetallesMiembros = result.get("record")
-                        Timber.e("RESUL DETALLES --->  ${result}")
-                        Timber.e("IC_DETALLES_BELIEVER --->  ${icDetallesMiembros}")
+                        val item = gson.fromJson<Miembros>(icDetallesMiembros, MiembroType)
+                        Timber.e("item --->  ${item}")
+
                         val AlertDialog = AlertDialog.Builder(requireContext()).create()
                         val view = layoutInflater.inflate(R.layout.detalles_miembros, null)
                         /** lógica para adaptar los campos de los detalles del believer*/
 
+                        val name = item.name
+                        val identity = item.identity
+                        val state = item.state
+                        val municipality = item.municipality
+                        val parish = item.parish
+                        val sector = item.sector
+                        val street = item.street
+                        val building = item.building
+                        val house = item.house
+                        val localphone_number = item.localphone_number
 
-                      // if(NAME != null) view.DET_nombreMiembro.text = NAME.toString() else view.DET_nombreMiembro.text = ""
+
+                        Timber.e("DATOS --->  ${name}, ${identity}, ${state}, ${municipality}, ${parish}, ${sector}, ${street}, ${building}, ${house}, ${localphone_number}")
+
+                      //if(item.name != null) view.DET_nombreMiembro.text = item.name else view.DET_nombreMiembro.text = ""
 
                         /****************************************************************/
 
