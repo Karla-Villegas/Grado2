@@ -23,6 +23,8 @@ import io.gripxtech.odoojsonrpcclient.fragments.cartelera.entities.Cartelera
 import io.gripxtech.odoojsonrpcclient.fragments.miembros.entities.Miembros
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.detalles_miembros.view.*
+import org.json.JSONArray
+import org.json.JSONObject
 import timber.log.Timber
 
 class Fragment_ListaMiembros: Fragment() {
@@ -37,6 +39,7 @@ class Fragment_ListaMiembros: Fragment() {
     private var believer_id: Long = 0
     private lateinit var Ic: Any
     private var items = ArrayList<Miembros>()
+    private var list_name_departament: ArrayList<String> = arrayListOf()
 
 
     val adapter: AdapterMiembros by lazy {
@@ -97,12 +100,9 @@ class Fragment_ListaMiembros: Fragment() {
                         if (binding.rvMiembros != null) { OnClick() }
                         adapter.addRowItems(items)
 
-
-                        Timber.e("RESULT believers--->  ${result}")
                         Timber.e("ITEMS believers--->  ${items}")
                     } else {
                         Timber.w("callkw() failed with ${it.errorBody()}")
-
                     }
                 } else {
                     Timber.w("request failed with ${it.code()}:${it.message()}")
@@ -136,31 +136,45 @@ class Fragment_ListaMiembros: Fragment() {
                 if (it.isSuccessful) {
                     val call = it.body()!!
                     if (it.isSuccessful) {
-                        val result = call.result.asString.toJsonObject()
-                        val icDetallesMiembros = result.get("record")
-                        val item = gson.fromJson<Miembros>(icDetallesMiembros, MiembroType)
+                        val result = call.result.asString.toJsonObject().get("record")
+                        val item = gson.fromJson<Miembros>(result, MiembroType)
                         Timber.e("item --->  ${item}")
 
                         val AlertDialog = AlertDialog.Builder(requireContext()).create()
                         val view = layoutInflater.inflate(R.layout.detalles_miembros, null)
-                        /** lógica para adaptar los campos de los detalles del believer*/
 
+                        /** lógica para adaptar los campos de los detalles del believer*/
                         val name = item.name
                         val identity = item.identity
-                        val state = item.state
-                        val municipality = item.municipality
-                        val parish = item.parish
+                        val state = JSONObject(item.state.toString()).optString("name")
+                        val municipality = JSONObject(item.municipality.toString()).optString("name")
+                        val parish = JSONObject(item.parish.toString()).optString("name")
                         val sector = item.sector
                         val street = item.street
                         val building = item.building
                         val house = item.house
                         val localphone_number = item.localphone_number
+                        val cellphone_number = item.cellphone_number
+
+                        val department_ids = JSONArray(item.department_ids.toString())
+                        for (i in 0 until department_ids.length()){
+                            val nameMinisterio = department_ids.getJSONObject(i).optString("name")
+                            list_name_departament.add(nameMinisterio)
+                        }
 
 
-                        Timber.e("DATOS --->  ${name}, ${identity}, ${state}, ${municipality}, ${parish}, ${sector}, ${street}, ${building}, ${house}, ${localphone_number}")
+                        if(name != null) view.DET_nombreMiembro.text = name else view.DET_nombreMiembro.text = ""
+                        if(identity != null) view.DET_cedulaMiembro.text = identity else view.DET_cedulaMiembro.text = ""
+                        if(localphone_number != null) view.DET_telefonoMiembro.text = localphone_number else view.DET_telefonoMiembro.text = ""
+                        if(state != null) view.DET_estadoMiembro.text = state else view.DET_estadoMiembro.text = ""
+                        if(municipality != null) view.DET_municipioMiembro.text = municipality else view.DET_municipioMiembro.text = ""
+                        if(parish != null) view.DET_parroquiaMiembro.text = parish else view.DET_parroquiaMiembro.text = ""
+                        if(sector != null) view.DET_sectorMiembro.text = sector else view.DET_sectorMiembro.text = ""
+                        if(street != null) view.DET_calleMiembro.text = street else view.DET_calleMiembro.text = ""
+                        if(building != null) view.DET_edificioMiembro.text = building else view.DET_edificioMiembro.text = ""
+                        if(house != null) view.DET_NumeroEdificioMiembro.text = house else view.DET_NumeroEdificioMiembro.text = ""
 
-                      //if(item.name != null) view.DET_nombreMiembro.text = item.name else view.DET_nombreMiembro.text = ""
-
+                        Log.e("cellphone_number", "detalleBeliever: ${cellphone_number}", )
                         /****************************************************************/
 
                         AlertDialog.setView(view)

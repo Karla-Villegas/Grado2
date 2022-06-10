@@ -76,12 +76,18 @@ data class Miembros(
     @Expose
     @SerializedName("localphone_number")
     @ColumnInfo(name = "localphone_number")
-    var localphone_number: String
+    var localphone_number: String,
 
-    /*@Expose
+    @Expose
+    @SerializedName("cellphone_number")
+    @ColumnInfo(name = "cellphone_number")
+    var cellphone_number: String,
+
+    @Expose
     @SerializedName("department_ids")
     @ColumnInfo(name = "department_ids")
-    var department_ids: String*/
+    @TypeParceler<JsonElement, JsonElementParceler>
+    var department_ids: JsonElement = JsonArray()
 
 
     ): Parcelable {
@@ -99,8 +105,9 @@ data class Miembros(
             "street" to "street",
             "building" to "building",
             "house" to "house",
-            "localphone_number" to "localphone_number"
-          /*  "department_ids" to "department_ids"*/
+            "localphone_number" to "localphone_number",
+            "cellphone_number" to "cellphone_number",
+            "department_ids" to "department_ids"
 
         )
 
