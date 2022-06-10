@@ -93,13 +93,13 @@ class Fragment_ListaMiembros: Fragment() {
                         val result = call.result.asString.toJsonObject()
                         val icMiembros = result.get("records")
                         items = gson.fromJson<ArrayList<Miembros>>(icMiembros, MiembrosListType )
-                        Timber.e("RESULT believers--->  ${result}")
-                        Timber.e("ITEMS believers--->  ${items}")
-                        if (binding.rvMiembros != null) {
-                            OnClick()
-                        }
+
+                        if (binding.rvMiembros != null) { OnClick() }
                         adapter.addRowItems(items)
 
+
+                        Timber.e("RESULT believers--->  ${result}")
+                        Timber.e("ITEMS believers--->  ${items}")
                     } else {
                         Timber.w("callkw() failed with ${it.errorBody()}")
 

@@ -14,6 +14,9 @@ import kotlinx.android.parcel.TypeParceler
 @Parcelize
 @Entity(tableName = "ev_believer", primaryKeys = ["_id", "server_id"])
 data class Miembros(
+
+    @Expose
+    @SerializedName("_id")
     @ColumnInfo(name = "_id")
     var _id: Long = 0,
 

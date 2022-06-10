@@ -5,14 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.reflect.TypeToken
 import io.gripxtech.odoojsonrpcclient.NewActivityPrincipal
 import io.gripxtech.odoojsonrpcclient.core.Odoo
 import io.gripxtech.odoojsonrpcclient.databinding.FragmentMinisteriosBinding
-import io.gripxtech.odoojsonrpcclient.fragments.miembros.AdapterMiembros
-import io.gripxtech.odoojsonrpcclient.fragments.miembros.entities.Miembros
+import io.gripxtech.odoojsonrpcclient.fragments.ministerios.entities.Ministerio
 import io.gripxtech.odoojsonrpcclient.gson
 import io.gripxtech.odoojsonrpcclient.toJsonObject
-import kotlinx.android.synthetic.main.activity_new_principal.*
 import timber.log.Timber
 
 
@@ -21,10 +22,12 @@ class Fragment_Ministerios: Fragment() {
     private var _binding: FragmentMinisteriosBinding? = null
     private val binding get() = _binding!!
     private lateinit var activity: NewActivityPrincipal private set
+    private val MinisterioListType = object : TypeToken<ArrayList<Ministerio>>() {}.type
+    private var items = ArrayList<Ministerio>()
 
-   /* val adapter: AdapterMinisterio by lazy {
+    val adapter: AdapterMinisterio by lazy {
         AdapterMinisterio(this, arrayListOf())
-    }*/
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,12 +36,19 @@ class Fragment_Ministerios: Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentMinisteriosBinding.inflate(layoutInflater, container, false)
         return binding.root
-        activity = getActivity() as NewActivityPrincipal
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity = getActivity() as NewActivityPrincipal
+
+        binding.rvMinisterios.layoutManager = LinearLayoutManager(requireContext())
+        val layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
+        binding.rvMinisterios.layoutManager = layoutManager
+        binding.rvMinisterios.adapter = adapter
+
+        adapter.setupScrollListener(binding.rvMinisterios)
+
 
         fetchMinisterios()
 
@@ -51,9 +61,18 @@ class Fragment_Ministerios: Fragment() {
                 if (it.isSuccessful) {
                     val call = it.body()!!
                     if (it.isSuccessful) {
+                        adapter.hideEmpty()
+                        adapter.hideError()
+                        adapter.hideMore()
                         val result = call.result.asString.toJsonObject()
-                        Timber.w("MINISTERIOS ${result}")
+                        val icMinisterio = result.get("records")
+                        items = gson.fromJson(icMinisterio, MinisterioListType)
 
+                        adapter.addRowItems(items)
+
+
+                        Timber.w("MINISTERIOS RESULT ${result}")
+                        Timber.w("MINISTERIOS ITEMS ${items}")
                     } else {
                         Timber.w("callkw() failed with ${it.errorBody()}")
 
