@@ -1,30 +1,29 @@
-package io.gripxtech.odoojsonrpcclient.fragments.miembros
+package io.gripxtech.odoojsonrpcclient.fragments.ministerios
 
-import android.util.Base64
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import io.gripxtech.odoojsonrpcclient.R
 import io.gripxtech.odoojsonrpcclient.core.utils.recycler.RecyclerBaseAdapter
-import io.gripxtech.odoojsonrpcclient.fragments.miembros.entities.Miembros
-import io.gripxtech.odoojsonrpcclient.trimFalse
+import io.gripxtech.odoojsonrpcclient.fragments.miembros.Fragment_ListaMiembros
+import io.gripxtech.odoojsonrpcclient.fragments.miembros.ViewHolderMiembros
 import kotlinx.android.synthetic.main.fragment_miembros.*
-import kotlinx.android.synthetic.main.item_view_lista_miembros.view.*
+import kotlinx.android.synthetic.main.fragment_ministerios.*
+import org.json.JSONArray
 
-class AdapterMiembros(
-    private val fragment: Fragment_ListaMiembros,
+class Adapter_Believer_Department(
+    private val fragment: Fragment_Ministerios,
     items: ArrayList<Any>
-) : RecyclerBaseAdapter(items, fragment.rv_miembros) {
-
-    var starClick = true
+) : RecyclerBaseAdapter(items, fragment.rv_ministerios) {
 
     companion object {
-        const val TAG: String = "MiembrosAdapter"
+        const val TAG: String = "BelieverDepartmentAdapter"
         private const val VIEW_TYPE_ITEM = 0
     }
 
-    private val rowItems: ArrayList<Miembros> = ArrayList(
-        items.filterIsInstance<Miembros>()
+    private val rowItems: ArrayList<Any> = ArrayList(
+        items.filterIsInstance<Any>()
     )
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -36,7 +35,7 @@ class AdapterMiembros(
                     parent,
                     false
                 )
-                return ViewHolderMiembros(view)
+                return ViewHolderMinisterio(view)
             }
         }
         return super.onCreateViewHolder(parent, viewType)
@@ -47,10 +46,14 @@ class AdapterMiembros(
         val position = baseHolder.adapterPosition
         when (getItemViewType(basePosition)) {
             VIEW_TYPE_ITEM -> {
-                val holder = baseHolder as ViewHolderMiembros
-                val item = items[position] as Miembros
+                val holder = baseHolder as ViewHolderMinisterio
+                val item = items[position]
+                var objs = JSONArray(items)
 
-                holder.itemView.nameMiembro.text = item.name
+                var nameBeliever = holder.itemView.findViewById<TextView>(R.id.nameMiembro)
+                nameBeliever.text = objs.get(position).toString()
+
+
             }
         }
     }
@@ -59,7 +62,7 @@ class AdapterMiembros(
 
     override fun getItemViewType(position: Int): Int {
         val o = items[position]
-        if (o is Miembros) {
+        if (o is Any) {
             return VIEW_TYPE_ITEM
         }
         return super.getItemViewType(position)
@@ -68,14 +71,11 @@ class AdapterMiembros(
     private fun updateRowItems() {
         updateSearchItems()
         rowItems.clear()
-        rowItems.addAll(
-            ArrayList(
-                items.filterIsInstance<Miembros>()
-            )
+        rowItems.addAll(ArrayList(items.filterIsInstance<Any>())
         )
     }
 
-    fun addRowItems(rowItems: ArrayList<Miembros>) {
+    fun addRowItems(rowItems: List<JSONArray>) {
         this.rowItems.addAll(rowItems)
         addAll(rowItems.toMutableList<Any>() as ArrayList<Any>)
     }
@@ -85,7 +85,4 @@ class AdapterMiembros(
         super.clear()
     }
 
-    fun setCanStart(can: Boolean) {
-        starClick = can
-    }
 }

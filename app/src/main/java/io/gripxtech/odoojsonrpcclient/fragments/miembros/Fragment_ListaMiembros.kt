@@ -36,7 +36,7 @@ class Fragment_ListaMiembros: Fragment() {
     private var compositeDisposable: CompositeDisposable? = null
     private lateinit var activity: NewActivityPrincipal private set
     private var believer_id: Long = 0
-    private lateinit var Ic: Any
+    private lateinit var IcMiembros: Any
     private var items = ArrayList<Miembros>()
     private var list_name_departament: ArrayList<String> = arrayListOf()
 
@@ -123,9 +123,9 @@ class Fragment_ListaMiembros: Fragment() {
             if(!items.isEmpty()){
                 if(adapter.starClick){
                     adapter.starClick = false
-                    Ic = items.get(position)
-                    believer_id = (Ic as Miembros).serverId
-                    Toast.makeText(requireContext(), "ID: ${believer_id}", Toast.LENGTH_SHORT).show()
+                    IcMiembros = items.get(position)
+                    believer_id = (IcMiembros as Miembros).serverId
+                    Toast.makeText(requireContext(), "ID BELIEVER: ${believer_id}", Toast.LENGTH_SHORT).show()
                     detalleBeliever(believer_id.toInt(), v)
                 }
             }
@@ -133,7 +133,7 @@ class Fragment_ListaMiembros: Fragment() {
     }
 
     private fun detalleBeliever(believerId: Int, v: View) {
-        Log.e("DETALLE B--->", "${believerId}")
+        Log.e("DETALLE BELIEVER--->", "${believerId}")
         Odoo.route("believer/$believerId", "", args = "") {
             this.onNext {
                 if (it.isSuccessful) {

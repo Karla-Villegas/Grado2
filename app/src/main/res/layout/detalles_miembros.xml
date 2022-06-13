@@ -31,6 +31,16 @@
                         android:layout_width="@dimen/_25sdp"
                         android:layout_height="@dimen/_25sdp"
                         android:src="@drawable/icon_return_24" />
+
+                <TextView
+                        android:id="@+id/DET_nombreMiembro"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/quicksand_semibold"
+                        android:textColor="@color/black"
+                        android:textSize="17sp"
+                        android:gravity="center"
+                        android:layout_weight="1"/>
             </LinearLayout>
 
         <LinearLayout
@@ -41,7 +51,7 @@
                 android:padding="@dimen/_5sdp"
                 android:layout_marginTop="20dp">
 
-            <LinearLayout
+         <!--   <LinearLayout
                     android:id="@+id/DET_contentNommbre"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -66,7 +76,7 @@
                         android:layout_marginLeft="@dimen/_3sdp"
                         android:textSize="@dimen/_10sdp" />
 
-            </LinearLayout>
+            </LinearLayout>-->
 
             <LinearLayout
                     android:id="@+id/DET_contentCedula"
@@ -90,6 +100,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/quicksand_semibold"
+                        android:textColor="@color/black"
                         android:layout_marginLeft="@dimen/_3sdp"
                         android:textSize="@dimen/_10sdp" />
 
@@ -117,6 +129,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/quicksand_semibold"
+                        android:textColor="@color/black"
                         android:layout_marginLeft="@dimen/_3sdp"
                         android:textSize="@dimen/_10sdp" />
 
@@ -144,6 +158,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/quicksand_semibold"
+                        android:textColor="@color/black"
                         android:layout_marginLeft="@dimen/_3sdp"
                         android:textSize="@dimen/_10sdp" />
 
@@ -171,6 +187,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/quicksand_semibold"
+                        android:textColor="@color/black"
                         android:layout_marginLeft="@dimen/_3sdp"
                         android:textSize="@dimen/_10sdp" />
 
@@ -198,6 +216,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/quicksand_semibold"
+                        android:textColor="@color/black"
                         android:layout_marginLeft="@dimen/_3sdp"
                         android:textSize="@dimen/_10sdp" />
 
@@ -225,6 +245,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/quicksand_semibold"
+                        android:textColor="@color/black"
                         android:layout_marginLeft="@dimen/_3sdp"
                         android:textSize="@dimen/_10sdp" />
 
@@ -252,6 +274,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/quicksand_semibold"
+                        android:textColor="@color/black"
                         android:layout_marginLeft="@dimen/_3sdp"
                         android:textSize="@dimen/_10sdp" />
 
@@ -279,6 +303,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/quicksand_semibold"
+                        android:textColor="@color/black"
                         android:layout_marginLeft="@dimen/_3sdp"
                         android:textSize="@dimen/_10sdp" />
 
@@ -306,6 +332,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/quicksand_semibold"
+                        android:textColor="@color/black"
                         android:layout_marginLeft="@dimen/_3sdp"
                         android:textSize="@dimen/_10sdp" />
 
@@ -333,24 +361,37 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/quicksand_semibold"
+                        android:textColor="@color/black"
                         android:layout_marginLeft="@dimen/_3sdp"
                         android:textSize="@dimen/_10sdp" />
 
             </LinearLayout>
 
 
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:text="Ministerio a los que pertenezco"
+                    android:fontFamily="@font/quicksand_semibold"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="20dp"
+                    android:textSize="@dimen/_11sdp" />
+
             <View
                     android:id="@+id/imageView"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@color/colorGrisCard"
-                    android:layout_marginTop="20dp"/>
+                    android:layout_marginTop="2dp"/>
 
             <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_miembro_ministerio"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:scrollbarSize="5dp"
+                    android:layout_marginTop="5dp"
                     android:scrollbars="vertical" />
 
 
