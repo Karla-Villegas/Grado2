@@ -19,7 +19,6 @@ import com.google.gson.reflect.TypeToken
 import io.gripxtech.odoojsonrpcclient.*
 import io.gripxtech.odoojsonrpcclient.core.Odoo
 import io.gripxtech.odoojsonrpcclient.databinding.FragmentMiembrosBinding
-import io.gripxtech.odoojsonrpcclient.fragments.cartelera.entities.Cartelera
 import io.gripxtech.odoojsonrpcclient.fragments.miembros.entities.Miembros
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.detalles_miembros.view.*
@@ -44,6 +43,10 @@ class Fragment_ListaMiembros: Fragment() {
 
     val adapter: AdapterMiembros by lazy {
         AdapterMiembros(this, arrayListOf())
+    }
+
+    val adapterMnisterio: Adapter_MinisterioB by lazy {
+        Adapter_MinisterioB(this, arrayListOf())
     }
 
     override fun onCreateView(
@@ -142,6 +145,9 @@ class Fragment_ListaMiembros: Fragment() {
 
                         val AlertDialog = AlertDialog.Builder(requireContext()).create()
                         val view = layoutInflater.inflate(R.layout.detalles_miembros, null)
+                        view.rv_miembro_ministerio.layoutManager = LinearLayoutManager(requireContext())
+                        view.rv_miembro_ministerio.adapter = adapterMnisterio
+                        view.rv_miembro_ministerio.setHasFixedSize(true)
 
                         /** lógica para adaptar los campos de los detalles del believer*/
                         val name = item.name
@@ -156,12 +162,6 @@ class Fragment_ListaMiembros: Fragment() {
                         val localphone_number = item.localphone_number
                         val cellphone_number = item.cellphone_number
 
-                        val department_ids = JSONArray(item.department_ids.toString())
-                        for (i in 0 until department_ids.length()){
-                            val nameMinisterio = department_ids.getJSONObject(i).optString("name")
-                            list_name_departament.add(nameMinisterio)
-                        }
-
 
                         if(name != null) view.DET_nombreMiembro.text = name else view.DET_nombreMiembro.text = ""
                         if(identity != null) view.DET_cedulaMiembro.text = identity else view.DET_cedulaMiembro.text = ""
@@ -173,6 +173,17 @@ class Fragment_ListaMiembros: Fragment() {
                         if(street != null) view.DET_calleMiembro.text = street else view.DET_calleMiembro.text = ""
                         if(building != null) view.DET_edificioMiembro.text = building else view.DET_edificioMiembro.text = ""
                         if(house != null) view.DET_NumeroEdificioMiembro.text = house else view.DET_NumeroEdificioMiembro.text = ""
+
+
+
+                        val department_ids = JSONArray(item.department_ids.toString())
+                        for (i in 0 until department_ids.length()){
+                            val nameMinisterio = department_ids.getJSONObject(i).optString("name")
+                            list_name_departament.add(nameMinisterio)
+                        }
+
+                        adapterMnisterio.addRowItems(list_name_departament as List<JSONArray>)
+
 
                         Log.e("cellphone_number", "detalleBeliever: ${cellphone_number}", )
                         /****************************************************************/

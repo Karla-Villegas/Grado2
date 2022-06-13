@@ -338,9 +338,23 @@
 
             </LinearLayout>
 
+
+            <View
+                    android:id="@+id/imageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorGrisCard"
+                    android:layout_marginTop="20dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_miembro_ministerio"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:scrollbarSize="5dp"
+                    android:scrollbars="vertical" />
+
+
         </LinearLayout>
-
-
 
         </LinearLayout>
 

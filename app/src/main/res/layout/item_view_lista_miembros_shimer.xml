@@ -35,7 +35,7 @@
                     android:id="@+id/imageView4" />
 
             <TextView
-                    android:id="@+id/nameMiembro"
+                    android:id="@+id/name"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textSize="14dp"
