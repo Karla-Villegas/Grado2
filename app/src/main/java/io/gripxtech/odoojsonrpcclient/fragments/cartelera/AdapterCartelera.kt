@@ -49,10 +49,8 @@ class AdapterCartelera(
 
                 holder.itemView.title.text = item.title
                 holder.itemView.contentBody.text = item.description
-                holder.itemView.fechaI.text = item.date
-                holder.itemView.fechaC.text = item.expiry_date
-
-
+               /* holder.itemView.fechaI.text = item.date
+                holder.itemView.fechaC.text = item.expiry_date*/
 
             }
         }

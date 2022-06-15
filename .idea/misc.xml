@@ -52,7 +52,8 @@
         <entry key="app/src/main/res/layout/fragment_ministerios.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_registro.xml" value="0.1824074074074074" />
         <entry key="app/src/main/res/layout/fragment_registro_miembros.xml" value="0.18" />
-        <entry key="app/src/main/res/layout/item_view_cartelera.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/item_view_cartelera.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/item_view_cartelera_detalles.xml" value="0.35520833333333335" />
         <entry key="app/src/main/res/layout/item_view_lista_miembros.xml" value="0.33" />
         <entry key="app/src/main/res/layout/layout_bottom_sheet.xml" value="0.1" />
         <entry key="app/src/main/res/layout/progress_dialog.xml" value="0.19583333333333333" />
