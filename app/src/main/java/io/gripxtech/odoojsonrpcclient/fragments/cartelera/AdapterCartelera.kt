@@ -7,6 +7,7 @@ import io.gripxtech.odoojsonrpcclient.R
 import io.gripxtech.odoojsonrpcclient.core.utils.recycler.RecyclerBaseAdapter
 import io.gripxtech.odoojsonrpcclient.fragments.cartelera.entities.Cartelera
 import io.gripxtech.odoojsonrpcclient.fragments.miembros.ViewHolderMiembros
+import io.gripxtech.odoojsonrpcclient.stripHtml
 import kotlinx.android.synthetic.main.fragment_cartelera_.*
 import kotlinx.android.synthetic.main.item_view_cartelera.view.*
 
@@ -14,6 +15,8 @@ class AdapterCartelera(
     private val fragment: Fragment_Cartelera,
     items: ArrayList<Any>
 ): RecyclerBaseAdapter(items, fragment.rvNoticias) {
+
+    var starClick = true
 
     companion object {
         const val TAG: String = "CarteleraAdapter"
@@ -84,5 +87,9 @@ class AdapterCartelera(
     override fun clear() {
         rowItems.clear()
         super.clear()
+    }
+
+    fun setCanStart(can: Boolean) {
+        starClick = can
     }
 }

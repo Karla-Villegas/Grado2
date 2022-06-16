@@ -165,6 +165,8 @@ class Fragment_Ministerios : Fragment() {
                         idIconReturn.setOnClickListener {
                             AlertDialog.dismiss()
                             adapter.setCanStart(true)
+                            adapterDetalleDepartment.clear()
+                            list_name_believer.clear()
                         }
                         AlertDialog.show()
                         AlertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))

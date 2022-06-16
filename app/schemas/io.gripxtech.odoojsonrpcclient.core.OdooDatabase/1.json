@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "f4fe952ec8c0caf4a5693c1e972b8ac7",
+    "identityHash": "b9f1b0c1b5dcdfd7735f251f4fce9fcf",
     "entities": [
       {
         "tableName": "res.partner",
@@ -108,11 +108,93 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "res.users",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`_id` INTEGER NOT NULL, `server_id` INTEGER NOT NULL, `partner_id` TEXT NOT NULL, `name` TEXT, `email` TEXT, `phone` TEXT, `image` TEXT, `state_id` TEXT NOT NULL, `municipality_id` TEXT NOT NULL, `parish_id` TEXT NOT NULL, `country_id` TEXT NOT NULL, PRIMARY KEY(`_id`, `server_id`))",
+        "fields": [
+          {
+            "fieldPath": "_id",
+            "columnName": "_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "serverId",
+            "columnName": "server_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "partner_id",
+            "columnName": "partner_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "email",
+            "columnName": "email",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "phone",
+            "columnName": "phone",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "image",
+            "columnName": "image",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "state_id",
+            "columnName": "state_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "municipality_id",
+            "columnName": "municipality_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "parish_id",
+            "columnName": "parish_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "country_id",
+            "columnName": "country_id",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "_id",
+            "server_id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
+    "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"f4fe952ec8c0caf4a5693c1e972b8ac7\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'b9f1b0c1b5dcdfd7735f251f4fce9fcf')"
     ]
   }
 }

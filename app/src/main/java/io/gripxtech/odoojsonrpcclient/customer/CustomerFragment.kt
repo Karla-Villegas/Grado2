@@ -222,7 +222,7 @@ class CustomerFragment : Fragment() {
         }
     }
 
-    private fun insertCustomers(items: ArrayList<Customer>) {
+    /*private fun insertCustomers(items: ArrayList<Customer>) {
         Single.fromCallable<List<Long>> {
             OdooDatabase.database?.customerDao()?.insertCustomers(items)
         }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeEx {
@@ -263,5 +263,5 @@ class CustomerFragment : Fragment() {
                 activity.showMessage(message = error.message)
             }
         }
-    }
+    }*/
 }

@@ -1,6 +1,7 @@
 package io.gripxtech.odoojsonrpcclient.repository
 
 import android.util.Log
+import io.gripxtech.odoojsonrpcclient.App
 import io.gripxtech.odoojsonrpcclient.core.Odoo
 import io.gripxtech.odoojsonrpcclient.core.entities.database.listdb.ListDb
 import io.gripxtech.odoojsonrpcclient.core.entities.dataset.callkw.CallKw
@@ -9,7 +10,9 @@ import io.gripxtech.odoojsonrpcclient.core.entities.method.create.Create
 import io.gripxtech.odoojsonrpcclient.core.entities.session.authenticate.Authenticate
 import io.gripxtech.odoojsonrpcclient.core.entities.session.authenticate.AuthenticateResult
 import io.gripxtech.odoojsonrpcclient.core.entities.webclient.versionInfo.VersionInfo
+import io.gripxtech.odoojsonrpcclient.core.userInfo.UserInfo
 import io.reactivex.disposables.CompositeDisposable
+import timber.log.Timber
 
 object Repository {
     private var compositeDisposable: CompositeDisposable? = null
@@ -17,44 +20,55 @@ object Repository {
     /** CONEXIONES CON LOS METODOS O WEB SERVICES DEL SERVIDOR DE ODOO*/
 
     /** Metodo para busqueda y lectura*/
-  fun searchRead(
-      model: String,
-      fields: ArrayList<String>,
-      domain: List<Any>,
-      rowItemCount: Int,
-      limit: Int,
-      orden: String,
-      onSuccess: (SearchRead) -> Unit,
-      onFailure: (String) -> Unit){
+    fun searchRead(
+        model: String,
+        fields: ArrayList<String>,
+        domain: List<Any>,
+        rowItemCount: Int,
+        limit: Int,
+        orden: String,
+        onSuccess: (SearchRead) -> Unit,
+        onFailure: (String) -> Unit,
+        onFailureOdoo: (String) -> Unit){
 
-      Odoo.searchRead(
-          model = model,
-          fields = fields,
-          domain = domain,
-          offset = rowItemCount,
-          limit = limit,
-          sort = orden
-      )
-      {
-          onSubscribe { disposable ->
-              compositeDisposable?.add(disposable)
-          }
-          onNext { response ->
-              if (response.isSuccessful) {
-                  val response = response.body()!!
-                  onSuccess(response)
-              } else {
-              }
-          }
+        Odoo.searchRead(
+            model = model,
+            fields = fields,
+            domain = domain,
+            offset = rowItemCount,
+            limit = limit,
+            sort = orden
+        )
+        {
+            onSubscribe { disposable ->
+                compositeDisposable?.add(disposable)
+            }
+            onNext { response ->
+                if (response.isSuccessful) {
+                    val searchRead = response.body()!!
+                    if (searchRead.isSuccessful) {
+                        val result = searchRead.result
+                        val response = response.body()!!
+                        onSuccess(response)
+                    } else {
+                        // Odoo specific error
+                        Timber.w("searchRead() failed with ${searchRead.errorMessage}")
+                        onFailureOdoo(searchRead.errorMessage)
+                    }
+                } else {
+                    Timber.w("request failed with ${response.code()}:${response.message()}")
+                    onFailureOdoo("request failed with ${response.code()}:${response.message()}")
+                }
+            }
 
-          onError { error ->
-              error.printStackTrace()
-              onFailure(error.printStackTrace().toString())
-          }
+            onError { error ->
+                error.printStackTrace()
+                onFailure(error.printStackTrace().toString())
+            }
 
-          onComplete { }
-      }
-  }
+            onComplete { }
+        }
+    }
 
     /** Metodo para filtrar por modelo y nombre del metodo personalizado*/
     fun callKw(
@@ -234,7 +248,11 @@ object Repository {
         }
     }
 
-
+    suspend fun dbGetUserInfo(
+        onSuccess: (UserInfo?) -> Unit,
+    ){
+        onSuccess(App.database.userInfoDao().getUser())
+    }
 
 
 

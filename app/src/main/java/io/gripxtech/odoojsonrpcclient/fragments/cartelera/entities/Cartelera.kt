@@ -29,6 +29,12 @@ data class Cartelera(
     var description: String,
 
     @Expose
+    @SerializedName("content")
+    @ColumnInfo(name = "content")
+    var content: String,
+
+
+    @Expose
     @SerializedName("image")
     @ColumnInfo(name = "image")
     var image: String,
@@ -46,7 +52,12 @@ data class Cartelera(
     @Expose
     @SerializedName("expiry_date")
     @ColumnInfo(name = "expiry_date")
-    var expiry_date: String
+    var expiry_date: String,
+
+    @Expose
+    @SerializedName("state")
+    @ColumnInfo(name = "state")
+    var state: String
 
 
 ): Parcelable {
@@ -57,10 +68,12 @@ data class Cartelera(
             "serverId" to "serverId",
             "title" to "title",
             "description" to "description",
+            "content" to "content",
             "image" to "image",
             "image_url" to "image_url",
             "date" to "date",
-            "expiry_date" to "expiry_date"
+            "expiry_date" to "expiry_date",
+            "state" to "state"
 
         )
 

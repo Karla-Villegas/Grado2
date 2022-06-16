@@ -408,3 +408,11 @@ fun String.toJsonPrimitive(): JsonPrimitive = toJsonElement().asJsonPrimitive
 fun String.toJsonObject(): JsonObject = toJsonElement().asJsonObject
 
 fun String.toJsonArray(): JsonArray = toJsonElement().asJsonArray
+
+fun stripHtml(html: String?): String {
+    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY).toString()
+    } else {
+        Html.fromHtml(html).toString()
+    }
+}

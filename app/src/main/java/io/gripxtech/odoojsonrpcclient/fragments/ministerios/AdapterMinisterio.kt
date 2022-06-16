@@ -7,8 +7,7 @@ import io.gripxtech.odoojsonrpcclient.R
 import io.gripxtech.odoojsonrpcclient.core.utils.recycler.RecyclerBaseAdapter
 import io.gripxtech.odoojsonrpcclient.fragments.ministerios.entities.Ministerio
 import kotlinx.android.synthetic.main.fragment_ministerios.*
-import kotlinx.android.synthetic.main.item_view_lista_miembros.view.*
-import kotlinx.android.synthetic.main.item_view_ministerios.view.*
+import kotlinx.android.synthetic.main.item_new_ministry.view.*
 
 class AdapterMinisterio(
     private val fragment: Fragment_Ministerios,
@@ -31,7 +30,7 @@ class AdapterMinisterio(
         when (viewType) {
            VIEW_TYPE_ITEM -> {
                 val view = inflater.inflate(
-                    R.layout.item_view_ministerios,
+                    R.layout.item_new_ministry,
                     parent,
                     false
                 )
@@ -49,7 +48,7 @@ class AdapterMinisterio(
                 val holder = baseHolder as ViewHolderMinisterio
                 val item = items[position] as Ministerio
 
-                holder.itemView.nombreOrganizacion.text = item.name
+                holder.itemView.ministerio_name.text = item.name
 
 
             }

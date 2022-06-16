@@ -6,6 +6,8 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import io.gripxtech.odoojsonrpcclient.App
 import io.gripxtech.odoojsonrpcclient.core.persistence.AppTypeConverters
+import io.gripxtech.odoojsonrpcclient.core.userInfo.UserInfo
+import io.gripxtech.odoojsonrpcclient.core.userInfo.UserInfoDao
 import io.gripxtech.odoojsonrpcclient.customer.entities.Customer
 import io.gripxtech.odoojsonrpcclient.customer.entities.CustomerDao
 
@@ -13,7 +15,8 @@ import io.gripxtech.odoojsonrpcclient.customer.entities.CustomerDao
     entities = [
         /* Add Room Entities here: BEGIN */
 
-        Customer::class // res.partner
+        Customer::class, // res.partner
+        UserInfo::class,
 
         /* Add Room Entities here: END */
     ], version = 1, exportSchema = true
@@ -21,7 +24,7 @@ import io.gripxtech.odoojsonrpcclient.customer.entities.CustomerDao
 @TypeConverters(AppTypeConverters::class)
 abstract class OdooDatabase : RoomDatabase() {
 
-    companion object {
+   /* companion object {
 
         lateinit var app: App
 
@@ -32,11 +35,12 @@ abstract class OdooDatabase : RoomDatabase() {
                 }
                 return field
             }
-    }
+    }*/
 
     /* Add Room DAO(s) here: BEGIN */
 
     abstract fun customerDao(): CustomerDao
+    abstract fun userInfoDao(): UserInfoDao
 
     /* Add Room DAO(s) here: END */
 }

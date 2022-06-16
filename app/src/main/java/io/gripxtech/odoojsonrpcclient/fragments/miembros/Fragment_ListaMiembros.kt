@@ -133,7 +133,6 @@ class Fragment_ListaMiembros: Fragment() {
     }
 
     private fun detalleBeliever(believerId: Int, v: View) {
-        Log.e("DETALLE BELIEVER--->", "${believerId}")
         Odoo.route("believer/$believerId", "", args = "") {
             this.onNext {
                 if (it.isSuccessful) {
@@ -175,7 +174,6 @@ class Fragment_ListaMiembros: Fragment() {
                         if(house != null) view.DET_NumeroEdificioMiembro.text = house else view.DET_NumeroEdificioMiembro.text = ""
 
 
-
                         val department_ids = JSONArray(item.department_ids.toString())
                         for (i in 0 until department_ids.length()){
                             val nameMinisterio = department_ids.getJSONObject(i).optString("name")
@@ -195,6 +193,9 @@ class Fragment_ListaMiembros: Fragment() {
                         idIconReturn.setOnClickListener {
                             AlertDialog.dismiss()
                             adapter.setCanStart(true)
+                            list_name_departament.clear()
+                            adapterMnisterio.clear()
+                            Log.e("DETALLE list 3--->", "${  list_name_departament}")
                         }
                         AlertDialog.show()
                         AlertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))

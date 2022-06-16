@@ -11,10 +11,12 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.util.PatternsCompat
 import androidx.lifecycle.ViewModelProvider
+import com.google.gson.reflect.TypeToken
 import io.gripxtech.odoojsonrpcclient.*
 import io.gripxtech.odoojsonrpcclient.core.Odoo
 import io.gripxtech.odoojsonrpcclient.core.entities.session.authenticate.AuthenticateResult
 import io.gripxtech.odoojsonrpcclient.core.entities.webclient.versionInfo.VersionInfo
+import io.gripxtech.odoojsonrpcclient.core.userInfo.UserInfo
 import io.gripxtech.odoojsonrpcclient.core.utils.android.ktx.subscribeEx
 import io.gripxtech.odoojsonrpcclient.core.utils.createProgress
 import io.gripxtech.odoojsonrpcclient.databinding.ActivityNewLoginBinding
@@ -35,6 +37,7 @@ class ActivityNewLogin : AppCompatActivity(){
     private var passwordError = ""
     private lateinit var progress : ProgressDialogBinding
     private lateinit var progressBar: ProgressDialog
+    private val userInfoListType = object : TypeToken<ArrayList<UserInfo>>() {}.type
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -113,9 +116,7 @@ class ActivityNewLogin : AppCompatActivity(){
             login = binding.emailEditext.text.toString(),
             password = binding.passwordEditext.text.toString(),
             database = database,
-            onSuccess = { authenticateResult ->
-                Log.e("TAG", "vmAuthenticate: $authenticateResult", )
-                createAccount(authenticateResult)
+            onSuccess = { authenticateResult -> vmSearchRead(authenticateResult)
             },
             onFailure =  {
                 binding.progressLogin.visibility = View.GONE
@@ -129,6 +130,40 @@ class ActivityNewLogin : AppCompatActivity(){
                 createProgress(this,"Credenciales invalidas","")
                 Timber.e( "vmAuthenticate onFailure $it:" )
             })
+    }
+
+    private fun vmSearchRead(authenticateResult: AuthenticateResult) {
+        Timber.e("vmSearchRead")
+        viewModel.vmSearchRead(
+            model = "res.users",
+            fields = arrayListOf(),
+            domain = listOf(listOf("id", "=", authenticateResult.uid)),
+            rowItemCount = 0,
+            limit = 0,
+            orden = "",
+            onSuccess = { response ->
+                Timber.e( "vmSearchRead onSuccess" )
+                val result = response.result.records
+                val item: ArrayList<UserInfo> = gson.fromJson(result, userInfoListType)
+                item.forEach { userInfo ->
+                    /** Registro de usuario */
+                    viewModel.vmInsertInfoUser(
+                        userInfo = userInfo,
+                        onSuccess = {
+                            createAccount(authenticateResult)
+                        },
+                        onFailure = {
+                            Timber.e( "vmSearchRead onFailure $it:" )
+                        })
+                }
+            },
+            onFailure = {
+                Timber.e( "vmSearchRead onFailure $it:" )
+            },
+            onFailureOdoo = {
+                Timber.e( "vmSearchRead onFailureOdoo $it:" )
+            }
+        )
     }
 
     private fun createAccount(authenticateResult: AuthenticateResult) {

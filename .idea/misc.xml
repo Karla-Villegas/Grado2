@@ -47,14 +47,16 @@
         <entry key="app/src/main/res/layout/detalles_miembros.xml" value="0.33" />
         <entry key="app/src/main/res/layout/detalles_ministerio.xml" value="0.35520833333333335" />
         <entry key="app/src/main/res/layout/fragment_cartelera_.xml" value="0.18" />
-        <entry key="app/src/main/res/layout/fragment_mi_cuenta.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_mi_cuenta.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_miembros.xml" value="0.18" />
-        <entry key="app/src/main/res/layout/fragment_ministerios.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_ministerios.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_registro.xml" value="0.1824074074074074" />
         <entry key="app/src/main/res/layout/fragment_registro_miembros.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/item_new_ministry.xml" value="0.5" />
         <entry key="app/src/main/res/layout/item_view_cartelera.xml" value="0.33" />
         <entry key="app/src/main/res/layout/item_view_cartelera_detalles.xml" value="0.35520833333333335" />
         <entry key="app/src/main/res/layout/item_view_lista_miembros.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/item_view_ministerios.xml" value="0.2953125" />
         <entry key="app/src/main/res/layout/layout_bottom_sheet.xml" value="0.1" />
         <entry key="app/src/main/res/layout/progress_dialog.xml" value="0.19583333333333333" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.19583333333333333" />
