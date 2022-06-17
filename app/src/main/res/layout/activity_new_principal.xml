@@ -20,7 +20,7 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
-                android:background="@color/blanco"
+                android:background="#ffc4a8"
                 app:elevation="0dp"
                 app:popupTheme="@style/AppTheme.PopupOverlay"
                 app:theme="@style/toolbar">

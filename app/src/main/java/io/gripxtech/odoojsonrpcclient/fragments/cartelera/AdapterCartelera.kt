@@ -6,10 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import io.gripxtech.odoojsonrpcclient.R
 import io.gripxtech.odoojsonrpcclient.core.utils.recycler.RecyclerBaseAdapter
 import io.gripxtech.odoojsonrpcclient.fragments.cartelera.entities.Cartelera
-import io.gripxtech.odoojsonrpcclient.fragments.miembros.ViewHolderMiembros
-import io.gripxtech.odoojsonrpcclient.stripHtml
 import kotlinx.android.synthetic.main.fragment_cartelera_.*
-import kotlinx.android.synthetic.main.item_view_cartelera.view.*
+import kotlinx.android.synthetic.main.item_new_cartelera.view.*
 
 class AdapterCartelera(
     private val fragment: Fragment_Cartelera,
@@ -32,7 +30,7 @@ class AdapterCartelera(
         when (viewType) {
             AdapterCartelera.VIEW_TYPE_ITEM -> {
                 val view = inflater.inflate(
-                    R.layout.item_view_cartelera,
+                    R.layout.item_new_cartelera,
                     parent,
                     false
                 )

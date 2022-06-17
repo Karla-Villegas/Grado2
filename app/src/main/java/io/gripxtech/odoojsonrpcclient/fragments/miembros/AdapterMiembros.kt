@@ -9,7 +9,7 @@ import io.gripxtech.odoojsonrpcclient.core.utils.recycler.RecyclerBaseAdapter
 import io.gripxtech.odoojsonrpcclient.fragments.miembros.entities.Miembros
 import io.gripxtech.odoojsonrpcclient.trimFalse
 import kotlinx.android.synthetic.main.fragment_miembros.*
-import kotlinx.android.synthetic.main.item_view_lista_miembros.view.*
+import kotlinx.android.synthetic.main.item_new_lista_miembro.view.*
 
 class AdapterMiembros(
     private val fragment: Fragment_ListaMiembros,
@@ -32,7 +32,7 @@ class AdapterMiembros(
         when (viewType) {
             VIEW_TYPE_ITEM -> {
                 val view = inflater.inflate(
-                    R.layout.item_view_lista_miembros,
+                    R.layout.item_new_lista_miembro,
                     parent,
                     false
                 )

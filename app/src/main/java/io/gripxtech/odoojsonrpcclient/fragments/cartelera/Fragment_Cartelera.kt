@@ -23,6 +23,7 @@ import io.gripxtech.odoojsonrpcclient.fragments.miembros.entities.Miembros
 import io.gripxtech.odoojsonrpcclient.repository.Repository
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_new_principal.*
+import kotlinx.android.synthetic.main.item_new_cartelera_detalle.view.*
 import timber.log.Timber
 
 class Fragment_Cartelera: Fragment() {
@@ -76,12 +77,25 @@ class Fragment_Cartelera: Fragment() {
                         adapter.hideMore()
                         val respuesta = call.result.asString.toJsonObject()
                         val ic = respuesta.get("records")
-                        items = gson.fromJson<ArrayList<Cartelera>>(ic, ListTypeCartelera )
+                        if (ic != null){
 
-                        if (binding.rvNoticias != null){
-                            OnClick()
+                            items = gson.fromJson<ArrayList<Cartelera>>(ic, ListTypeCartelera )
+
+                            if(items != null && items.size > 0){
+                                if (binding.rvNoticias != null){
+                                    OnClick()
+                                }
+                                adapter.addRowItems(items)
+
+                            }else{
+
+                                binding.rvNoticias.visibility = View.GONE
+                                binding.textNoticias.visibility = View.VISIBLE
+                            }
+                        }else{
+                            binding.rvNoticias.visibility = View.GONE
+                            binding.textNoticias.visibility = View.VISIBLE
                         }
-                        adapter.addRowItems(items)
 
                         Timber.e("callkw()--->  ${respuesta.get("records")}")
                         Timber.e("callkw()--->  ${items}")
@@ -127,7 +141,7 @@ class Fragment_Cartelera: Fragment() {
                         val item = gson.fromJson<Cartelera>(respuesta, NoticiaType)
 
                         val AlertDialog = AlertDialog.Builder(requireContext()).create()
-                        val view = layoutInflater.inflate(R.layout.item_view_cartelera_detalles, null)
+                        val view = layoutInflater.inflate(R.layout.item_new_cartelera_detalle, null)
 
                         val title = item.title
                         val description = item.description
@@ -136,11 +150,17 @@ class Fragment_Cartelera: Fragment() {
                         val expiry_date = item.expiry_date
                         val state = item.state
 
+                        if (title != null) view.title.text = title else view.title.text = ""
+                        if (description != null) view.description.text = description else view.description.text = ""
+                        if (content != null) view.content.text = content else view.content.text = ""
+                        if (date != null) view.date.text = date else view.date.text = ""
+                        if (expiry_date != null) view.expiry_date.text = expiry_date else view.expiry_date.text = ""
+
 
                         AlertDialog.setView(view)
                         AlertDialog.setCancelable(true)
                         AlertDialog.setOnDismissListener { adapter.starClick = true }
-                        val idIconReturn = view.findViewById<ImageView>(R.id.icon_header)
+                        val idIconReturn = view.findViewById<ImageView>(R.id.idIconReturn)
                         idIconReturn.setOnClickListener {
                             AlertDialog.dismiss()
                             adapter.setCanStart(true)
