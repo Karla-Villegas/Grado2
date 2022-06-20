@@ -22,11 +22,10 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#fec5aa">
+                android:layout_height="match_parent">
 
             <ImageView
-                    android:layout_width="15dp"
+                    android:layout_width="8dp"
                     android:layout_height="match_parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"

@@ -20,10 +20,18 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
-                android:background="#ffc4a8"
                 app:elevation="0dp"
                 app:popupTheme="@style/AppTheme.PopupOverlay"
                 app:theme="@style/toolbar">
+
+            <ImageView
+                    android:id="@+id/icono"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="start"
+                    android:layout_marginRight="20dp"
+                    android:src="@drawable/logo"
+                    android:visibility="visible"/>
 
             <TextView
                     android:id="@+id/ttoolbar"
@@ -81,7 +89,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:background="@drawable/rounded"
-            app:itemActiveIndicatorStyle="@style/App.Custom.Indicator"
             app:menu="@menu/bottom_nav_menu"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"

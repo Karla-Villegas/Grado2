@@ -62,19 +62,19 @@ class NewActivityPrincipal : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.nav_cartelera -> {
-                    toolbar("Living Hope")
+                    toolbar("Noticias")
                     enableButtonMenu()
                 }
                 R.id.nav_miembros -> {
-                    toolbar("Living Hope")
+                    toolbar("Miembros")
                     enableButtonMenu()
                 }
                 R.id.nav_ministerios -> {
-                    toolbar("Living Hope")
+                    toolbar("Ministerios")
                     enableButtonMenu()
                 }
                 R.id.nav_perfil -> {
-                    toolbar("Living Hope")
+                    toolbar("Mi perfil")
                     enableButtonMenu()
 
                 }

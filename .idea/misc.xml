@@ -49,9 +49,10 @@
         <entry key="app/src/main/res/layout/fragment_cartelera_.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_mi_cuenta.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_miembros.xml" value="0.18" />
-        <entry key="app/src/main/res/layout/fragment_ministerios.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_ministerios.xml" value="0.15" />
         <entry key="app/src/main/res/layout/fragment_registro.xml" value="0.1824074074074074" />
         <entry key="app/src/main/res/layout/fragment_registro_miembros.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/fragment_update_believer.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_new_cartelera.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_new_cartelera_detalle.xml" value="0.2" />
         <entry key="app/src/main/res/layout/item_new_lista_miembro.xml" value="0.22" />
