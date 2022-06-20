@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
@@ -148,6 +149,7 @@ class Fragment_ListaMiembros: Fragment() {
                         view.rv_miembro_ministerio.adapter = adapterMnisterio
                         view.rv_miembro_ministerio.setHasFixedSize(true)
 
+
                         /** lógica para adaptar los campos de los detalles del believer*/
                         val name = item.name
                         val identity = item.identity
@@ -162,16 +164,16 @@ class Fragment_ListaMiembros: Fragment() {
                         val cellphone_number = item.cellphone_number
 
 
-                        if(name != null) view.DET_nombreMiembro.text = name else view.DET_nombreMiembro.text = ""
-                        if(identity != null) view.DET_cedulaMiembro.text = identity else view.DET_cedulaMiembro.text = ""
-                        if(localphone_number != null) view.DET_telefonoMiembro.text = localphone_number else view.DET_telefonoMiembro.text = ""
-                        if(state != null) view.DET_estadoMiembro.text = state else view.DET_estadoMiembro.text = ""
-                        if(municipality != null) view.DET_municipioMiembro.text = municipality else view.DET_municipioMiembro.text = ""
-                        if(parish != null) view.DET_parroquiaMiembro.text = parish else view.DET_parroquiaMiembro.text = ""
-                        if(sector != null) view.DET_sectorMiembro.text = sector else view.DET_sectorMiembro.text = ""
-                        if(street != null) view.DET_calleMiembro.text = street else view.DET_calleMiembro.text = ""
-                        if(building != null) view.DET_edificioMiembro.text = building else view.DET_edificioMiembro.text = ""
-                        if(house != null) view.DET_NumeroEdificioMiembro.text = house else view.DET_NumeroEdificioMiembro.text = ""
+                        if(name != null && name != "false") view.DET_nombreMiembro.text = name else view.DET_nombreMiembro.text = ""
+                        if(identity != null && identity != "false") view.DET_cedulaMiembro.text = identity else view.DET_cedulaMiembro.text = ""
+                        if(localphone_number != null && localphone_number != "false") view.DET_telefonoMiembro.text = localphone_number else view.DET_telefonoMiembro.text = ""
+                        if(state != null && state != "false") view.DET_estadoMiembro.text = state else view.DET_estadoMiembro.text = ""
+                        if(municipality != null && municipality != "false") view.DET_municipioMiembro.text = municipality else view.DET_municipioMiembro.text = ""
+                        if(parish != null && parish != "false") view.DET_parroquiaMiembro.text = parish else view.DET_parroquiaMiembro.text = ""
+                        if(sector != null && sector != "false") view.DET_sectorMiembro.text = sector else view.DET_sectorMiembro.text = ""
+                        if(street != null && street != "false") view.DET_calleMiembro.text = street else view.DET_calleMiembro.text = ""
+                        if(building != null && building != "false") view.DET_edificioMiembro.text = building else view.DET_edificioMiembro.text = ""
+                        if(house != null && house != "false") view.DET_NumeroEdificioMiembro.text = house else view.DET_NumeroEdificioMiembro.text = ""
 
 
                         val department_ids = JSONArray(item.department_ids.toString())
@@ -180,11 +182,25 @@ class Fragment_ListaMiembros: Fragment() {
                             list_name_departament.add(nameMinisterio)
                         }
 
-                        adapterMnisterio.addRowItems(list_name_departament as List<JSONArray>)
-
-
-                        Log.e("cellphone_number", "detalleBeliever: ${cellphone_number}", )
+                        if(list_name_departament != null && list_name_departament.size > 0){
+                            adapterMnisterio.addRowItems(list_name_departament as List<JSONArray>)
+                        }else{
+                            val rv_miembro_ministerio = view.findViewById<RecyclerView>(R.id.rv_miembro_ministerio)
+                            val textChat = view.findViewById<TextView>(R.id.textChat)
+                            rv_miembro_ministerio.visibility = View.GONE
+                            textChat.visibility = View.VISIBLE
+                        }
                         /****************************************************************/
+
+                        /** logica para los botones "editar" */
+                        val editButton = view.findViewById<ImageView>(R.id.editButton)
+                        editButton.setOnClickListener {
+
+                        }
+
+
+
+                        /*************************************/
 
                         AlertDialog.setView(view)
                         AlertDialog.setCancelable(true)

@@ -386,16 +386,51 @@
                     android:background="@color/colorGrisCard"
                     android:layout_marginTop="2dp"/>
 
-            <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_miembro_ministerio"
+
+
+            <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:scrollbarSize="5dp"
-                    android:layout_marginTop="5dp"
-                    android:scrollbars="vertical" />
+                    android:layout_height="250dp"
+                    android:orientation="vertical">
+
+                <TextView
+                        android:id="@+id/textChat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="125dp"
+                        android:text="Sin registros encontrados"
+                        android:fontFamily="@font/quicksand_semibold"
+                        android:textColor="@color/shimmerColor"
+                        android:textSize="@dimen/_12sdp"
+                        android:visibility="gone"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_miembro_ministerio"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scrollbarSize="5dp"
+                        android:layout_marginTop="5dp"
+                        android:scrollbars="vertical" />
+
+            </LinearLayout>
+
+
+
+            <View
+                    android:id="@+id/imageView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorGrisCard"
+                    android:layout_marginTop="2dp"/>
+
+
+
 
 
         </LinearLayout>
+
+
 
         </LinearLayout>
 
