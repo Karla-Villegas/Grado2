@@ -41,5 +41,6 @@
     <color name="white">#FFFFFF</color>
     <color name="colorGris">#DCDCDC</color>
     <color name="shimmerColor">#C2C2C2</color>
+    <color name="transparet">#000277BD</color>
 
 </resources>

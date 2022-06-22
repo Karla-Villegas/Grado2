@@ -43,9 +43,9 @@ class Fragment_MiCuenta: Fragment() {
     fun vmOrganizacionId() {
         viewModel.vmgetInfoUser(
             onSuccess = { response ->
-                binding.idDocumentoIdentidad.setText("2876542")
-                binding.idNombre.setText(response?.name)
-                binding.idTelefono.setText("04144763022")
+                binding.idDocumentoIdentidad.text = "2876542"
+                binding.idNombre.text = response?.name
+                binding.idTelefono.text = "04144763022"
            /*     binding.idEstado.setText(response?.state_id?.asJsonArray?.get(1)?.asString)
                 binding.idMunicipio.setText(response?.municipality_id?.asJsonArray?.get(1)?.asString)
                 binding.idParroquia.setText(response?.parish_id?.asJsonArray?.get(1)?.asString)*/

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">OdooJsonRpc</string>
+    <string name="app_name" translatable="false">evAdmin</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="ok">Okay</string>
     <string name="cancel">Cancel</string>

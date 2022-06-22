@@ -40,6 +40,7 @@ class Fragment_ListaMiembros: Fragment() {
     private lateinit var IcMiembros: Any
     private var items = ArrayList<Miembros>()
     private var list_name_departament: ArrayList<String> = arrayListOf()
+    private lateinit var progressBar: ProgressBar
 
 
     val adapter: AdapterMiembros by lazy {
@@ -62,7 +63,7 @@ class Fragment_ListaMiembros: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity = getActivity() as NewActivityPrincipal
-
+        progressBar = ProgressBar()
         binding.rvMiembros.layoutManager = LinearLayoutManager(requireContext())
         val layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
         binding.rvMiembros.layoutManager = layoutManager
@@ -121,12 +122,13 @@ class Fragment_ListaMiembros: Fragment() {
 
     private fun OnClick(){
         binding.rvMiembros.onItemClick{recyclerView, position, v ->
+            progressBar.progressbar(requireContext(), "Cargando...")
             if(!items.isEmpty()){
                 if(adapter.starClick){
                     adapter.starClick = false
                     IcMiembros = items.get(position)
                     believer_id = (IcMiembros as Miembros).serverId
-                    Toast.makeText(requireContext(), "ID BELIEVER: ${believer_id}", Toast.LENGTH_SHORT).show()
+                    Timber.w("OnClick id miembro ${believer_id}")
                     detalleBeliever(believer_id.toInt(), v)
                 }
             }
@@ -142,13 +144,12 @@ class Fragment_ListaMiembros: Fragment() {
                         val result = call.result.asString.toJsonObject().get("record")
                         val item = gson.fromJson<Miembros>(result, MiembroType)
                         Timber.e("item --->  ${item}")
-
                         val AlertDialog = AlertDialog.Builder(requireContext()).create()
                         val view = layoutInflater.inflate(R.layout.detalles_miembros, null)
                         view.rv_miembro_ministerio.layoutManager = LinearLayoutManager(requireContext())
                         view.rv_miembro_ministerio.adapter = adapterMnisterio
                         view.rv_miembro_ministerio.setHasFixedSize(true)
-
+                        progressBar.finishProgressBar()
 
                         /** lógica para adaptar los campos de los detalles del believer*/
                         val name = item.name
@@ -192,16 +193,6 @@ class Fragment_ListaMiembros: Fragment() {
                         }
                         /****************************************************************/
 
-                        /** logica para los botones "editar" */
-                        val editButton = view.findViewById<ImageView>(R.id.editButton)
-                        editButton.setOnClickListener {
-
-                        }
-
-
-
-                        /*************************************/
-
                         AlertDialog.setView(view)
                         AlertDialog.setCancelable(true)
                         AlertDialog.setOnDismissListener { adapter.starClick = true }
@@ -218,14 +209,17 @@ class Fragment_ListaMiembros: Fragment() {
                         AlertDialog.window!!.clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM)
 
                     } else {
+                        progressBar.finishProgressBar()
                         Timber.w("callkw() failed with ${it.errorBody()}")
 
                     }
                 } else {
+                    progressBar.finishProgressBar()
                     Timber.w("request failed with ${it.code()}:${it.message()}")
                 }
             }
             this.onError { error ->
+                progressBar.finishProgressBar()
                 error.printStackTrace()
             }
             this.onComplete { }

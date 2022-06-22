@@ -38,6 +38,7 @@ class Fragment_Cartelera: Fragment() {
     private lateinit var activity: NewActivityPrincipal private set
     private var notice_id: Long = 0
     private lateinit var IcNotice: Any
+    private lateinit var progressBar: ProgressBar
 
     val adapter: AdapterCartelera by lazy {
             AdapterCartelera(this, arrayListOf())
@@ -55,6 +56,7 @@ class Fragment_Cartelera: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity = getActivity() as NewActivityPrincipal
+        progressBar = ProgressBar()
         binding.rvNoticias.layoutManager = LinearLayoutManager(requireContext())
         val layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
         binding.rvNoticias.layoutManager = layoutManager
@@ -66,6 +68,7 @@ class Fragment_Cartelera: Fragment() {
     }
 
     private fun noticias(){
+        binding.shimmerLayoutCartelera.startShimmer()
         adapter.clear()
         Odoo.route("news", "", args = "") {
             this.onNext {
@@ -78,21 +81,25 @@ class Fragment_Cartelera: Fragment() {
                         val respuesta = call.result.asString.toJsonObject()
                         val ic = respuesta.get("records")
                         if (ic != null){
-
                             items = gson.fromJson<ArrayList<Cartelera>>(ic, ListTypeCartelera )
-
                             if(items != null && items.size > 0){
-                                if (binding.rvNoticias != null){
-                                    OnClick()
-                                }
+                                showRecyclerView()
+                                if (binding.rvNoticias != null){ OnClick() }
                                 adapter.addRowItems(items)
 
                             }else{
-
+                                binding.shimmerLayoutCartelera.apply {
+                                    stopShimmer()
+                                    visibility = View.GONE
+                                }
                                 binding.rvNoticias.visibility = View.GONE
                                 binding.textNoticias.visibility = View.VISIBLE
                             }
                         }else{
+                            binding.shimmerLayoutCartelera.apply {
+                                stopShimmer()
+                                visibility = View.GONE
+                            }
                             binding.rvNoticias.visibility = View.GONE
                             binding.textNoticias.visibility = View.VISIBLE
                         }
@@ -100,6 +107,7 @@ class Fragment_Cartelera: Fragment() {
                         Timber.e("callkw()--->  ${respuesta.get("records")}")
                         Timber.e("callkw()--->  ${items}")
                     } else {
+
                         Timber.w("callkw() failed with ${it.errorBody()}")
 
                     }
@@ -116,12 +124,13 @@ class Fragment_Cartelera: Fragment() {
 
     private fun OnClick() {
         binding.rvNoticias.onItemClick { recyclerView, position, v ->
+            progressBar.progressbar(requireContext(), "Cargando...")
             if (!items.isEmpty()){
                 if(adapter.starClick){
                     adapter.starClick = false
                     IcNotice = items.get(position)
                     notice_id = (IcNotice as Cartelera).serverId
-                    Toast.makeText(requireContext(), "ID NOTICE: ${notice_id}", Toast.LENGTH_SHORT).show()
+                    Timber.w("OnClick id noticia ${notice_id}")
                     detalleNoticia(notice_id.toInt(), v)
                 }
             }
@@ -137,6 +146,7 @@ class Fragment_Cartelera: Fragment() {
                         adapter.hideEmpty()
                         adapter.hideError()
                         adapter.hideMore()
+                        progressBar.finishProgressBar()
                         val respuesta = call.result.asString.toJsonObject().get("record")
                         val item = gson.fromJson<Cartelera>(respuesta, NoticiaType)
 
@@ -173,14 +183,17 @@ class Fragment_Cartelera: Fragment() {
                         Timber.w("respuesta route ${respuesta}")
                         Timber.w("respuesta content ${content}")
                     } else {
+                        progressBar.finishProgressBar()
                         Timber.w("callkw() failed with ${it.errorBody()}")
 
                     }
                 } else {
+                    progressBar.finishProgressBar()
                     Timber.w("request failed with ${it.code()}:${it.message()}")
                 }
             }
             this.onError { error ->
+                progressBar.finishProgressBar()
                 error.printStackTrace()
             }
             this.onComplete { }
@@ -193,5 +206,12 @@ class Fragment_Cartelera: Fragment() {
         _binding = null
     }
 
+    private fun showRecyclerView() {
+        binding.shimmerLayoutCartelera.apply {
+            stopShimmer()
+            visibility = View.GONE
+        }
+        binding.rvNoticias.visibility = View.VISIBLE
+    }
 }
 

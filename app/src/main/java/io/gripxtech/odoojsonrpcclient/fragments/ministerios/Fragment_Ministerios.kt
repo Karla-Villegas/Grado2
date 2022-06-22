@@ -73,6 +73,7 @@ class Fragment_Ministerios : Fragment() {
     }
 
     private fun fetchMinisterios() {
+        binding.shimmerLayoutMinisterio.startShimmer()
         adapterDetalleDepartment.clear()
         Odoo.route("/departments", "", args = "") {
             this.onNext {
@@ -88,20 +89,24 @@ class Fragment_Ministerios : Fragment() {
                         if (binding.rvMinisterios != null) {
                             OnCLick()
                         }
+                        showRecyclerView()
                         adapter.addRowItems(items)
 
 
                         Timber.w("MINISTERIOS RESULT ${result}")
                         Timber.w("MINISTERIOS ITEMS ${items}")
                     } else {
+                        showRecyclerView()
                         Timber.w("callkw() failed with ${it.errorBody()}")
 
                     }
                 } else {
+                    showRecyclerView()
                     Timber.w("request failed with ${it.code()}:${it.message()}")
                 }
             }
             this.onError { error ->
+                showRecyclerView()
                 error.printStackTrace()
             }
             this.onComplete { }
@@ -193,5 +198,13 @@ class Fragment_Ministerios : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun showRecyclerView() {
+        binding.shimmerLayoutMinisterio.apply {
+            stopShimmer()
+            visibility = View.GONE
+        }
+        binding.rvMinisterios.visibility = View.VISIBLE
     }
 }

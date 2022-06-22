@@ -161,6 +161,9 @@ class viewModel: ViewModel() {
     /** Obtener información de usuario sesionado */
     fun vmGetInfoUser(): LiveData<UserInfo?>? { return App.database.userInfoDao().getUserInfo() }
 
+    /** Eliminar DB */
+    fun vmDeleteDB() { viewModelScope.launch(Dispatchers.IO) { App.database.clearAllTables() } }
+
     fun vmgetInfoUser(
         onSuccess: (UserInfo?) -> Unit
     ) {

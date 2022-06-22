@@ -129,4 +129,7 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:2.4.2"
     // Kotlin Extensions and Coroutines support for Room
     implementation "androidx.room:room-ktx:2.4.2"
+
+    //--------DEPENDENCIA DE LAS ANIMACIONES
+    implementation 'com.airbnb.android:lottie:3.7.0'
 }
