@@ -7,14 +7,14 @@
 
     <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="500dp"
             android:layout_margin="@dimen/_3sdp"
             android:background="@drawable/background_alertdialog"
             android:orientation="vertical">
 
         <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_margin="@dimen/_10sdp"
                 android:background="@drawable/background_alertdialog"
                 android:orientation="vertical">
@@ -45,16 +45,28 @@
 
             <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginBottom="@dimen/_10sdp"
                     android:orientation="vertical"
                     android:padding="@dimen/_5sdp"
                     android:layout_marginTop="20dp">
 
+                <TextView
+                        android:id="@+id/textdetalles_ministerio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="150dp"
+                        android:text="Sin registros encontrados"
+                        android:fontFamily="@font/quicksand_semibold"
+                        android:textColor="@color/shimmerColor"
+                        android:textSize="@dimen/_12sdp"
+                        android:visibility="gone" />
+
                 <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_detalleMinisterio"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:scrollbarSize="5dp"
                         android:layout_marginTop="5dp"
                         android:scrollbars="vertical" />

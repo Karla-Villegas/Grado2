@@ -9,6 +9,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable-mdpi/back_progressbar.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-mdpi/border_radius.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-mdpi/bottom_sheet_background.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-mdpi/buttons_dialog_salir.xml" value="0.1" />
@@ -46,6 +47,7 @@
         <entry key="app/src/main/res/layout/activity_registro.xml" value="0.16" />
         <entry key="app/src/main/res/layout/activity_settings.xml" value="0.1" />
         <entry key="app/src/main/res/layout/detalles_miembros.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/detalles_ministerio.xml" value="0.1606837606837607" />
         <entry key="app/src/main/res/layout/fragment_cartelera_.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_mi_cuenta.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_miembros.xml" value="0.18" />
@@ -59,10 +61,13 @@
         <entry key="app/src/main/res/layout/item_new_ministry.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_view_cartelera.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_view_cartelera_detalles.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_view_cartelera_shimmer.xml" value="0.18" />
         <entry key="app/src/main/res/layout/item_view_lista_miembros.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_view_lista_miembros_shimer.xml" value="0.1606837606837607" />
+        <entry key="app/src/main/res/layout/item_view_ministerio_shimmer.xml" value="0.25" />
         <entry key="app/src/main/res/layout/layout_bottom_sheet.xml" value="0.1" />
         <entry key="app/src/main/res/layout/progress_dialog.xml" value="0.19583333333333333" />
+        <entry key="app/src/main/res/layout/progressdialog_layout.xml" value="0.15555555555555556" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.19583333333333333" />
         <entry key="app/src/main/res/menu/main.xml" value="0.11851851851851852" />
         <entry key="app/src/main/res/menu/menu_main_nav.xml" value="0.1" />

@@ -37,6 +37,7 @@ class Fragment_Ministerios : Fragment() {
     private lateinit var IcMInisterio: Any
     private var departament_id: Long = 0
     private var list_name_believer: ArrayList<String> = arrayListOf()
+    private lateinit var progressBar: ProgressBar
 
     val adapter: AdapterMinisterio by lazy {
         AdapterMinisterio(this, arrayListOf())
@@ -58,7 +59,7 @@ class Fragment_Ministerios : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity = getActivity() as NewActivityPrincipal
-
+        progressBar = ProgressBar()
         binding.rvMinisterios.layoutManager = LinearLayoutManager(requireContext())
         val layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
         binding.rvMinisterios.layoutManager = layoutManager
@@ -115,16 +116,12 @@ class Fragment_Ministerios : Fragment() {
 
     private fun OnCLick() {
         binding.rvMinisterios.onItemClick { recyclerView, position, v ->
+            progressBar.progressbar(requireContext(), "Cargando...")
             if (!items.isEmpty()) {
                 if (adapter.starClick) {
                     adapter.starClick = false
                     IcMInisterio = items.get(position)
                     departament_id = (IcMInisterio as Ministerio).serverId
-                    Toast.makeText(
-                        requireContext(),
-                        "ID DEPARTAMENT: ${departament_id}",
-                        Toast.LENGTH_SHORT
-                    ).show()
                     detalleDepartament(departament_id.toInt(), v)
                 }
             }
@@ -150,7 +147,7 @@ class Fragment_Ministerios : Fragment() {
                         view.rv_detalleMinisterio.layoutManager = LinearLayoutManager(requireContext())
                         view.rv_detalleMinisterio.adapter = adapterDetalleDepartment
                         view.rv_detalleMinisterio.setHasFixedSize(true)
-
+                        progressBar.finishProgressBar()
                         /** logica para los detalles de cada ministerio y los miembros que pertencen a el*/
                         val name = item.name
                         val believer_ids = JSONArray(item.believer_ids.toString())
@@ -159,8 +156,20 @@ class Fragment_Ministerios : Fragment() {
                             list_name_believer.add(nameBeliever)
                         }
 
-                        if(name != null) view.DET_nombreMinisterio.text = name else view.DET_nombreMinisterio.text = ""
-                        adapterDetalleDepartment.addRowItems(list_name_believer as List<JSONArray>)
+                        if(name != null) {
+                            view.DET_nombreMinisterio.text = name
+                        } else {
+                            view.DET_nombreMinisterio.text = ""
+                        }
+
+                        if (list_name_believer != null && list_name_believer.size > 0){
+                            adapterDetalleDepartment.addRowItems(list_name_believer as List<JSONArray>)
+                        }else{
+                            view.rv_detalleMinisterio.visibility = View.GONE
+                            view.textdetalles_ministerio.visibility = View.VISIBLE
+                        }
+
+                        /*adapterDetalleDepartment.addRowItems(list_name_believer as List<JSONArray>)*/
                         /**..............................................................................*/
 
                         AlertDialog.setView(view)
@@ -180,14 +189,20 @@ class Fragment_Ministerios : Fragment() {
                         Timber.w("MINISTERIO RESULT ${result}")
                         Timber.w("MINISTERIO DETALLE ${item}")
                     } else {
+                        progressBar.finishProgressBar()
+
                         Timber.w("callkw() failed with ${it.errorBody()}")
 
                     }
                 } else {
+                    progressBar.finishProgressBar()
+
                     Timber.w("request failed with ${it.code()}:${it.message()}")
                 }
             }
             this.onError { error ->
+                progressBar.finishProgressBar()
+
                 error.printStackTrace()
             }
             this.onComplete { }
