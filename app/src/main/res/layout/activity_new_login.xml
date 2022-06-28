@@ -50,8 +50,38 @@
                         android:layout_marginBottom="5dp"
                         android:layout_height="wrap_content" />
 
+                <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/email"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:boxCornerRadiusBottomEnd="10dp"
+                        app:boxCornerRadiusBottomStart="10dp"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        app:boxCornerRadiusTopEnd="10dp"
+                        app:boxCornerRadiusTopStart="10dp"
+                        app:errorIconDrawable="@null"
+                        >
 
-                <EditText
+                    <EditText
+                            android:id="@+id/emailEditext"
+                            android:layout_width="match_parent"
+                            android:layout_height="55dp"
+                            android:layout_gravity="center"
+                            android:shadowColor="@color/colorPrimary"
+                            android:hint="Ingrese su correo electronico..."
+                            android:background="@drawable/background_edittext"
+                            android:inputType="textEmailAddress"
+                            android:paddingLeft="15dp"
+                            android:textColor="@color/colorSecondaryText"
+                            android:textSize="16sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+               <!-- <EditText
                         android:id="@+id/emailEditext"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
@@ -63,7 +93,7 @@
                         android:paddingLeft="15dp"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
-
+-->
                 <TextView
                         android:textColor="@color/black"
                         android:layout_marginTop="20dp"
@@ -73,7 +103,34 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
-                <EditText
+                <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:passwordToggleEnabled="true"
+                        app:hintAnimationEnabled="false"
+                        app:passwordToggleTint="@color/colorSecondaryText"
+                        app:errorIconDrawable="@null"
+                        app:expandedHintEnabled="false"
+                        app:boxBackgroundColor="@color/colorPrimary"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        app:layout_constraintTop_toBottomOf="@+id/title_password">
+                    <EditText
+                            android:id="@+id/passwordEditext"
+                            android:layout_width="match_parent"
+                            android:layout_height="55dp"
+                            android:layout_gravity="center"
+                            android:hint="Ingrese su contraseña..."
+                            android:background="@drawable/background_edittext"
+                            android:inputType="textPassword"
+                            android:textColor="@color/colorSecondaryText"
+                            android:textSize="16sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!--<EditText
                         android:id="@+id/passwordEditext"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
@@ -84,7 +141,7 @@
                         android:inputType="textPassword"
                         android:paddingLeft="15dp"
                         android:textColor="@color/colorSecondaryText"
-                        android:textSize="16sp" />
+                        android:textSize="16sp" />-->
 
             </LinearLayout>
 

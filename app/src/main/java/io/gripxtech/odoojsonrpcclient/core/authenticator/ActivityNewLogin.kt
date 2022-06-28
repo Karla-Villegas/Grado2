@@ -48,6 +48,13 @@ class ActivityNewLogin : AppCompatActivity(){
         progressBar = ProgressDialog(this)
         viewModel = ViewModelProvider(this).get(io.gripxtech.odoojsonrpcclient.viewModel.viewModel::class.java)
 
+
+        binding.email.onFocusChangeListener.apply {
+            binding.email.isHintEnabled = false
+        }
+        binding.password.onFocusChangeListener.apply {
+            binding.password.isHintEnabled = false
+        }
         binding.Button.setOnClickListener {
             validate()
         }
@@ -150,7 +157,7 @@ class ActivityNewLogin : AppCompatActivity(){
                     viewModel.vmInsertInfoUser(
                         userInfo = userInfo,
                         onSuccess = {
-                            createAccount(authenticateResult)
+                            vmCreateAccount(authenticateResult)
                         },
                         onFailure = {
                             Timber.e( "vmSearchRead onFailure $it:" )
@@ -166,7 +173,7 @@ class ActivityNewLogin : AppCompatActivity(){
         )
     }
 
-    private fun createAccount(authenticateResult: AuthenticateResult) {
+    private fun vmCreateAccount(authenticateResult: AuthenticateResult) {
         Observable.fromCallable {
             if (createOdooUser(authenticateResult)) {
                 val odooUser = odooUserByAndroidName(authenticateResult.androidName)

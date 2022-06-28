@@ -40,7 +40,7 @@
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.11851851851851852" />
         <entry key="app/src/main/res/layout/activity_main_nav_header.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_manage_account.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_new_login.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_new_login.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_new_main.xml" value="0.19583333333333333" />
         <entry key="app/src/main/res/layout/activity_new_principal.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.1" />
@@ -55,7 +55,7 @@
         <entry key="app/src/main/res/layout/fragment_registro.xml" value="0.1824074074074074" />
         <entry key="app/src/main/res/layout/fragment_registro_miembros.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_update_believer.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/item_new_cartelera.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_new_cartelera.xml" value="0.33" />
         <entry key="app/src/main/res/layout/item_new_cartelera_detalle.xml" value="0.2" />
         <entry key="app/src/main/res/layout/item_new_lista_miembro.xml" value="0.22" />
         <entry key="app/src/main/res/layout/item_new_ministry.xml" value="0.25" />

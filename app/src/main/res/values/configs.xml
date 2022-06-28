@@ -9,7 +9,7 @@
     <integer name="protocol">0</integer>
 
     <!-- set your host_url without leading http:// or https:// -->
-    <string name="host_url" translatable="false">3.86.203.80/</string>
+    <string name="host_url" translatable="false">35.173.231.131/</string>
 
     <!-- if pre_config_database set to false, it allows user to manually select the database. -->
     <!-- if true then define pre_config_database_name with database name below. -->

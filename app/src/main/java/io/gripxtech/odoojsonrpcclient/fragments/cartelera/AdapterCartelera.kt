@@ -5,7 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import io.gripxtech.odoojsonrpcclient.R
 import io.gripxtech.odoojsonrpcclient.core.utils.recycler.RecyclerBaseAdapter
+import io.gripxtech.odoojsonrpcclient.formatTo
 import io.gripxtech.odoojsonrpcclient.fragments.cartelera.entities.Cartelera
+import io.gripxtech.odoojsonrpcclient.toDate
 import kotlinx.android.synthetic.main.fragment_cartelera_.*
 import kotlinx.android.synthetic.main.item_new_cartelera.view.*
 
@@ -50,6 +52,7 @@ class AdapterCartelera(
 
                 holder.itemView.title.text = item.title
                 holder.itemView.contentBody.text = item.description
+                holder.itemView.fecha.text = formatDate(item.date)
                /* holder.itemView.fechaI.text = item.date
                 holder.itemView.fechaC.text = item.expiry_date*/
 
@@ -89,5 +92,9 @@ class AdapterCartelera(
 
     fun setCanStart(can: Boolean) {
         starClick = can
+    }
+
+    private fun formatDate(fecha: String): String? {
+        return fecha.toDate("yyyy-MM-d").formatTo("dd-MM-yyyy")
     }
 }

@@ -1,5 +1,6 @@
 package io.gripxtech.odoojsonrpcclient.viewModel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -138,6 +139,8 @@ class viewModel: ViewModel() {
         }
     }
 
+    /** ROOM */
+
     /** Insertar información de usuario sesionado */
     fun vmInsertInfoUser(
         userInfo: UserInfo,
@@ -150,8 +153,10 @@ class viewModel: ViewModel() {
                 App.database.userInfoDao().inserUserInfo(userInfo)
                 Timber.e("USUARIO GUARDADO: ${App.database.userInfoDao().getUser()}")
                 onSuccess(true)
-            }catch (e: Exception){
-                if (e is CancellationException){ throw e }
+            } catch (e: Exception) {
+                if (e is CancellationException) {
+                    throw e
+                }
                 Timber.e("catch ---> ${e.message}")
                 onFailure(e.message.toString())
             }
@@ -159,7 +164,9 @@ class viewModel: ViewModel() {
     }
 
     /** Obtener información de usuario sesionado */
-    fun vmGetInfoUser(): LiveData<UserInfo?>? { return App.database.userInfoDao().getUserInfo() }
+    fun vmGetInfoUser(): LiveData<UserInfo?>? {
+        return App.database.userInfoDao().getUserInfo()
+    }
 
     /** Eliminar DB */
     fun vmDeleteDB() { viewModelScope.launch(Dispatchers.IO) { App.database.clearAllTables() } }

@@ -160,11 +160,11 @@ class Fragment_Cartelera: Fragment() {
                         val expiry_date = item.expiry_date
                         val state = item.state
 
-                        if (title != null) view.title.text = title else view.title.text = ""
-                        if (description != null) view.description.text = description else view.description.text = ""
-                        if (content != null) view.content.text = content else view.content.text = ""
-                        if (date != null) view.date.text = date else view.date.text = ""
-                        if (expiry_date != null) view.expiry_date.text = expiry_date else view.expiry_date.text = ""
+                        if (title != null && title != "false") view.title.text = title else view.title.text = ""
+                        if (description != null && description != "false") view.description.text = description else view.description.text = ""
+                        if (content != null && content != "false") view.content.text = content else view.content.text = ""
+                        if (date != null && date != "false") view.date.text = date else view.date.text = ""
+                        if (expiry_date != null && expiry_date != "false") view.expiry_date.text = expiry_date else view.expiry_date.text = ""
 
 
                         AlertDialog.setView(view)

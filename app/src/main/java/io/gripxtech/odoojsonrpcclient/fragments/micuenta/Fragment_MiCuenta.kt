@@ -1,15 +1,26 @@
 package io.gripxtech.odoojsonrpcclient.fragments.micuenta
 
 import android.os.Bundle
+import android.telephony.ims.ImsMmTelManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import io.gripxtech.odoojsonrpcclient.NewActivityPrincipal
+import com.google.gson.reflect.TypeToken
+import io.gripxtech.odoojsonrpcclient.*
+import io.gripxtech.odoojsonrpcclient.core.Odoo
 import io.gripxtech.odoojsonrpcclient.databinding.FragmentMiCuentaBinding
+import io.gripxtech.odoojsonrpcclient.fragments.miembros.entities.Miembros
 import io.gripxtech.odoojsonrpcclient.viewModel.viewModel
-import kotlinx.android.synthetic.main.activity_new_principal.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.Dispatchers.Main
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import org.json.JSONObject
+import timber.log.Timber
 
 class Fragment_MiCuenta: Fragment() {
 
@@ -17,6 +28,10 @@ class Fragment_MiCuenta: Fragment() {
     private val binding get() = _binding!!
     private lateinit var activity: NewActivityPrincipal private set
     private lateinit var viewModel: viewModel
+    private lateinit var progressBar: ProgressBar
+    private var items = ArrayList<Miembros>()
+    private val MiembroType = object : TypeToken<Miembros>() {}.type
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,27 +46,137 @@ class Fragment_MiCuenta: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity = getActivity() as NewActivityPrincipal
-
+        progressBar = ProgressBar()
         setupViewModel()
-        vmOrganizacionId()
+        prueba()
     }
 
     private fun setupViewModel() {
         viewModel = ViewModelProvider(this).get(io.gripxtech.odoojsonrpcclient.viewModel.viewModel::class.java)
     }
 
-    fun vmOrganizacionId() {
-        viewModel.vmgetInfoUser(
-            onSuccess = { response ->
-                binding.idDocumentoIdentidad.text = "2876542"
-                binding.idNombre.text = response?.name
-                binding.idTelefono.text = "04144763022"
-           /*     binding.idEstado.setText(response?.state_id?.asJsonArray?.get(1)?.asString)
-                binding.idMunicipio.setText(response?.municipality_id?.asJsonArray?.get(1)?.asString)
-                binding.idParroquia.setText(response?.parish_id?.asJsonArray?.get(1)?.asString)*/
+    fun prueba() {
+        CoroutineScope(IO).launch {
+            val db = App.database.userInfoDao().getUser()
+            withContext(Main){
+                Log.e("ID USER", "MI CUENTA ${db}" )
+               /* binding.idNombre.text = db?.name*/
+               /* binding.idDocumentoIdentidad.text = db?.partner_id?.asJsonArray?.get(0)?.asString*/
+                var part_id = db?.partner_id?.asJsonArray?.get(0)?.asString?.toInt()
+                Log.e("ID part_id", "MI CUENTA ${part_id}" )
+                searchMiCuenta(part_id)
             }
-        )
+        }
+
     }
+
+    fun searchMiCuenta(part_id: Int?) {
+        Log.e("ID searchMiCuenta", "MI CUENTA ${part_id}" )
+        progressBar.progressbar(requireContext(), "Cargando...")
+        Odoo.route("believer/p/$part_id", "", args = "") {
+            this.onNext {
+                if (it.isSuccessful) {
+                    val call = it.body()!!
+                    if (it.isSuccessful) {
+                        progressBar.finishProgressBar()
+                        val result = call.result.asString.toJsonObject().get("record")
+                        if (result != null){
+
+                        val item = gson.fromJson<Miembros>(result, MiembroType)
+
+                        if(item.identity != null && item.identity != "false" ){
+                            binding.idDocumentoIdentidad.text = item.identity
+                        }else{
+                            binding.idDocumentoIdentidad.text = "sin registro encontrado"
+                        }
+
+                        if(item.name != null && item.name != "false" ){
+                            binding.idNombre.text = item.name
+                        }else{
+                            binding.idNombre.text = "sin registro encontrado"
+                        }
+
+                        if(item.localphone_number != null && item.localphone_number != "false" ){
+                            binding.idTelefono.text = item.localphone_number
+                        }else{
+                            binding.idTelefono.text = "sin registro encontrado"
+                        }
+
+                        if(item.state != null && item.state.toString() != "false" ){
+                            binding.idEstado.text = JSONObject(item.state.toString()).optString("name")
+                        }else{
+                            binding.idEstado.text = "sin registro encontrado"
+                        }
+
+                        if(item.municipality != null && item.municipality.toString() != "false" ){
+                            binding.idMunicipio.text = JSONObject(item.municipality.toString()).optString("name")
+                        }else{
+                            binding.idMunicipio.text = "sin registro encontrado"
+                        }
+
+                        if(item.parish != null && item.parish.toString() != "false" ){
+                            binding.idParroquia.text = JSONObject(item.parish.toString()).optString("name")
+                        }else{
+                            binding.idParroquia.text = "sin registro encontrado"
+                        }
+
+                        if(item.street != null && item.street != "false" ){
+                            binding.idCalle.text = item.street
+                        }else{
+                            binding.idCalle.text = "sin registro encontrado"
+                        }
+
+                        if(item.sector != null && item.sector != "false" ){
+                            binding.idSector.text = item.sector
+                        }else{
+                            binding.idSector.text = "sin registro encontrado"
+                        }
+
+                        if(item.house != null && item.house != "false" ){
+                            binding.idCasa.text = item.house
+                        }else{
+                            binding.idCasa.text = "sin registro encontrado"
+                        }
+
+                        if(item.building != null && item.building != "false" ){
+                            binding.idEdificio.text = item.building
+                        }else{
+                            binding.idEdificio.text= "sin registro encontrado"
+                        }
+
+
+                        Log.e("searchMiCuenta items", "MI CUENTA ${item}" )
+                        }else{
+                            progressBar.finishProgressBar()
+                            binding.idDocumentoIdentidad.text = "sin registro encontrado"
+                            binding.idNombre.text = "sin registro encontrado"
+                            binding.idTelefono.text = "sin registro encontrado"
+                            binding.idEstado.text = "sin registro encontrado"
+                            binding.idMunicipio.text = "sin registro encontrado"
+                            binding.idParroquia.text = "sin registro encontrado"
+                            binding.idCalle.text = "sin registro encontrado"
+                            binding.idSector.text = "sin registro encontrado"
+                            binding.idCasa.text = "sin registro encontrado"
+                            binding.idEdificio.text= "sin registro encontrado"
+                        }
+                    } else {
+                        progressBar.finishProgressBar()
+                        Timber.w("callkw() failed with ${it.errorBody()}")
+
+                    }
+                } else {
+                    progressBar.finishProgressBar()
+                    Timber.w("request failed with ${it.code()}:${it.message()}")
+                }
+            }
+            this.onError { error ->
+                progressBar.finishProgressBar()
+                error.printStackTrace()
+            }
+            this.onComplete { }
+        }
+    }
+
 
 
     override fun onDestroyView() {

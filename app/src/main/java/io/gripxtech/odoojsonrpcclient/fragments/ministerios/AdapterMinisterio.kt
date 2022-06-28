@@ -1,5 +1,6 @@
 package io.gripxtech.odoojsonrpcclient.fragments.ministerios
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -8,6 +9,7 @@ import io.gripxtech.odoojsonrpcclient.core.utils.recycler.RecyclerBaseAdapter
 import io.gripxtech.odoojsonrpcclient.fragments.ministerios.entities.Ministerio
 import kotlinx.android.synthetic.main.fragment_ministerios.*
 import kotlinx.android.synthetic.main.item_new_ministry.view.*
+import org.json.JSONArray
 
 class AdapterMinisterio(
     private val fragment: Fragment_Ministerios,
@@ -15,6 +17,7 @@ class AdapterMinisterio(
 ) : RecyclerBaseAdapter(items, fragment.rv_ministerios) {
 
     var starClick = true
+    private var list_name_count: ArrayList<String> = arrayListOf()
 
     companion object {
         const val TAG: String = "MinisterioAdapter"
@@ -47,9 +50,10 @@ class AdapterMinisterio(
            VIEW_TYPE_ITEM -> {
                 val holder = baseHolder as ViewHolderMinisterio
                 val item = items[position] as Ministerio
+                val believer_ids = JSONArray(item.believer_ids.toString())
 
                 holder.itemView.ministerio_name.text = item.name
-
+                holder.itemView.total_miembros.text = believer_ids.length().toString()
 
             }
         }

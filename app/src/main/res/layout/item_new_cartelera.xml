@@ -66,6 +66,21 @@
                     android:layout_marginTop="16dp"
                     app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fecha"
+                    tools:text="Fecha de la noticia"
+                    android:textSize="15dp"
+                    android:fontFamily="@font/quicksand_semibold"
+                    android:textColor="@color/background_text"
+                    android:layout_marginEnd="32dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="24dp"
+                    app:layout_constraintTop_toBottomOf="@+id/contentBody" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -416,3 +416,4 @@ fun stripHtml(html: String?): String {
         Html.fromHtml(html).toString()
     }
 }
+

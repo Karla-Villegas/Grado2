@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "b9f1b0c1b5dcdfd7735f251f4fce9fcf",
+    "identityHash": "6712e4eebd79b8e9f9af9742ed0446a5",
     "entities": [
       {
         "tableName": "res.partner",
@@ -111,7 +111,7 @@
       },
       {
         "tableName": "res.users",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`_id` INTEGER NOT NULL, `server_id` INTEGER NOT NULL, `partner_id` TEXT NOT NULL, `name` TEXT, `email` TEXT, `phone` TEXT, `image` TEXT, `state_id` TEXT NOT NULL, `municipality_id` TEXT NOT NULL, `parish_id` TEXT NOT NULL, `country_id` TEXT NOT NULL, PRIMARY KEY(`_id`, `server_id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`_id` INTEGER NOT NULL, `server_id` INTEGER NOT NULL, `partner_id` TEXT NOT NULL, `name` TEXT, `email` TEXT, `phone` TEXT, `state_id` TEXT NOT NULL, `municipality_id` TEXT NOT NULL, `parish_id` TEXT NOT NULL, `country_id` TEXT NOT NULL, PRIMARY KEY(`_id`, `server_id`))",
         "fields": [
           {
             "fieldPath": "_id",
@@ -146,12 +146,6 @@
           {
             "fieldPath": "phone",
             "columnName": "phone",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-            "fieldPath": "image",
-            "columnName": "image",
             "affinity": "TEXT",
             "notNull": false
           },
@@ -194,7 +188,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'b9f1b0c1b5dcdfd7735f251f4fce9fcf')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '6712e4eebd79b8e9f9af9742ed0446a5')"
     ]
   }
 }

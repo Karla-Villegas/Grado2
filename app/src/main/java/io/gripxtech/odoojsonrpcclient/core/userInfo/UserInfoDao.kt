@@ -20,7 +20,4 @@ interface UserInfoDao {
 
     @Query("SELECT * from `res.users`")
     suspend fun getUser() : UserInfo?
-
-    /*@Query("UPDATE `user.info` SET price=:price WHERE id = :id")
-    fun update(price: Float?, id: Int)*/
 }

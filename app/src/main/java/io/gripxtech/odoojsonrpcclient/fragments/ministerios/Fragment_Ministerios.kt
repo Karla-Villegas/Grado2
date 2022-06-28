@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.ImageView
-import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,7 +18,6 @@ import com.google.gson.reflect.TypeToken
 import io.gripxtech.odoojsonrpcclient.*
 import io.gripxtech.odoojsonrpcclient.core.Odoo
 import io.gripxtech.odoojsonrpcclient.databinding.FragmentMinisteriosBinding
-import io.gripxtech.odoojsonrpcclient.fragments.miembros.entities.Miembros
 import io.gripxtech.odoojsonrpcclient.fragments.ministerios.entities.Ministerio
 import kotlinx.android.synthetic.main.detalles_miembros.view.*
 import kotlinx.android.synthetic.main.detalles_ministerio.view.*
@@ -54,7 +53,9 @@ class Fragment_Ministerios : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentMinisteriosBinding.inflate(layoutInflater, container, false)
         return binding.root
+
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -96,6 +97,7 @@ class Fragment_Ministerios : Fragment() {
 
                         Timber.w("MINISTERIOS RESULT ${result}")
                         Timber.w("MINISTERIOS ITEMS ${items}")
+                        Timber.w("MINISTERIOS ITEMS ${items}")
                     } else {
                         showRecyclerView()
                         Timber.w("callkw() failed with ${it.errorBody()}")
@@ -116,6 +118,8 @@ class Fragment_Ministerios : Fragment() {
 
     private fun OnCLick() {
         binding.rvMinisterios.onItemClick { recyclerView, position, v ->
+            adapterDetalleDepartment.clear()
+            list_name_believer.clear()
             progressBar.progressbar(requireContext(), "Cargando...")
             if (!items.isEmpty()) {
                 if (adapter.starClick) {
@@ -139,6 +143,7 @@ class Fragment_Ministerios : Fragment() {
                         adapter.hideError()
                         adapter.hideMore()
                         adapterDetalleDepartment.clear()
+                        list_name_believer.clear()
                         val result = call.result.asString.toJsonObject().get("record")
                         val item = gson.fromJson<Ministerio>(result, MinisterioType)
 
@@ -208,6 +213,9 @@ class Fragment_Ministerios : Fragment() {
             this.onComplete { }
         }
     }
+
+
+
 
 
     override fun onDestroyView() {

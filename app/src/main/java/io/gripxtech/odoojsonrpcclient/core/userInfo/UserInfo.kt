@@ -43,10 +43,10 @@ data class UserInfo(
     @ColumnInfo(name = "phone")
     var phone: String?,
 
-    @Expose
+   /* @Expose
     @SerializedName("image")
     @ColumnInfo(name = "image")
-    var image: String?,
+    var image: String?,*/
 
     @Expose
     @SerializedName("state_id")
@@ -82,7 +82,7 @@ data class UserInfo(
             "name" to "name",
             "email" to "email",
             "phone" to "phone",
-            "image" to "image",
+           /* "image" to "image",*/
             "state_id" to "state_id",
             "municipality_id" to "municipality_id",
             "parish_id" to "parish_id",

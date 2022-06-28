@@ -133,7 +133,229 @@
 
     </LinearLayout>
 
+    <LinearLayout
+            android:id="@+id/layoutEstado"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layoutNumeroTelefono"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp">
 
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/quicksand_bold"
+                android:text="Estado:"
+                android:textColor="@color/background_text"
+                android:textSize="@dimen/_10sdp" />
+
+        <TextView
+                android:id="@+id/idEstado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/quicksand_semibold"
+                android:textColor="@color/background_text"
+                android:textSize="@dimen/_10sdp"
+                tools:text="Guarico" />
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/layoutMunicipio"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layoutEstado"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/quicksand_bold"
+                android:text="Municipio:"
+                android:textColor="@color/background_text"
+                android:textSize="@dimen/_10sdp" />
+
+        <TextView
+                android:id="@+id/idMunicipio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/quicksand_semibold"
+                android:textColor="@color/background_text"
+                android:textSize="@dimen/_10sdp"
+                tools:text="Municipio" />
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/layoutParroquia"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layoutMunicipio"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/quicksand_bold"
+                android:text="Parroquia:"
+                android:textColor="@color/background_text"
+                android:textSize="@dimen/_10sdp" />
+
+        <TextView
+                android:id="@+id/idParroquia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/quicksand_semibold"
+                android:textColor="@color/background_text"
+                android:textSize="@dimen/_10sdp"
+                tools:text="Guarico" />
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/layoutCalle"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layoutParroquia"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/quicksand_bold"
+                android:text="Calle:"
+                android:textColor="@color/background_text"
+                android:textSize="@dimen/_10sdp" />
+
+        <TextView
+                android:id="@+id/idCalle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/quicksand_semibold"
+                android:textColor="@color/background_text"
+                android:textSize="@dimen/_10sdp"
+                tools:text="Calle" />
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/layoutEdificio"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layoutCalle"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/quicksand_bold"
+                android:text="Edificio:"
+                android:textColor="@color/background_text"
+                android:textSize="@dimen/_10sdp" />
+
+        <TextView
+                android:id="@+id/idEdificio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/quicksand_semibold"
+                android:textColor="@color/background_text"
+                android:textSize="@dimen/_10sdp"
+                tools:text="Edificio" />
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/layoutCasa"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layoutEdificio"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/quicksand_bold"
+                android:text="Casa:"
+                android:textColor="@color/background_text"
+                android:textSize="@dimen/_10sdp" />
+
+        <TextView
+                android:id="@+id/idCasa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/quicksand_semibold"
+                android:textColor="@color/background_text"
+                android:textSize="@dimen/_10sdp"
+                tools:text="Casa" />
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/layoutSector"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layoutCasa"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/quicksand_bold"
+                android:text="Sector:"
+                android:textColor="@color/background_text"
+                android:textSize="@dimen/_10sdp" />
+
+        <TextView
+                android:id="@+id/idSector"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/quicksand_semibold"
+                android:textColor="@color/background_text"
+                android:textSize="@dimen/_10sdp"
+                tools:text="Sector" />
+
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
