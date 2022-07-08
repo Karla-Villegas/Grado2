@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -21,7 +20,6 @@ import io.gripxtech.odoojsonrpcclient.*
 import io.gripxtech.odoojsonrpcclient.core.Odoo
 import io.gripxtech.odoojsonrpcclient.databinding.FragmentMiembrosBinding
 import io.gripxtech.odoojsonrpcclient.fragments.miembros.entities.Miembros
-import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.detalles_miembros.view.*
 import org.json.JSONArray
 import org.json.JSONObject
@@ -33,8 +31,6 @@ class Fragment_ListaMiembros: Fragment() {
     private val binding get() = _binding!!
     private val MiembrosListType = object : TypeToken<ArrayList<Miembros>>() {}.type
     private val MiembroType = object : TypeToken<Miembros>() {}.type
-    private val limit = RECORD_LIMIT
-    private var compositeDisposable: CompositeDisposable? = null
     private lateinit var activity: NewActivityPrincipal private set
     private var believer_id: Long = 0
     private lateinit var IcMiembros: Any
@@ -54,7 +50,7 @@ class Fragment_ListaMiembros: Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentMiembrosBinding.inflate(layoutInflater, container, false)
         return binding.root
@@ -165,16 +161,16 @@ class Fragment_ListaMiembros: Fragment() {
                         val cellphone_number = item.cellphone_number
 
 
-                        if(name != null && name != "false") view.DET_nombreMiembro.text = name else view.DET_nombreMiembro.text = ""
-                        if(identity != null && identity != "false") view.DET_cedulaMiembro.text = identity else view.DET_cedulaMiembro.text = ""
-                        if(localphone_number != null && localphone_number != "false") view.DET_telefonoMiembro.text = localphone_number else view.DET_telefonoMiembro.text = ""
-                        if(state != null && state != "false") view.DET_estadoMiembro.text = state else view.DET_estadoMiembro.text = ""
-                        if(municipality != null && municipality != "false") view.DET_municipioMiembro.text = municipality else view.DET_municipioMiembro.text = ""
-                        if(parish != null && parish != "false") view.DET_parroquiaMiembro.text = parish else view.DET_parroquiaMiembro.text = ""
-                        if(sector != null && sector != "false") view.DET_sectorMiembro.text = sector else view.DET_sectorMiembro.text = ""
-                        if(street != null && street != "false") view.DET_calleMiembro.text = street else view.DET_calleMiembro.text = ""
-                        if(building != null && building != "false") view.DET_edificioMiembro.text = building else view.DET_edificioMiembro.text = ""
-                        if(house != null && house != "false") view.DET_NumeroEdificioMiembro.text = house else view.DET_NumeroEdificioMiembro.text = ""
+                        if(name != "false") view.DET_nombreMiembro.text = name else view.DET_nombreMiembro.text = ""
+                        if(identity != "false") view.DET_cedulaMiembro.text = identity else view.DET_cedulaMiembro.text = ""
+                        if(localphone_number != "false") view.DET_telefonoMiembro.text = localphone_number else view.DET_telefonoMiembro.text = ""
+                        if(state != "false") view.DET_estadoMiembro.text = state else view.DET_estadoMiembro.text = ""
+                        if(municipality != "false") view.DET_municipioMiembro.text = municipality else view.DET_municipioMiembro.text = ""
+                        if(parish != "false") view.DET_parroquiaMiembro.text = parish else view.DET_parroquiaMiembro.text = ""
+                        if(sector != "false") view.DET_sectorMiembro.text = sector else view.DET_sectorMiembro.text = ""
+                        if(street != "false") view.DET_calleMiembro.text = street else view.DET_calleMiembro.text = ""
+                        if(building != "false") view.DET_edificioMiembro.text = building else view.DET_edificioMiembro.text = ""
+                        if(house != "false") view.DET_NumeroEdificioMiembro.text = house else view.DET_NumeroEdificioMiembro.text = ""
 
 
                         val department_ids = JSONArray(item.department_ids.toString())
@@ -183,7 +179,7 @@ class Fragment_ListaMiembros: Fragment() {
                             list_name_departament.add(nameMinisterio)
                         }
 
-                        if(list_name_departament != null && list_name_departament.size > 0){
+                        if(list_name_departament.size > 0){
                             adapterMnisterio.addRowItems(list_name_departament as List<JSONArray>)
                         }else{
                             val rv_miembro_ministerio = view.findViewById<RecyclerView>(R.id.rv_miembro_ministerio)

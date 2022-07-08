@@ -13,7 +13,6 @@ import io.gripxtech.odoojsonrpcclient.R
 import io.gripxtech.odoojsonrpcclient.core.Odoo
 import io.gripxtech.odoojsonrpcclient.databinding.FragmentRegistroMiembrosBinding
 import io.gripxtech.odoojsonrpcclient.toJsonObject
-import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_registro_miembros.*
 import timber.log.Timber
 
@@ -21,7 +20,6 @@ class fragment_RegistroMiembros : Fragment() {
 
     private var _binding: FragmentRegistroMiembrosBinding? = null
     private val binding get() = _binding!!
-    private var compositeDisposable: CompositeDisposable? = null
     private var name: String = ""
     private var email: String = ""
     private var pass: String = ""
@@ -31,7 +29,7 @@ class fragment_RegistroMiembros : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentRegistroMiembrosBinding.inflate(layoutInflater, container, false)
         return binding.root

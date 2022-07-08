@@ -142,9 +142,11 @@ class Retrofit2Helper(
 
     private fun unsafeCert(builder: OkHttpClient.Builder) {
         val trustManagers = arrayOf<TrustManager>(object : X509TrustManager {
-            override fun checkClientTrusted(chain: Array<out X509Certificate>?, authType: String?) = Unit
+            override fun checkClientTrusted(chain: Array<out X509Certificate>?, authType: String?) =
+                Unit
 
-            override fun checkServerTrusted(chain: Array<out X509Certificate>?, authType: String?) = Unit
+            override fun checkServerTrusted(chain: Array<out X509Certificate>?, authType: String?) =
+                Unit
 
             override fun getAcceptedIssuers(): Array<X509Certificate> = arrayOf()
 
@@ -179,12 +181,16 @@ class Retrofit2Helper(
 
                 try {
                     fun popFirstParams() {
-                        if (logOperationParams.isNotEmpty()) {
-                            logOperationParams.removeAt(0).let {
-                                writeFile(it.first, it.second, true)
+                        try {
+                            if (logOperationParams.isNotEmpty()) {
+                                logOperationParams.removeAt(0).let {
+                                    writeFile(it.first, it.second, true)
+                                }
+                            } else {
+                                logOperationRunning = false
                             }
-                        } else {
-                            logOperationRunning = false
+                        } catch (e: NullPointerException) {
+
                         }
                     }
 
@@ -199,14 +205,18 @@ class Retrofit2Helper(
                         popFirstParams()
                     }
 
-                }catch (e:NullPointerException){
+                } catch (e: NullPointerException) {
                     fun popFirstParams() {
-                        if (logOperationParams.isNotEmpty()) {
-                            logOperationParams.removeAt(0).let {
-                                writeFile(it.first, it.second, true)
+                        try {
+                            if (logOperationParams.isNotEmpty()) {
+                                logOperationParams.removeAt(0).let {
+                                    writeFile(it.first, it.second, true)
+                                }
+                            } else {
+                                logOperationRunning = false
                             }
-                        } else {
-                            logOperationRunning = false
+                        } catch (e: NullPointerException) {
+
                         }
                     }
 
@@ -222,28 +232,6 @@ class Retrofit2Helper(
                     }
 
                 }
-
-
-               /* fun popFirstParams() {
-                    if (logOperationParams.isNotEmpty()) {
-                        logOperationParams.removeAt(0).let {
-                            writeFile(it.first, it.second, true)
-                        }
-                    } else {
-                        logOperationRunning = false
-                    }
-                }
-
-                onSubscribe { }
-
-                onError {
-                    it.printStackTrace()
-                    popFirstParams()
-                }
-
-                onComplete {
-                    popFirstParams()
-                }*/
             }
         } else {
             logOperationParams.add(Pair(fileContents, mode))

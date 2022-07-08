@@ -1,7 +1,7 @@
 package io.gripxtech.odoojsonrpcclient.fragments.micuenta
 
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.telephony.ims.ImsMmTelManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -29,14 +29,13 @@ class Fragment_MiCuenta: Fragment() {
     private lateinit var activity: NewActivityPrincipal private set
     private lateinit var viewModel: viewModel
     private lateinit var progressBar: ProgressBar
-    private var items = ArrayList<Miembros>()
     private val MiembroType = object : TypeToken<Miembros>() {}.type
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentMiCuentaBinding.inflate(layoutInflater, container, false)
         return binding.root
@@ -49,20 +48,20 @@ class Fragment_MiCuenta: Fragment() {
         progressBar = ProgressBar()
         setupViewModel()
         prueba()
+
     }
 
     private fun setupViewModel() {
         viewModel = ViewModelProvider(this).get(io.gripxtech.odoojsonrpcclient.viewModel.viewModel::class.java)
     }
 
+    @SuppressLint("LogNotTimber")
     fun prueba() {
         CoroutineScope(IO).launch {
             val db = App.database.userInfoDao().getUser()
             withContext(Main){
                 Log.e("ID USER", "MI CUENTA ${db}" )
-               /* binding.idNombre.text = db?.name*/
-               /* binding.idDocumentoIdentidad.text = db?.partner_id?.asJsonArray?.get(0)?.asString*/
-                var part_id = db?.partner_id?.asJsonArray?.get(0)?.asString?.toInt()
+                val part_id = db?.partner_id?.asJsonArray?.get(0)?.asString?.toInt()
                 Log.e("ID part_id", "MI CUENTA ${part_id}" )
                 searchMiCuenta(part_id)
             }
@@ -70,6 +69,7 @@ class Fragment_MiCuenta: Fragment() {
 
     }
 
+    @SuppressLint("LogNotTimber", "SetTextI18n")
     fun searchMiCuenta(part_id: Int?) {
         Log.e("ID searchMiCuenta", "MI CUENTA ${part_id}" )
         progressBar.progressbar(requireContext(), "Cargando...")
@@ -84,61 +84,61 @@ class Fragment_MiCuenta: Fragment() {
 
                         val item = gson.fromJson<Miembros>(result, MiembroType)
 
-                        if(item.identity != null && item.identity != "false" ){
+                        if(item.identity != "false"){
                             binding.idDocumentoIdentidad.text = item.identity
                         }else{
                             binding.idDocumentoIdentidad.text = "sin registro encontrado"
                         }
 
-                        if(item.name != null && item.name != "false" ){
+                        if(item.name != "false"){
                             binding.idNombre.text = item.name
                         }else{
                             binding.idNombre.text = "sin registro encontrado"
                         }
 
-                        if(item.localphone_number != null && item.localphone_number != "false" ){
+                        if(item.localphone_number != "false"){
                             binding.idTelefono.text = item.localphone_number
                         }else{
                             binding.idTelefono.text = "sin registro encontrado"
                         }
 
-                        if(item.state != null && item.state.toString() != "false" ){
+                        if(item.state.toString() != "false"){
                             binding.idEstado.text = JSONObject(item.state.toString()).optString("name")
                         }else{
                             binding.idEstado.text = "sin registro encontrado"
                         }
 
-                        if(item.municipality != null && item.municipality.toString() != "false" ){
+                        if(item.municipality.toString() != "false"){
                             binding.idMunicipio.text = JSONObject(item.municipality.toString()).optString("name")
                         }else{
                             binding.idMunicipio.text = "sin registro encontrado"
                         }
 
-                        if(item.parish != null && item.parish.toString() != "false" ){
+                        if(item.parish.toString() != "false"){
                             binding.idParroquia.text = JSONObject(item.parish.toString()).optString("name")
                         }else{
                             binding.idParroquia.text = "sin registro encontrado"
                         }
 
-                        if(item.street != null && item.street != "false" ){
+                        if(item.street != "false"){
                             binding.idCalle.text = item.street
                         }else{
                             binding.idCalle.text = "sin registro encontrado"
                         }
 
-                        if(item.sector != null && item.sector != "false" ){
+                        if(item.sector != "false"){
                             binding.idSector.text = item.sector
                         }else{
                             binding.idSector.text = "sin registro encontrado"
                         }
 
-                        if(item.house != null && item.house != "false" ){
+                        if(item.house != "false"){
                             binding.idCasa.text = item.house
                         }else{
                             binding.idCasa.text = "sin registro encontrado"
                         }
 
-                        if(item.building != null && item.building != "false" ){
+                        if(item.building != "false"){
                             binding.idEdificio.text = item.building
                         }else{
                             binding.idEdificio.text= "sin registro encontrado"
