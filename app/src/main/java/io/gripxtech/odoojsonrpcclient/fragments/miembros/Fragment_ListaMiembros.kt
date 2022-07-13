@@ -66,18 +66,21 @@ class Fragment_ListaMiembros: Fragment() {
         binding.rvMiembros.adapter = adapter
 
         adapter.setupScrollListener(binding.rvMiembros)
-        /*if (!adapter.hasRetryListener()) {
-            adapter.retryListener {
+
+        binding.srlMiembros.setOnRefreshListener {
+            items.clear()
+            adapter.clear()
+            if (!adapter.hasMoreListener()) {
+                adapter.showMore()
                 fetchMiembros()
+            }
+            binding.srlMiembros.post {
+                binding.srlMiembros.isRefreshing = false
             }
         }
 
-        if (adapter.rowItemCount == 0) {
-            adapter.showMore()
-            fetchMiembros()
-        }*/
-
         fetchMiembros()
+
         binding.button.setOnClickListener {
             findNavController().navigate(R.id.action_nav_miembros_to_registro)
         }
@@ -94,6 +97,7 @@ class Fragment_ListaMiembros: Fragment() {
                         adapter.hideEmpty()
                         adapter.hideError()
                         adapter.hideMore()
+                        binding.srlMiembros.isEnabled = true
                         val result = call.result.asString.toJsonObject()
                         val icMiembros = result.get("records")
                         items = gson.fromJson<ArrayList<Miembros>>(icMiembros, MiembrosListType )
@@ -118,6 +122,8 @@ class Fragment_ListaMiembros: Fragment() {
 
     private fun OnClick(){
         binding.rvMiembros.onItemClick{recyclerView, position, v ->
+            list_name_departament.clear()
+            adapterMnisterio.clear()
             progressBar.progressbar(requireContext(), "Cargando...")
             if(!items.isEmpty()){
                 if(adapter.starClick){
@@ -137,6 +143,8 @@ class Fragment_ListaMiembros: Fragment() {
                 if (it.isSuccessful) {
                     val call = it.body()!!
                     if (it.isSuccessful) {
+                        list_name_departament.clear()
+                        adapterMnisterio.clear()
                         val result = call.result.asString.toJsonObject().get("record")
                         val item = gson.fromJson<Miembros>(result, MiembroType)
                         Timber.e("item --->  ${item}")
@@ -228,6 +236,8 @@ class Fragment_ListaMiembros: Fragment() {
             visibility = View.GONE
         }
         binding.rvMiembros.visibility = View.VISIBLE
+        binding.button.visibility = View.VISIBLE
+        binding.srlMiembros.visibility = View.VISIBLE
     }
 
 

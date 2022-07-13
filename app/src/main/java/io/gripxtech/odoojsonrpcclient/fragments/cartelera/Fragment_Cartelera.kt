@@ -64,6 +64,18 @@ class Fragment_Cartelera: Fragment() {
 
         adapter.setupScrollListener(binding.rvNoticias)
 
+        binding.srlNoticias.setOnRefreshListener {
+            items.clear()
+            adapter.clear()
+            if (!adapter.hasMoreListener()) {
+                adapter.showMore()
+                noticias()
+            }
+            binding.srlNoticias.post {
+                binding.srlNoticias.isRefreshing = false
+            }
+        }
+
         noticias()
     }
 
@@ -78,6 +90,8 @@ class Fragment_Cartelera: Fragment() {
                         adapter.hideEmpty()
                         adapter.hideError()
                         adapter.hideMore()
+                        binding.srlNoticias.isEnabled = true
+                        binding.textNoticias.visibility = View.GONE
                         val respuesta = call.result.asString.toJsonObject()
                         val ic = respuesta.get("records")
                         if (ic != null){
@@ -102,6 +116,7 @@ class Fragment_Cartelera: Fragment() {
                             }
                             binding.rvNoticias.visibility = View.GONE
                             binding.textNoticias.visibility = View.VISIBLE
+                            binding.srlNoticias.visibility = View.VISIBLE
                         }
 
                         Timber.e("callkw()--->  ${respuesta.get("records")}")
@@ -163,8 +178,8 @@ class Fragment_Cartelera: Fragment() {
                         if (title != null && title != "false") view.title.text = title else view.title.text = ""
                         if (description != null && description != "false") view.description.text = description else view.description.text = ""
                         if (content != null && content != "false") view.content.text = content else view.content.text = ""
-                        if (date != null && date != "false") view.date.text = date else view.date.text = ""
-                        if (expiry_date != null && expiry_date != "false") view.expiry_date.text = expiry_date else view.expiry_date.text = ""
+                        if (date != null && date != "false") view.date.text = formatDate(date) else view.date.text = ""
+                        if (expiry_date != null && expiry_date != "false") view.expiry_date.text = formatDate(expiry_date) else view.expiry_date.text = ""
 
 
                         AlertDialog.setView(view)
@@ -212,6 +227,11 @@ class Fragment_Cartelera: Fragment() {
             visibility = View.GONE
         }
         binding.rvNoticias.visibility = View.VISIBLE
+        binding.srlNoticias.visibility = View.VISIBLE
+    }
+
+    private fun formatDate(fecha: String): String? {
+        return fecha.toDate("yyyy-MM-d").formatTo("dd-MM-yyyy")
     }
 }
 

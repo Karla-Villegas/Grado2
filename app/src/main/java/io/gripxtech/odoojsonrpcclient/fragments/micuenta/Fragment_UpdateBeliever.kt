@@ -1,4 +1,4 @@
-package io.gripxtech.odoojsonrpcclient.fragments.miembros
+package io.gripxtech.odoojsonrpcclient.fragments.micuenta
 
 import android.os.Bundle
 import android.view.LayoutInflater

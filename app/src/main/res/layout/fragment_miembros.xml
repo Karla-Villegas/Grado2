@@ -66,12 +66,20 @@
         </com.facebook.shimmer.ShimmerFrameLayout>
 
 
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/srl_miembros"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                android:visibility="gone">
+
         <androidx.recyclerview.widget.RecyclerView
                 android:layout_marginTop="@dimen/_5sdp"
                 android:id="@+id/rv_miembros"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:visibility="gone" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 
     </LinearLayout>

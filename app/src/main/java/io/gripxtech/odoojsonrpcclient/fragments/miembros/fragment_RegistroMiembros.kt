@@ -39,12 +39,36 @@ class fragment_RegistroMiembros : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         activity = getActivity() as NewActivityPrincipal
         progressBar = ProgressBar()
-        btGuardar.setOnClickListener { guardar() }
+        binding.btGuardar.setOnClickListener { guardar() }
+        binding.btRegresar.setOnClickListener { regresar() }
 
+    }
+
+    private fun regresar() {
+        findNavController().navigate(R.id.action_nav_registro_to_miembros)
     }
 
     private fun guardar() {
         name = etName.text.toString()
+        email = etEmail.text.toString()
+        pass = etPass.text.toString()
+
+        if(name.isBlank() || email.isBlank() || pass.isBlank() ){
+            binding.tlRegistroName.error = getString(R.string.login_username_error)
+            binding.tlRegistroEmail.error = getString(R.string.login_password_error)
+            binding.tlRegistroPassword.error = getString(R.string.login_password_error)
+            binding.nameObligatorio.visibility = View.VISIBLE
+            binding.correoObligatorio.visibility = View.VISIBLE
+            binding.contraObligatorio.visibility = View.VISIBLE
+
+        }else{
+            createBeliever(name, email, pass)
+            binding.nameObligatorio.visibility = View.GONE
+            binding.correoObligatorio.visibility = View.GONE
+            binding.contraObligatorio.visibility = View.GONE
+        }
+
+      /*  name = etName.text.toString()
         if (name.isBlank()) {
             tlRegistroName.error = getString(R.string.login_username_error)
         }
@@ -55,9 +79,9 @@ class fragment_RegistroMiembros : Fragment() {
         pass = etPass.text.toString()
         if (pass.isBlank()) {
             tlRegistroPassword.error = getString(R.string.login_password_error)
-        }
+        }*/
 
-        createBeliever(name, email, pass)
+       /* createBeliever(name, email, pass)*/
 
     }
 

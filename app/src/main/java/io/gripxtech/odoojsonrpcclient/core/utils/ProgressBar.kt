@@ -4,6 +4,7 @@ import android.app.ProgressDialog
 import android.content.Context
 import android.view.LayoutInflater
 import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.TextView
 import io.gripxtech.odoojsonrpcclient.R
 import io.gripxtech.odoojsonrpcclient.databinding.ProgressDialogBinding
@@ -17,7 +18,7 @@ fun createProgress(context: Context, texto: String, Subtexto: String) {
     progressBar.setContentView(R.layout.progress_dialog)
     progressBar.findViewById<TextView>(R.id.passwordDialog).text = Subtexto
     progressBar.findViewById<TextView>(R.id.emailDialog).text = texto
-    progressBar.findViewById<Button>(R.id.ButtonDialog).setOnClickListener {
+    progressBar.findViewById<LinearLayout>(R.id.ButtonDialog).setOnClickListener {
         progressBar.dismiss()
     }
 
