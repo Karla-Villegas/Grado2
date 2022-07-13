@@ -1,5 +1,6 @@
 package io.gripxtech.odoojsonrpcclient.fragments.miembros
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -12,6 +13,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,7 +22,13 @@ import io.gripxtech.odoojsonrpcclient.*
 import io.gripxtech.odoojsonrpcclient.core.Odoo
 import io.gripxtech.odoojsonrpcclient.databinding.FragmentMiembrosBinding
 import io.gripxtech.odoojsonrpcclient.fragments.miembros.entities.Miembros
+import io.gripxtech.odoojsonrpcclient.viewModel.viewModel
 import kotlinx.android.synthetic.main.detalles_miembros.view.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.Dispatchers.Main
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.json.JSONArray
 import org.json.JSONObject
 import timber.log.Timber
@@ -33,10 +41,12 @@ class Fragment_ListaMiembros: Fragment() {
     private val MiembroType = object : TypeToken<Miembros>() {}.type
     private lateinit var activity: NewActivityPrincipal private set
     private var believer_id: Long = 0
+    private var rol_id: Int = 0
     private lateinit var IcMiembros: Any
     private var items = ArrayList<Miembros>()
     private var list_name_departament: ArrayList<String> = arrayListOf()
     private lateinit var progressBar: ProgressBar
+    private lateinit var viewModel: viewModel
 
 
     val adapter: AdapterMiembros by lazy {
@@ -59,6 +69,7 @@ class Fragment_ListaMiembros: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity = getActivity() as NewActivityPrincipal
+        viewModel = ViewModelProvider(this).get(io.gripxtech.odoojsonrpcclient.viewModel.viewModel::class.java)
         progressBar = ProgressBar()
         binding.rvMiembros.layoutManager = LinearLayoutManager(requireContext())
         val layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
@@ -78,11 +89,67 @@ class Fragment_ListaMiembros: Fragment() {
                 binding.srlMiembros.isRefreshing = false
             }
         }
-
-        fetchMiembros()
+        fethRol()
+      /*  fetchMiembros()
 
         binding.button.setOnClickListener {
             findNavController().navigate(R.id.action_nav_miembros_to_registro)
+        }*/
+    }
+
+    private fun fethRol() {
+        CoroutineScope(IO).launch {
+            val db = App.database.userInfoDao().getUser()
+            withContext(Main){
+                Log.e("ID USER", "MI CUENTA ${db}" )
+                val part_id = db?.serverId
+                Log.e("ID part_id", "MI CUENTA ${part_id}" )
+                if (part_id != null ){
+                    roles(part_id)
+                }
+
+            }
+        }
+    }
+
+    @SuppressLint("LogNotTimber")
+    private fun roles(partId: Int) {
+        Odoo.route("/roles/$partId", "", args = "") {
+            this.onNext {
+                if (it.isSuccessful) {
+                    val call = it.body()!!
+                    if (it.isSuccessful) {
+                        val roles = call.result.asString.toJsonObject().get("is_admin")
+                        val boo: Boolean = roles.asBoolean
+                        Log.e("resultado is_admin", "roles: ${boo}")
+
+
+                        if(!boo.equals(false)){
+                            Log.e("IF", "roles: IF", )
+                            fetchMiembros()
+                            binding.button.visibility = View.VISIBLE
+                            binding.button.setOnClickListener {
+                                findNavController().navigate(R.id.action_nav_miembros_to_registro)
+                            }
+
+                        }else{
+                            fetchMiembros()
+                            binding.button.visibility = View.GONE
+                        }
+
+
+
+                    } else {
+                        Timber.w("callkw() failed with ${it.errorBody()}")
+                    }
+                } else {
+                    Timber.w("request failed with ${it.code()}:${it.message()}")
+                }
+            }
+            this.onError { error ->
+                error.printStackTrace()
+            }
+            this.onComplete { }
         }
     }
 
@@ -236,7 +303,6 @@ class Fragment_ListaMiembros: Fragment() {
             visibility = View.GONE
         }
         binding.rvMiembros.visibility = View.VISIBLE
-        binding.button.visibility = View.VISIBLE
         binding.srlMiembros.visibility = View.VISIBLE
     }
 
