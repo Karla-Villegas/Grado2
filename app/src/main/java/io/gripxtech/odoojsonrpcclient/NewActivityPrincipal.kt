@@ -74,7 +74,7 @@ class NewActivityPrincipal : AppCompatActivity() {
                     enableButtonMenu()
                 }
                 R.id.nav_perfil -> {
-                    toolbar("Mi perfil")
+                    toolbar("Acerca de")
                     enableButtonMenu()
 
                 }

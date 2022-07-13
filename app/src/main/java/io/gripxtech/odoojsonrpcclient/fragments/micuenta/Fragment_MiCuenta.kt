@@ -45,13 +45,13 @@ class Fragment_MiCuenta: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity = getActivity() as NewActivityPrincipal
-        progressBar = ProgressBar()
+       /* progressBar = ProgressBar()
         setupViewModel()
-        prueba()
+        prueba()*/
 
     }
 
-    private fun setupViewModel() {
+  /*  private fun setupViewModel() {
         viewModel = ViewModelProvider(this).get(io.gripxtech.odoojsonrpcclient.viewModel.viewModel::class.java)
     }
 
@@ -177,7 +177,7 @@ class Fragment_MiCuenta: Fragment() {
         }
     }
 
-
+*/
 
     override fun onDestroyView() {
         super.onDestroyView()
